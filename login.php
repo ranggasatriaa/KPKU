@@ -9,7 +9,7 @@ if (isset($_SESSION['level']))
 require_once 'config.php';
 // if(isset($_POST['npp']) && isset($_POST['passowrd'])){
   $npp = $_POST['npp'];
-  $password = $_POST['password'];
+  $password = md5($_POST['password']);
 
 // }
 // query untuk mendapatkan record dari username

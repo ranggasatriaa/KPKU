@@ -73,7 +73,7 @@
 							if(isset($_POST['submit'])){
 								$nama=test_input($_POST['nama']);
 								$npp=test_input($_POST['npp']);
-								$password='123456';
+								$password=md5('123456');
 								$level=$_POST['level'];
 
 								if(!preg_match("/^[0-9]*$/",$npp)) {

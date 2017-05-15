@@ -27,7 +27,6 @@
 				while ($row = $result->fetch_object()){ //semua data yg diselect itu dimasukin ke objek
 					$nama = $row->nama;
 					$npp = $row->npp;
-					$password = $row->password;
 					$level = $row->level;
 					$idpetugas = $_GET['id'];
 				}

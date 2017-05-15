@@ -16,7 +16,7 @@
 		}
 
 		if (isset($_GET["submit"])){
-			$password_lama =test_input($_GET["password_lama"]);
+			$password_lama =md5($_GET["password_lama"]);
 			$password_baru1 =$_GET['password_baru1'];
 			$password_baru2 =$_GET['password_baru2'];
 			$panjang = strlen($password_baru1);
@@ -53,9 +53,10 @@
 				}
 				if ( $valid_password && $valid_password_confirm){
 					//escape inputs data
-					$password_baru1 = $db->real_escape_string($password_baru1);
+					$password_barumd5 = md5($password_baru1);
+					$password_barumd5 = $db->real_escape_string($password_barumd5);
 					//Asign a query
-					$query = " UPDATE petugas SET password='".$password_baru1."'  WHERE idpetugas='".$idpetugas."' ";
+					$query = " UPDATE petugas SET password='".$password_barumd5."'  WHERE idpetugas='".$idpetugas."' ";
 					// Execute the query
 					$result = $db->query( $query );
 					if (!$result){
