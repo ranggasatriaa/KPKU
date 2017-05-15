@@ -118,7 +118,7 @@ if (!isset($_SESSION['level'])){
 													echo '<img style="max-height:200px" class="img-responsive" src="maintenance/'.$row->direktori_kerusakan.'" alt="klik untuk detail">';
 												echo '</a>';
 												echo '<h3 style="margin:10px 0px 0px 0px;">';
-													echo '<a style="color:#0059B2" href="detail_inspeksi.php?id='.$row->idinspeksi.'">'.$row->nama_inspeksi.' - '.$row->nama_kerusakan.'</a>';
+													echo '<a style="color:#0059B2" href="maintenance/detail_inspeksi.php?id='.$row->idinspeksi.'">'.$row->nama_inspeksi.' - '.$row->nama_kerusakan.'</a>';
 												echo '</h3>';
 												if ($row->status==1){
 													echo '<strong class="text-success">Telah diperbaiki</strong>';

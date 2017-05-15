@@ -110,7 +110,7 @@ if (!isset($_SESSION['level'])){
 									echo '</tr>';
 									echo '<tr align="center">';
 										echo'<td colspan="3">';
-											if ($_SESSION['level'] == 'dgm_op' || $_SESSION['level'] == 'ptg_op')
+											if ($_SESSION['level'] == 'ptg_op')
 											{
 												if ($row->status==FALSE){
 													echo'<a style="margin:5px" href="perbaiki_inspeksi.php?id='.$idinspeksi.'" class="btn btn-success">Perbaiki</a>';
@@ -118,7 +118,11 @@ if (!isset($_SESSION['level'])){
 												echo'<a style="margin:5px" 	href="edit_inspeksi.php?id='.$idinspeksi.'" class="btn btn-warning btn-sm" ">Ubah</a>';
 												echo'<a style="margin:5px" 	href="hapus_inspeksi.php?id='.$idinspeksi.'" class="btn btn-danger btn-sm" onclick="return del()">Hapus</a>';
 											}
-											echo'<a style="float:right; margin:5px" 	href="index.php" class="btn btn-default btn-sm">Kembali</a>';
+											if($_SESSION['level'] == 'ptg_op' ){
+												echo'<a style="float:right; margin:5px" 	href="index.php" class="btn btn-default btn-sm">Kembali</a>';
+											}elseif($_SESSION['level'] == 'dgm_op' ){
+												echo'<a style="float:right; margin:5px" 	href="../index.php" class="btn btn-default btn-sm">Kembali</a>';
+											}
 										echo'</td>';
 									echo '</tr>';
 								echo '</table>';
