@@ -93,8 +93,8 @@ if (!isset($_SESSION['level'])){
 							}
 							$temp_tgl	 = $tanggal1;
 							$selisih = ((abs(strtotime ($tanggal1) - strtotime ($tanggal2)))/(60*60*24));
-							echo $filter;
-							echo $urutan;
+						//	echo $filter;
+							//echo $urutan;
 
 							echo '<div class="col-lg-12">';
 								//perulangan menghitung kerusakan perhari
@@ -174,11 +174,12 @@ if (!isset($_SESSION['level'])){
 							echo '</div>';
 							// echo '<div id="grafik" style="min-width: 300px; height: 400px; margin: 0 auto"></div>';
 						}
-							echo '<a style="margin:10px 0px" class="btn btn-outline btn-primary btn-block" href="/kpku/operasional/index.php">Kembali</a>';
-
 						?>
 					</div>
 					<!-- /. col-md-12 -->
+					<div class="col-md-12">
+						<a style="margin:10px 0px" class="btn btn-outline btn-primary btn-block" href="/kpku/operasional/index.php">Kembali</a>
+					</div>
         </div>
 				<!-- /. row -->
       </div>
