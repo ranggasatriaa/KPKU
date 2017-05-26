@@ -71,7 +71,25 @@
 														echo '<td>'.$i.'</td>';
 														echo '<td>'.$row->npp.'</td> ';
 														echo '<td>'.$row->nama.'</td> ';
-														echo '<td>'.$row->level.'</td> ';
+														echo '<td>';
+														if($row->level=="gm"){
+															echo "General Manager";
+														}elseif($row->level=="dgm_hrga"){
+															echo "Deputy General Manager HRGA";
+														}elseif($row->level=="dgm_op"){
+															echo "Deputy General Manager Operasional";
+														}elseif($row->level=="dgm_fn"){
+															echo "Deputy General Manager Financial";
+														}elseif($row->level=="ptg_hrga"){
+															echo "Petugas HRGA";
+														}elseif($row->level=="ptg_op"){
+															echo "Petugas Operasional";
+														}elseif($row->level=="ptg_fn"){
+															echo "Petugas Financial";
+														}else{
+															echo "-";
+														}
+														echo '</td> ';
 														echo '<td>';
 															echo '<a class="btn btn-warning" href="edit_petugas.php?id='.$row->idpetugas.'"><i class="fa fa-edit"></i> Ubah</a>';
 															echo '&nbsp&nbsp&nbsp<a class="btn btn-danger" href="delete_petugas.php?id='.$row->idpetugas.'" onclick="return del()"><i class="fa fa-eraser"></i> Hapus</a>';
@@ -81,7 +99,7 @@
 															if($row->request==1){
 																echo '<strong class="text-danger">Meminta Reset Password</strong>';
 															}else{
-																echo ' ';
+																echo ' - ';
 															}
 														echo '</td>';
 													echo '</tr>';

@@ -42,7 +42,7 @@
 							}
 
 							if(isset($_POST['submit'])){
-								$password=$_POST['password'];
+								$password=md5($_POST['password']);
 
 								//Asign a query
 								$query = "SELECT * FROM petugas where level='admin'";

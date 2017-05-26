@@ -92,7 +92,7 @@ if (!isset($_SESSION['level'])){
 												&nbsp
 											</td>
 											<td>
-												<input  type="submit" class="btn btn-primary" name="submit"></input>
+												<input  type="submit" class="btn btn-primary" name="submit" value="Urutkan"></input>
 											</td>
 										</tr>
 									</table>
@@ -137,7 +137,7 @@ if (!isset($_SESSION['level'])){
 									}else{
 										echo '<strong class="text-danger">Belum diperbaiki</strong>';
 									}
-										echo '<p>'.$row->waktu_kerusakan.'</p>';
+										echo '<p>'.date ( 'd-m-Y' , strtotime($row->waktu_kerusakan)).'</p>';
 									echo '</div>';
 								}
 							// echo '</div>';

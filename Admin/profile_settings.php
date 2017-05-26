@@ -12,7 +12,7 @@
 
 		//GET ID DAN NAMA USER YANG LOGIN
 		require_once('../config.php');
-		$nip=$_SESSION['nip'];
+		$npp=$_SESSION['npp'];
 
 		$db = new mysqli($db_host, $db_username, $db_password, $db_database);
 		if ($db->connect_errno){
@@ -27,14 +27,14 @@
 			}else{
 				while ($row = $result->fetch_object()){ //semua data yg diselect itu dimasukin ke objek
 				$nama = $row->nama;
-				$nip = $row->nip;
+				$npp = $row->npp;
 				$password = $row->password;
 				}
 			}
 		}else{
 			$nama=test_input($_GET['nama']);
 			$password=test_input($_GET["password"]);
-			$nip=test_input($_GET["nip"]);
+			$npp=test_input($_GET["npp"]);
 			$panjang=strlen($password);
 			$confirmpassword=$_GET['confirmpassword'];
 			$nama=test_input($_GET["nama"]);
@@ -47,13 +47,13 @@
 			// 	$valid_nama=TRUE;
 			// }
 
-			// $nip=test_input($_GET["nip"]);
-			// if($nip==''){
-			// 	$error_nip="Mohon isi nip user";
-			// 	$valid_nip=FALSE;
+			// $npp=test_input($_GET["npp"]);
+			// if($npp==''){
+			// 	$error_npp="Mohon isi npp user";
+			// 	$valid_npp=FALSE;
 			// }
 			// else{
-			// 	$valid_nip=TRUE;
+			// 	$valid_npp=TRUE;
 			// }
 			// $password=test_input($_GET["password"]);
 			// if($password==''){
@@ -85,10 +85,11 @@
 				//escape inputs data
 
 				$nama = $db->real_escape_string($nama);
-				$nip = $db->real_escape_string($nip);
+				$npp = $db->real_escape_string($npp);
+				$password = md5($password);
 				$password = $db->real_escape_string($password);
 				//Asign a query
-				$query = " UPDATE petugas SET nama='".$nama."',nip='".$nip."',password='".$password."'WHERE level='admin' ";
+				$query = " UPDATE petugas SET nama='".$nama."',npp='".$npp."',password='".$password."'WHERE level='admin' ";
 				// Execute the query
 				$result = $db->query( $query );
 				if (!$result){
@@ -130,21 +131,21 @@
 									<td><span class="error"> <?php if(isset($error_nama)) {echo $error_nama;}?></span></td>
 								</tr>
 								<tr>
-									<td>NIP</td>
+									<td>NPP</td>
 									<td>:</td>
-									<td><input type="text" class="form-control" name="nip" size="30" maxlength="40" placeholder="NIP tidak boleh sama" autofocus value="<?php if(isset($nip)) {echo $nip;}?>" required></td>
-									<td><span class="error"> <?php if(isset($error_nip)) {echo $error_nip;}?></span></td>
+									<td><input type="text" class="form-control" name="npp" size="30" maxlength="40" placeholder="NPP tidak boleh sama" autofocus value="<?php if(isset($npp)) {echo $npp;}?>" required></td>
+									<td><span class="error"> <?php if(isset($error_npp)) {echo $error_npp;}?></span></td>
 								</tr>
 								<tr>
 									<td>Password</td>
 									<td>:</td>
-									<td><input type="password" class="form-control" name="password" size="30" maxlength="12" placeholder="Password(min 6 max 12)" autofocus value="<?php if(isset($password)) {echo $password;}?>" required></td>
+									<td><input type="password" class="form-control" name="password" size="30" maxlength="12" placeholder="Password(min 6 max 12)" autofocus required></td>
 									<td><span class="error"> <?php if(isset($error_password)) {echo $error_password;}?></span></td>
 								</tr>
 								<tr>
-									<td>Confirm Password</td>
-									<td>:</td>
-									<td><input type="password" class="form-control" name="confirmpassword" size="30" maxlength="12" placeholder="Confirm Password" autofocus value="<?php if(isset($password)) {echo $password;}?>" required></td>
+									<td>Confirm Password </td>
+									<td>: </td>
+									<td><input type="password" class="form-control" name="confirmpassword" size="30" maxlength="12" placeholder="Confirm Password" autofocus required></td>
 									<td><span class="error"> <?php if(isset($error_password)) {echo $error_password;}?></span></td>
 								</tr>
 								<tr>

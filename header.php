@@ -80,7 +80,7 @@ if (!isset($_SESSION['level'])){
                   <a href="/KPKU/Admin/index.php"><i class="fa fa-bank fa-fw"></i> Lihat User</a>
                 </li>
                 <li>
-                  <a href="/KPKU/Admin/confirm.php"><i class="fa fa-wrench fa-fw"></i>Profile Settings<span></span></a>
+                  <a href="/KPKU/Admin/confirm.php"><i class="fa fa-wrench fa-fw"></i>Ubah Profil Admin<span></span></a>
                 </li>
               </ul>
             </div> <!-- /.sidebar-collapse -->

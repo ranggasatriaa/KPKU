@@ -29,7 +29,7 @@ if (!isset($_SESSION['level'])){
 					<?php
 						require_once ('../../config.php');
 						$tanggal		= $_POST['tanggal'];
-						$tanggaldmy = date('Y-m-d', strtotime($tanggal));
+						$tanggaldmy = date('d-m-Y', strtotime($tanggal));
 						$jumlah			= 0;
 
 						$db=new mysqli($db_host,$db_username,$db_password,$db_database);

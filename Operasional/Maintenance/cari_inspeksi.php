@@ -125,7 +125,7 @@ if (!isset($_SESSION['level'])){
 												}else{
 													echo '<strong class="text-danger">Belum diperbaiki</strong>';
 												}
-												echo '<p>'.$row->waktu_kerusakan.'</p>';
+												echo '<p>'.date ( 'd-m-Y' , strtotime($row->waktu_kerusakan)).'</p>';
 											echo '</div>';
 										}
 									}
@@ -164,7 +164,7 @@ if (!isset($_SESSION['level'])){
 												}else{
 													echo '<strong class="text-danger">Belum diperbaiki</strong>';
 												}
-												echo '<p>'.$row->waktu_kerusakan.'</p>';
+												echo '<p>'.date ( 'd-m-Y' , strtotime($row->waktu_kerusakan)).'</p>';
 											echo '</div>';
 										}
 									}

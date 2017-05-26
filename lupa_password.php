@@ -49,9 +49,10 @@
             <div class="col-md-4 col-md-offset-4">
                 <div style="margin-top:20px" class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h2 align="center" class="panel-title">Masukan Data Reset</h2>
+                        <h2 align="center" class="panel-title">Masukkan Data Reset</h2>
                     </div>
                     <div class="panel-body">
+											<label>Untuk meminta reset password masukkan NPP anda</label>
                         <form role="form" method="post" action="lupa_password.php">
                             <fieldset>
                                 <div class="form-group">
