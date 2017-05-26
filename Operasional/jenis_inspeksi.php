@@ -27,7 +27,7 @@ if (!isset($_SESSION['level'])){
 			<div id="page-wrapper">
 				<div class="row">
 				  <div class="col-lg-12">
-						<h2>Data User</h2>
+						<h2>Data Jenis Inspeksi</h2>
 						<p><a href="add_jenis_inspeksi.php?" class="btn btn-primary"><i class="fa fa-plus"></i>  Tambah Jenis Inspeksi </a></p>
 							<div class="row">
 								<div class="col-lg-12">
