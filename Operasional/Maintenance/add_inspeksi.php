@@ -62,11 +62,12 @@ if (!isset($_SESSION['level'])){
 									// echo $row->id;
 								}
 								?>
+								File diperbolehkan : jpg, jpeg, png or gif<br />
 								<input type="hidden" name="id" value="<?php echo $idinspeksi;?>" />
 	              <input type="hidden" name="idpetugas" value="<?php echo $idpetugas;?>" />
 								<input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
 								<div class="form-group">
-									<label for="userfile">Unggah foto (TUkuran Max 5Mb):</label>
+									<label for="userfile">Unggah foto (Ukuran Max 5Mb):</label>
 									<!-- File diperbolehkan : jpg, jpeg, png or gif -->
 									<br/><img id="img_prev" src="img.png" style="width:25%; max-height:300px; min-width:100px; margin-bottom:5px"/>
 									<input type="file" name="userfile" id="userfile" required>

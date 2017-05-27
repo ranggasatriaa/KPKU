@@ -34,7 +34,7 @@ if (!isset($_SESSION['level'])){
 						</form>
 						<!-- form urutan tampilan -->
 						<form action="cari_inspeksi.php" method="GET" autocomplete="on">
-							<label>Urutkan berdasarkan:</label>
+							<label>Urutkan Berdasarkan:</label>
 							<div style"float:left;width:20%">
 								<input type="hidden" name="tanggal1" value="<?php echo $_GET['tanggal1'];?>"/>
 								<input type="hidden" name="tanggal2" value="<?php echo $_GET['tanggal2'];?>"/>
@@ -93,8 +93,8 @@ if (!isset($_SESSION['level'])){
 							}
 							$temp_tgl	 = $tanggal1;
 							$selisih = ((abs(strtotime ($tanggal1) - strtotime ($tanggal2)))/(60*60*24));
-							echo $filter;
-							echo $urutan;
+							// echo $filter;
+							// echo $urutan;
 
 							echo '<div class="col-lg-12">';
 								//perulangan menghitung kerusakan perhari

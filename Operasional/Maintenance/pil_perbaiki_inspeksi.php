@@ -22,6 +22,7 @@ if (!isset($_SESSION['level'])){
 			<!-- <div style="position: relative; margin: 0 0 0 195px; border-left: 2px solid #e7e7e7; padding: 0 15px; min-height: 800px; background-color: white;"> -->
 			<div id="page-wrapper">
 			  <div class="col-lg-12">
+					<label>Masukkan Tanggal:</label>
 					<form action="pil_perbaiki_inspeksi.php" method="POST" autocomplete="on">
 	    			<input type="date" name="tanggal" required>
 						<input type="submit" class="btn btn-primary" name="submit" value="CARI"></input>

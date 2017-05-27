@@ -21,6 +21,7 @@ if (!isset($_SESSION['level'])){
 			<div id="page-wrapper">
 				<div class="row">
 				  <div class="col-lg-12">
+						<label>Masukkan Tanggal:</label>
 						<form action="print_inspeksi.php" method="POST" autocomplete="on">
 		    			<input type="date" name="tanggal" required>
 							<input type="submit" class="btn btn-primary" name="submit" value="CARI"></input>

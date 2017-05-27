@@ -48,12 +48,17 @@ if (!isset($_SESSION['level'])){
 										echo '<tr>';
 										echo '<td style="width:50%; align:center"><a href="detail_image.php?id='.$row->idinspeksi.'&direktori='.$row->direktori_kerusakan.'"><img src="'.$row->direktori_kerusakan.'" width="100%"></a><br/>Kondisi Sebelum Diperbaiki</td>';
 										echo '<td></td>';
-										echo '<td style="width:50%; align:center"><a href="detail_image.php?id='.$row->idinspeksi.'&direktori='.$row->direktori_perbaikan.'"><img src="'.$row->direktori_perbaikan.'" style="width:100%; max-height:300px""></a><br/>Kondisi Sebelum Diperbaiki </td>';
+										echo '<td style="width:50%; align:center"><a href="detail_image.php?id='.$row->idinspeksi.'&direktori='.$row->direktori_perbaikan.'"><img src="'.$row->direktori_perbaikan.'" style="width:100%; max-height:300px""></a><br/>Kondisi Setelah Diperbaiki </td>';
 										echo '</tr>';
 									}else{
 										echo '<tr><td align="center" colspan="3"><a href="detail_image.php?id='.$row->idinspeksi.'&direktori='.$row->direktori_kerusakan.'"><img src="'.$row->direktori_kerusakan.'" width="60%"></a><br/>';
-										echo 'Gambar Sebelum Diperbaiki</tr>';
+										echo 'Kondisi Sebelum Diperbaiki</tr>';
 									}
+									echo '<tr>';
+										echo '<th>ID Inspeksi</th>';
+										echo '<th>:</th>';
+										echo '<td>'.$row->idinspeksi.'</td>';			
+									echo '</tr>';
 									echo '<tr>';
 										echo '<th>Keadaan</th>';
 										echo '<th>:</th>';

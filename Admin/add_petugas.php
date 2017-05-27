@@ -28,40 +28,31 @@
 					<div class="col-lg-12">
 						<h2>Tambah User</h2>
 						<form method="POST" autocomplete="on" action="add_petugas.php">
-							<table >
-								<tr>
-									<td>Nama</td>
-									<td>:</td>
-									<td><input type="text" class="form-control" name="nama" size="30" maxlength="40" placeholder="Nama User" autofocus required></td>
-								</tr>
-								<tr>
-									<td>npp</td>
-									<td>:</td>
-									<td><input type="text" class="form-control" name="npp" size="30" maxlength="40" placeholder="NPP tidak boleh sama" autofocus required></td>
-								</tr>
-								<tr>
-								<td>Level</td>
-								<td>:</td>
-								<td>
-									<select class="form-control" name="level" required>
-										<option value="" <?php if (!isset($level)) echo 'selected="true"';?>>--Pilih Jabatan--</option>
-										<option value="gm" <?php if (isset($level) && $level=="gm") echo 'selected="true"';?>>General Manager</option>
-										<option value="dgm_hrga" <?php if (isset($level) && $level=="dgm_hrga") echo 'selected="true"'; ?>>DGM HRGA</option>
-										<option value="dgm_op" <?php if (isset($level) && $level=="dgm_op") echo 'selected="true"'; ?>>DGM Operasional</option>
-										<option value="dgm_fn" <?php if (isset($level) && $level=="dgm_fn") echo 'selected="true"'; ?>>DGM Finance</option>
-										<option value="ptg_hrga" <?php if (isset($level) && $level=="ptg_hrga") echo 'selected="true"'; ?>>Petugas HRGA</option>
-										<option value="ptg_op" <?php if (isset($level) && $level=="ptg_op") echo 'selected="true"'; ?>>Petugas Operasional</option>
-										<option value="ptg_fn" <?php if (isset($level) && $level=="ptg_fn") echo 'selected="true"'; ?>>Petugas Finance</option>
-									</select>
-								</td>
-								<td><span class="error"> <?php if(isset($error_level)) {echo $error_level;}?></span></td>
-							</tr>
-								<tr>
-									<td><br><input type="submit" class="btn btn-success" name="submit" value="Tambah"></td>
-									<td></td>
-									<td align="right"><br><a class="btn btn-danger" href="index.php">Batal</a></td>
-								</tr>
-							</table>
+							<div style="max-width:300px" class="form-group">
+								<label>Nama:</label>
+								<input type="text" class="form-control" name="nama" size="30" maxlength="40" placeholder="Nama User" autofocus required>
+							</div>
+							<div style="max-width:300px" class="form-group">
+								<label>NPP:</label>
+								<input type="text" class="form-control" name="npp" size="30" maxlength="40" placeholder="NPP tidak boleh sama" autofocus required>
+							</div>
+							<div style="max-width:300px" class="form-group">
+								<label>Level:</label>
+								<select class="form-control" name="level" required>
+									<option value="" <?php if (!isset($level)) echo 'selected="true"';?>>--Pilih Jabatan--</option>
+									<option value="gm" <?php if (isset($level) && $level=="gm") echo 'selected="true"';?>>General Manager</option>
+									<option value="dgm_hrga" <?php if (isset($level) && $level=="dgm_hrga") echo 'selected="true"'; ?>>DGM HRGA</option>
+									<option value="dgm_op" <?php if (isset($level) && $level=="dgm_op") echo 'selected="true"'; ?>>DGM Operasional</option>
+									<option value="dgm_fn" <?php if (isset($level) && $level=="dgm_fn") echo 'selected="true"'; ?>>DGM Finance</option>
+									<option value="ptg_hrga" <?php if (isset($level) && $level=="ptg_hrga") echo 'selected="true"'; ?>>Petugas HRGA</option>
+									<option value="ptg_op" <?php if (isset($level) && $level=="ptg_op") echo 'selected="true"'; ?>>Petugas Operasional</option>
+									<option value="ptg_fn" <?php if (isset($level) && $level=="ptg_fn") echo 'selected="true"'; ?>>Petugas Finance</option>
+								</select>
+							</div>
+							<div style="max-width:300px" class="form-group">
+								<input type="submit" class="btn btn-success" name="submit" value="Tambah">
+								<a style="float:right"class="btn btn-danger" href="index.php">Batal</a>
+							</div>
 						</form>
 						<?php
 							require_once('../config.php');

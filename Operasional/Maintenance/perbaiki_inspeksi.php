@@ -31,7 +31,7 @@ if (!isset($_SESSION['level'])){
 								<input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
 								<div class="form-group">
 								File diperbolehkan : jpg, jpeg, png or gif<br />
-									<label for="userfile">Upload a file:</label>
+									<label for="userfile">Unggah foto (Ukuran Max 5Mb):</label>
 									<br/><img id="img_prev" src="img.png" style="width:25%; max-height:300px; min-width:100px; margin-bottom:5px"/>
 									<input type="file" name="userfile" id="userfile" required>
 								</div>

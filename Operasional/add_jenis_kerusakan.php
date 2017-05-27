@@ -69,10 +69,10 @@ function test_input($data) {
 						<form action="add_jenis_kerusakan.php" method="POST" enctype="multipart/form-data"/>
 								<h3 align="left"> Masukkan Jenis kerusakan Baru </h3>
 								<div class="form-group">
-									<label>Nama kerusakan:</label>
+									<label>Nama Jenis Kerusakan:</label>
 								</div>
 								<div style="max-width:300px"class="form-group">
-									<input type="text" class="form-control" name="nama_kerusakan" size="10" maxlength="40" placeholder="Nama User" autofocus required>
+									<input type="text" class="form-control" name="nama_kerusakan" size="10" maxlength="40" placeholder="Nama Jenis Kerusakan" autofocus required>
 								</div>
 								<div class="form-group">
 									<input class="btn btn-success" type="submit" name="submit" value="Submit"/>
