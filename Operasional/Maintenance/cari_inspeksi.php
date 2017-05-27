@@ -174,8 +174,17 @@ if (!isset($_SESSION['level'])){
 							echo '</div>';
 							// echo '<div id="grafik" style="min-width: 300px; height: 400px; margin: 0 auto"></div>';
 						}
-							echo '<a style="margin:10px 0px" class="btn btn-outline btn-primary btn-block" href="/kpku/operasional/maintenance/index.php">Kembali</a>';
-
+						echo '</div>';
+						echo '</div>';
+						echo '<div class="row">';
+						echo '<div class="col-lg-100">';
+						if ($_SESSION['level']="gm"){
+							echo' <br/>	<a class="btn btn-outline btn-primary btn-block" href="/kpku/operasional/maintenance/index_luar.php">Kembali</a>';
+						}elseif($_SESSION['level']="dgm_op"){
+							echo' <br/><a class="btn btn-outline btn-primary btn-block" href="/kpku/operasional/index.php">Kembali</a>';
+						}else{
+							echo' <br/><a class="btn btn-outline btn-primary btn-block" href="/kpku/operasional/maintenanceindex.php">Kembali</a>';
+						}
 						?>
 					</div>
 					<!-- /. col-md-12 -->

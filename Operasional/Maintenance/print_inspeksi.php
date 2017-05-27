@@ -4,7 +4,7 @@ error_reporting(0);
 if (!isset($_SESSION['level'])){
 	header('location:/kpku/index.php');
 	exit;
-}elseif($_SESSION['level']!="ptg_op" && $_SESSION['level']!="dgm_op"){
+}elseif($_SESSION['level']!="ptg_op" && $_SESSION['level']!="dgm_op" && $_SESSION['level']!="gm"){
 	header('location:/kpku/unauthorized.php');
 }else{
 	include('../../header.php');
@@ -58,8 +58,13 @@ if (!isset($_SESSION['level'])){
 									$jumlah_k = $result_k->num_rows;
 									$jumlah_p = $result_p->num_rows;
 									if($jumlah_k==0 && $jumlah_p==0){
-											die ('<br/><div class="alert alert-danger" style="font-size:150%; text-align:center">Tidak ada inspeksi pada tanggal '.$tanggaldmy.'</div>
-											<a class="btn btn-outline btn-primary btn-block" href="/kpku/operasional/maintenance/index.php">Kembali</a>');
+											if ($_SESSION['level']="gm"){
+												die ('<br/><div class="alert alert-danger" style="font-size:150%; text-align:center">Tidak ada inspeksi pada tanggal '.$tanggaldmy.'</div>
+												<a class="btn btn-outline btn-primary btn-block" href="/kpku/operasional/maintenance/index_luar.php">Kembali</a>');
+											}else{
+												die ('<br/><div class="alert alert-danger" style="font-size:150%; text-align:center">Tidak ada inspeksi pada tanggal '.$tanggaldmy.'</div>
+												<a class="btn btn-outline btn-primary btn-block" href="/kpku/operasional/maintenance/index.php">Kembali</a>');
+											}
 									}elseif(!$jumlah_k==0){
 										echo '<h3 align="center">Kerusakan pada tanggal '.$tanggaldmy.'</h3>';
 										echo '<table class="table">';
@@ -193,7 +198,11 @@ if (!isset($_SESSION['level'])){
 								// close else result_k
 							}
 							// close submit post
-							echo '<br/><a class="btn btn-outline btn-primary btn-block" href="/kpku/operasional/maintenance/index.php">Kembali</a>';
+							if ($_SESSION['level']="gm"){
+								echo' <br/>	<a class="btn btn-outline btn-primary btn-block" href="/kpku/operasional/maintenance/index_luar.php">Kembali</a>';
+							}else{
+								echo' <br/><a class="btn btn-outline btn-primary btn-block" href="/kpku/operasional/maintenance/index.php">Kembali</a>';
+							}
 						?>
 					</div>
 					<!-- /. col-md-12 -->
