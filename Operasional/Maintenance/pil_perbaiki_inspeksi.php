@@ -85,7 +85,7 @@ if (!isset($_SESSION['level'])){
 											echo '<td>'.$row_k->keterangan.'</td>';
 										echo '</tr>';
 										echo '<tr>';
-											echo '<th>Lokasi Inspeksi</th>';
+											echo '<th>Lokasi Kerusakan</th>';
 											echo '<th>:</th>';
 											echo '<td>'.$row_k->lokasi.'</td>';
 										echo '</tr>';

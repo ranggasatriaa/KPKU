@@ -178,12 +178,12 @@ if (!isset($_SESSION['level'])){
 						echo '</div>';
 						echo '<div class="row">';
 						echo '<div class="col-lg-100">';
-						if ($_SESSION['level']="gm"){
+						if ($_SESSION['level']=="gm"){
 							echo' <br/>	<a class="btn btn-outline btn-primary btn-block" href="/kpku/operasional/maintenance/index_luar.php">Kembali</a>';
-						}elseif($_SESSION['level']="dgm_op"){
+						}elseif($_SESSION['level']=="dgm_op"){
 							echo' <br/><a class="btn btn-outline btn-primary btn-block" href="/kpku/operasional/index.php">Kembali</a>';
 						}else{
-							echo' <br/><a class="btn btn-outline btn-primary btn-block" href="/kpku/operasional/maintenanceindex.php">Kembali</a>';
+							echo' <br/><a class="btn btn-outline btn-primary btn-block" href="/kpku/operasional/maintenance/index.php">Kembali</a>';
 						}
 						?>
 					</div>

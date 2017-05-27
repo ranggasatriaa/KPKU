@@ -58,7 +58,7 @@ if (!isset($_SESSION['level'])){
 									$jumlah_k = $result_k->num_rows;
 									$jumlah_p = $result_p->num_rows;
 									if($jumlah_k==0 && $jumlah_p==0){
-											if ($_SESSION['level']="gm"){
+											if ($_SESSION['level']=="gm"){
 												die ('<br/><div class="alert alert-danger" style="font-size:150%; text-align:center">Tidak ada inspeksi pada tanggal '.$tanggaldmy.'</div>
 												<a class="btn btn-outline btn-primary btn-block" href="/kpku/operasional/maintenance/index_luar.php">Kembali</a>');
 											}else{
@@ -71,9 +71,9 @@ if (!isset($_SESSION['level'])){
 						        while ($row_k = $result_k->fetch_object()){
 											if ($row_k->status==1){
 												echo '<tr>';
-												echo '<td width="50%" align="center"><img src="'.$row_k->direktori_kerusakan.'" style="width:100%; max-height:450px"><br/>Kondisi Sebelum Diperbaiki ('.$row_k->waktu_kerusakan.')</td>';
+												echo '<td width="50%" align="center"><img src="'.$row_k->direktori_kerusakan.'" style="width:100%; max-height:450px"><br/>Kondisi Sebelum Diperbaiki ('. date('d-m-Y', strtotime($row_k->waktu_kerusakan)).')</td>';
 												echo '<td></td>';
-												echo '<td width="50%" align="center"><img src="'.$row_k->direktori_perbaikan.'" style="width:100%; max-height:450px"><br/>Kondisi Setelah Diperbaiki ('.$row_k->waktu_perbaikan.') </td>';
+												echo '<td width="50%" align="center"><img src="'.$row_k->direktori_perbaikan.'" style="width:100%; max-height:450px"><br/>Kondisi Setelah Diperbaiki ('. date('d-m-Y', strtotime($row_k->waktu_perbaikan)).') </td>';
 												echo '</tr>';
 											}else{
 												echo '<tr><td align="center" colspan="3"><img src="'.$row_k->direktori_kerusakan.'" style="width:50%; max-height:450px"><br/>';
@@ -120,7 +120,7 @@ if (!isset($_SESSION['level'])){
                         }
 											echo '</tr>';
 											echo '<tr>';
-												echo '<th>Lokasi Inspeksi</th>';
+												echo '<th>Lokasi Kerusakan</th>';
 												echo '<th>:</th>';
 												echo '<td>'.$row_k->lokasi.'</td>';
 											echo '</tr>';
@@ -135,9 +135,9 @@ if (!isset($_SESSION['level'])){
 						        while ($row_p = $result_p->fetch_object()){
 											if ($row_p->status==1){
 												echo '<tr>';
-												echo '<td width="50%" align="center"><img src="'.$row_p->direktori_kerusakan.'" style="width:100%; max-height:450px"><br/>Kondisi Sebelum Diperbaiki ('.$row_p->waktu_kerusakan.')</td>';
+												echo '<td width="50%" align="center"><img src="'.$row_p->direktori_kerusakan.'" style="width:100%; max-height:450px"><br/>Kondisi Sebelum Diperbaiki ('. date('d-m-Y', strtotime($row_p->waktu_kerusakan)).')</td>';
 												echo '<td></td>';
-												echo '<td width="50%" align="center"><img src="'.$row_p->direktori_perbaikan.'" style="width:100%; max-height:450px"><br/>Kondisi Setalh Diperbaiki ('.$row_p->waktu_perbaikan.') </td>';
+												echo '<td width="50%" align="center"><img src="'.$row_p->direktori_perbaikan.'" style="width:100%; max-height:450px"><br/>Kondisi Setalh Diperbaiki ('. date('d-m-Y', strtotime($row_p->waktu_perbaikan)).') </td>';
 												echo '</tr>';
 											}else{
 												echo '<tr><td align="center" colspan="3"><img src="'.$row_p->direktori_kerusakan.'" width="60%"><br/>';
@@ -198,7 +198,7 @@ if (!isset($_SESSION['level'])){
 								// close else result_k
 							}
 							// close submit post
-							if ($_SESSION['level']="gm"){
+							if ($_SESSION['level']=="gm"){
 								echo' <br/>	<a class="btn btn-outline btn-primary btn-block" href="/kpku/operasional/maintenance/index_luar.php">Kembali</a>';
 							}else{
 								echo' <br/><a class="btn btn-outline btn-primary btn-block" href="/kpku/operasional/maintenance/index.php">Kembali</a>';
