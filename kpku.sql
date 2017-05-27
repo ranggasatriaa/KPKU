@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.6
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 06, 2017 at 04:59 PM
--- Server version: 10.1.16-MariaDB
--- PHP Version: 5.6.24
+-- Host: localhost
+-- Generation Time: May 27, 2017 at 02:38 AM
+-- Server version: 5.7.17-log
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -74,11 +74,11 @@ CREATE TABLE `inspeksi` (
 --
 
 INSERT INTO `inspeksi` (`idinspeksi`, `idjenis_inspeksi`, `idjenis_kerusakan`, `waktu_kerusakan`, `waktu_perbaikan`, `idpetugas`, `direktori_kerusakan`, `direktori_perbaikan`, `keterangan`, `lokasi`, `status`) VALUES
-('20170118001', 101, 202, '2017-01-18', '2017-01-18', 7, 'gambar-kerusakan/20170118001_101.jpg', 'gambar-perbaikan/20170118001_asd.jpg', '', 'Jalan Tol Banyumanik Km 10', 1),
-('20170118002', 102, 204, '2017-01-18', '2017-01-19', 7, 'gambar-kerusakan/20170118002_1506016solo780x390.jpg', 'gambar-perbaikan/20170118002_75407_620.jpg', 'rusak sebelah kanan', 'Jalan Tol bawen Km 1', 1),
-('20170118003', 103, 204, '2017-01-18', '2017-01-18', 7, 'gambar-kerusakan/20170118003_102.jpeg', 'gambar-perbaikan/20170118003_20170117003_174657.jpg', 'cat pudar', 'Gerbang tol manyaran', 1),
-('20170118004', 104, 204, '2017-01-18', '0000-00-00', 7, 'gambar-kerusakan/20170118004_75407_620.jpg', '', 'rusak parah', 'Tol km 12', 0),
-('20170119001', 101, 201, '2017-01-19', '0000-00-00', 7, 'gambar-kerusakan/20170119001_asd.jpg', '', '', 'asdasd', 0);
+('20170118001', 101, 202, '2017-05-01', '2017-05-18', 7, 'gambar-kerusakan/20170118001_101.jpg', 'gambar-perbaikan/20170118001_asd.jpg', '', 'Jalan Tol Banyumanik Km 10', 1),
+('20170118002', 102, 204, '2017-05-18', '2017-05-19', 7, 'gambar-kerusakan/20170118002_1506016solo780x390.jpg', 'gambar-perbaikan/20170118002_75407_620.jpg', 'rusak sebelah kanan', 'Jalan Tol bawen Km 1', 1),
+('20170118003', 103, 204, '2017-05-18', '2017-05-18', 7, 'gambar-kerusakan/20170118003_102.jpeg', 'gambar-perbaikan/20170118003_20170117003_174657.jpg', 'cat pudar', 'Gerbang tol manyaran', 1),
+('20170118004', 104, 203, '2017-05-18', '0000-00-00', 7, 'gambar-kerusakan/20170118004_75407_620.jpg', '', 'rusak parah ', 'Tol km 12  sdasd', 0),
+('20170119001', 101, 201, '2017-05-19', '0000-00-00', 7, 'gambar-kerusakan/20170119001_asd.jpg', '', '', 'asdasd', 0);
 
 -- --------------------------------------------------------
 
@@ -120,7 +120,8 @@ INSERT INTO `jenis_kerusakan` (`idjenis_kerusakan`, `nama_kerusakan`) VALUES
 (201, 'Retak'),
 (202, 'Patah'),
 (203, 'Lubang'),
-(204, 'Lain-lain');
+(204, 'Lain-lain'),
+(205, 'asedasdff');
 
 -- --------------------------------------------------------
 
@@ -207,7 +208,7 @@ CREATE TABLE `petugas` (
   `npp` varchar(40) NOT NULL,
   `password` varchar(40) NOT NULL,
   `level` varchar(10) NOT NULL,
-  `request` tinyint(1) DEFAULT '0' NOT NULL
+  `request` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -215,15 +216,14 @@ CREATE TABLE `petugas` (
 --
 
 INSERT INTO `petugas` (`idpetugas`, `nama`, `npp`, `password`, `level`, `request`) VALUES
-(1, 'ADMIN', '11111', '123123', 'admin', 0),
-(2, 'GM', '22222', '123123', 'gm', 0),
-(3, 'DGM HRGA', '33333', '123123', 'dgm_hrga', 0),
-(4, 'DGM Operasional', '44444', '123123', 'dgm_op', 0),
-(5, 'DGM Finanance', '55555', '123123', 'dgm_fn', 0),
-(6, 'Petugas hrga', '66666', '123123', 'ptg_hrga', 0),
-(7, 'Petugas op', '77777', '123123', 'ptg_op', 0),
-(8, 'Petugas fn', '88888', '123123', 'ptg_fn', 0),
-(13, 'Rangga1', '123123', '123456', 'ptg_hrga', 1);
+(1, 'ADMIN', '11111', 'e10adc3949ba59abbe56e057f20f883e', 'admin', 0),
+(2, 'GM', '22222', 'e10adc3949ba59abbe56e057f20f883e', 'gm', 0),
+(3, 'DGM HRGA', '33333', 'e10adc3949ba59abbe56e057f20f883e', 'dgm_hrga', 0),
+(4, 'DGM Operasional', '44444', 'e10adc3949ba59abbe56e057f20f883e', 'dgm_op', 0),
+(5, 'DGM Finanance', '55555', 'e10adc3949ba59abbe56e057f20f883e', 'dgm_fn', 0),
+(6, 'Petugas hrga', '66666', 'e10adc3949ba59abbe56e057f20f883e', 'ptg_hrga', 0),
+(7, 'Petugas op', '77777', 'e10adc3949ba59abbe56e057f20f883e', 'ptg_op', 0),
+(8, 'Petugas fn', '88888', 'e10adc3949ba59abbe56e057f20f883e', 'ptg_fn', 0);
 
 -- --------------------------------------------------------
 
@@ -350,7 +350,7 @@ ALTER TABLE `jenis_inspeksi`
 -- AUTO_INCREMENT for table `jenis_kerusakan`
 --
 ALTER TABLE `jenis_kerusakan`
-  MODIFY `idjenis_kerusakan` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=205;
+  MODIFY `idjenis_kerusakan` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=206;
 --
 -- AUTO_INCREMENT for table `labarugi`
 --
@@ -360,7 +360,7 @@ ALTER TABLE `labarugi`
 -- AUTO_INCREMENT for table `petugas`
 --
 ALTER TABLE `petugas`
-  MODIFY `idpetugas` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idpetugas` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `tipe_anggaran`
 --
