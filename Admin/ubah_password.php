@@ -8,7 +8,7 @@
 		include('../header.php');
 	}
 
-	$idpetugas = $_GET['idpetugas'];
+	$id = $_GET['id'];
 	require_once('../config.php');
 	$db = new mysqli($db_host, $db_username, $db_password, $db_database);
 		if ($db->connect_errno){
@@ -20,9 +20,9 @@
 			$password_baru1 =$_GET['password_baru1'];
 			$password_baru2 =$_GET['password_baru2'];
 			$panjang = strlen($password_baru1);
-			$idpetugas = $_GET['idpetugas'];
+			$id = $_GET['id'];
 
-			$query = "SELECT * FROM petugas where idpetugas=".$idpetugas."";
+			$query = "SELECT * FROM petugas where npp=$id";
 			// Execute the query
 			$result = $db->query( $query );
 			if (!$result){
@@ -35,18 +35,18 @@
 			if($password_lama==$password){
 				if($panjang>12){
 					echo "<script>alert('Password Baru Terlalu Panjang. Maksimal 12 Karakter')</script><br /><br />";
-					echo "<script>window.open('ubah_password.php?idpetugas=".$idpetugas.",'_self')</script>";
+					echo "<script>window.open('ubah_password.php?id=".$id.",'_self')</script>";
 					$valid_password=FALSE;
 				}elseif($panjang<6){
 					echo "<script>alert('Password Baru Terlalu Pendek. Minimal 6 Karakter')</script><br /><br />";
-					echo "<script>window.open('ubah_password.php?idpetugas=".$idpetugas.",'_self')</script>";
+					echo "<script>window.open('ubah_password.php?id=".$id.",'_self')</script>";
 					$valid_password=FALSE;
 				}else{
 					$valid_password=TRUE;
 				}
 				if($password_baru2!=$password_baru1){
 					echo "<script>alert('Konfirmasi Password Baru Tidak sama')</script><br /><br />";
-					echo "<script>window.open('ubah_password.php?idpetugas=".$idpetugas.",'_self')</script>";
+					echo "<script>window.open('ubah_password.php?id=".$id.",'_self')</script>";
 					$valid_password_confirm=FALSE;
 				}else{
 					$valid_password_confirm=TRUE;
@@ -56,7 +56,7 @@
 					$password_barumd5 = md5($password_baru1);
 					$password_barumd5 = $db->real_escape_string($password_barumd5);
 					//Asign a query
-					$query = " UPDATE petugas SET password='".$password_barumd5."'  WHERE idpetugas='".$idpetugas."' ";
+					$query = " UPDATE petugas SET password='".$password_barumd5."'  WHERE npp='".$id."' ";
 					// Execute the query
 					$result = $db->query( $query );
 					if (!$result){
@@ -86,7 +86,7 @@
 				}
 			}else{
 				echo "<script>alert('Password Lama Salah')</script><br /><br />";
-				echo "<script>window.open('ubah_password.php?idpetugas=".$idpetugas.",'_self')</script>";
+				echo "<script>window.open('ubah_password.php?id=".$id.",'_self')</script>";
 			}
 		}
 	}
@@ -112,7 +112,7 @@
 					<div class="col-lg-12">
 						<h2>Edit Profil</h2>
 						<form method="GET" autocomplete="on" action="ubah_password.php">
-							<input type="hidden" name="idpetugas"  value="<?php echo $idpetugas?>">
+							<input type="hidden" name="id"  value="<?php echo $id?>">
 							<table>
 								<tr>
 									<td>Password Lama</td>

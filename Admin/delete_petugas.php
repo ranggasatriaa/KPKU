@@ -9,16 +9,16 @@
 		}else{
 			include('../header.php');
 		}
-		
+
 		require_once('../config.php');
-		$idpetugas = $_GET['id'];
+		$id = $_GET['id'];
 
 		$db = new mysqli($db_host, $db_username, $db_password, $db_database);
 		if($db->connect_errno){
 			die('Could not connect to database = '.$db->connect_error);
 		}
 
-		$query = 'DELETE FROM petugas WHERE idpetugas="'.$idpetugas.'"';
+		$query = 'DELETE FROM petugas WHERE npp="'.$id.'"';
 		$result = $db->query($query);
 				if(!$result){
 					die("Could not query the database: <br />". $db->error);

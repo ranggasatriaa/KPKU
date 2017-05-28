@@ -29,12 +29,12 @@
 						<h2>Tambah User</h2>
 						<form method="POST" autocomplete="on" action="add_petugas.php">
 							<div style="max-width:300px" class="form-group">
-								<label>Nama:</label>
-								<input type="text" class="form-control" name="nama" size="30" maxlength="40" placeholder="Nama User" autofocus required>
-							</div>
-							<div style="max-width:300px" class="form-group">
 								<label>NPP:</label>
 								<input type="text" class="form-control" name="npp" size="30" maxlength="40" placeholder="NPP tidak boleh sama" autofocus required>
+							</div>
+							<div style="max-width:300px" class="form-group">
+								<label>Nama:</label>
+								<input type="text" class="form-control" name="nama" size="30" maxlength="40" placeholder="Nama User" autofocus required>
 							</div>
 							<div style="max-width:300px" class="form-group">
 								<label>Level:</label>
@@ -83,7 +83,7 @@
 									$password = $db->real_escape_string($password);
 									$level = $db->real_escape_string($level);
 									//Asign a query
-									$query = "INSERT INTO petugas (nama,npp,password,level) VALUES('".$nama."','".$npp."','".$password."','".$level."') ";
+									$query = "INSERT INTO petugas (npp,nama,password,level) VALUES ('$npp','$nama','$password','$level') ";
 									// Execute the query
 									$result = $db->query( $query );
 									if (!$result){

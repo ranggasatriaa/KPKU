@@ -16,7 +16,7 @@ if (!isset($_SESSION['level'])){
 	<head>
 		<title>Tambah Inspeksi</title>
 	<?php
-    $idpetugas=$_SESSION['idpetugas'];
+    $npp=$_SESSION['npp'];
 	?>
 	</head>
 	<body>
@@ -64,7 +64,7 @@ if (!isset($_SESSION['level'])){
 								?>
 								File diperbolehkan : jpg, jpeg, png or gif<br />
 								<input type="hidden" name="id" value="<?php echo $idinspeksi;?>" />
-	              <input type="hidden" name="idpetugas" value="<?php echo $idpetugas;?>" />
+	              <input type="hidden" name="npp" value="<?php echo $npp;?>" />
 								<input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
 								<div class="form-group">
 									<label for="userfile">Unggah foto (Ukuran Max 5Mb):</label>

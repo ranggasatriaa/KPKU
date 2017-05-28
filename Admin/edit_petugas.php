@@ -10,7 +10,7 @@
 		include('../header.php');
 	}
 
-	$idpetugas = $_GET['id'];
+	$id = $_GET['id'];
 	require_once('../config.php');
 	$db = new mysqli($db_host, $db_username, $db_password, $db_database);
 		if ($db->connect_errno){
@@ -18,7 +18,7 @@
 		}
 
 		if (!isset($_GET["submit"])){
-			$query = " SELECT * FROM petugas WHERE idpetugas='".$idpetugas."' ";
+			$query = " SELECT * FROM petugas WHERE npp='$id' ";
 			// Execute the query
 			$result = $db->query( $query );
 			if (!$result){
@@ -28,14 +28,14 @@
 					$nama = $row->nama;
 					$npp = $row->npp;
 					$level = $row->level;
-					$idpetugas = $_GET['id'];
+					$id = $_GET['id'];
 				}
 			}
 		}else{
 		$nama = test_input($_GET['nama']);
 		$npp = test_input($_GET['npp']);
 		$level = $_GET['level'];
-		$idpetugas = $_GET['id'];
+		$id = $_GET['id'];
 
 		if(!preg_match("/^[0-9]*$/",$npp)) {
 			echo '<script>alert("NPP Tidak Valif: Hanya angka tanpa spasi yang diperbolehkan")</script><br /><br />';
@@ -52,7 +52,7 @@
 			$npp = $db->real_escape_string($npp);
 			$level = $db->real_escape_string($level);
 			//Asign a query
-			$query = " UPDATE petugas SET nama='".$nama."', npp='".$npp."' ,level='".$level."' WHERE idpetugas='".$idpetugas."' ";
+			$query = " UPDATE petugas SET nama='$nama', npp='$npp' ,level='$level' WHERE npp='$id' ";
 			// Execute the query
 			$result = $db->query( $query );
 			if (!$result){
@@ -87,7 +87,7 @@
 					<div class="col-lg-12">
 						<h2>Edit Profil</h2>
 						<form method="GET" autocomplete="on" action="edit_petugas.php">
-							<input type="hidden" name="id"  value="<?php echo $idpetugas?>">
+							<input type="hidden" name="id"  value="<?php echo $npp?>">
 							<table>
 								<tr>
 									<td>Nama </td>

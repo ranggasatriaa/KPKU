@@ -56,10 +56,6 @@ function test_input($data) {
 <html>
 	<head>
 		<title>Tambah Inspeksi</title>
-	<?php
-    $idpetugas=$_SESSION['idpetugas'];
-			echo $nama_inspeksi;
-	?>
 	</head>
 	<body>
 		<div id="wrapper">

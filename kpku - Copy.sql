@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 28, 2017 at 03:21 AM
+-- Generation Time: May 27, 2017 at 02:38 AM
 -- Server version: 5.7.17-log
 -- PHP Version: 5.6.30
 
@@ -61,7 +61,7 @@ CREATE TABLE `inspeksi` (
   `idjenis_kerusakan` int(3) NOT NULL,
   `waktu_kerusakan` date NOT NULL,
   `waktu_perbaikan` date DEFAULT NULL,
-  `idpetugas` int(3) NOT NULL,
+  `npp` varchar(18) NOT NULL,
   `direktori_kerusakan` varchar(255) NOT NULL,
   `direktori_perbaikan` varchar(255) DEFAULT NULL,
   `keterangan` varchar(255) DEFAULT NULL,
@@ -73,12 +73,12 @@ CREATE TABLE `inspeksi` (
 -- Dumping data for table `inspeksi`
 --
 
-INSERT INTO `inspeksi` (`idinspeksi`, `idjenis_inspeksi`, `idjenis_kerusakan`, `waktu_kerusakan`, `waktu_perbaikan`, `idpetugas`, `direktori_kerusakan`, `direktori_perbaikan`, `keterangan`, `lokasi`, `status`) VALUES
-('20170118001', 101, 202, '2017-05-01', '2017-05-18', 7, 'gambar-kerusakan/20170118001_101.jpg', 'gambar-perbaikan/20170118001_asd.jpg', '', 'Jalan Tol Banyumanik Km 10', 1),
-('20170118002', 102, 204, '2017-05-18', '2017-05-19', 7, 'gambar-kerusakan/20170118002_1506016solo780x390.jpg', 'gambar-perbaikan/20170118002_75407_620.jpg', 'rusak sebelah kanan', 'Jalan Tol bawen Km 1', 1),
-('20170118003', 103, 204, '2017-05-18', '2017-05-18', 7, 'gambar-kerusakan/20170118003_102.jpeg', 'gambar-perbaikan/20170118003_20170117003_174657.jpg', 'cat pudar', 'Gerbang tol manyaran', 1),
-('20170118004', 104, 203, '2017-05-18', '0000-00-00', 7, 'gambar-kerusakan/20170118004_75407_620.jpg', '', 'rusak parah ', 'Tol km 12  sdasd', 0),
-('20170119001', 101, 201, '2017-05-19', '0000-00-00', 7, 'gambar-kerusakan/20170119001_asd.jpg', '', '', 'asdasd', 0);
+INSERT INTO `inspeksi` (`idinspeksi`, `idjenis_inspeksi`, `idjenis_kerusakan`, `waktu_kerusakan`, `waktu_perbaikan`, `npp`, `direktori_kerusakan`, `direktori_perbaikan`, `keterangan`, `lokasi`, `status`) VALUES
+('20170118001', 101, 202, '2017-05-01', '2017-05-18', '77777', 'gambar-kerusakan/20170118001_101.jpg', 'gambar-perbaikan/20170118001_asd.jpg', '', 'Jalan Tol Banyumanik Km 10', 1),
+('20170118002', 102, 204, '2017-05-18', '2017-05-19', '77777', 'gambar-kerusakan/20170118002_1506016solo780x390.jpg', 'gambar-perbaikan/20170118002_75407_620.jpg', 'rusak sebelah kanan', 'Jalan Tol bawen Km 1', 1),
+('20170118003', 103, 204, '2017-05-18', '2017-05-18', '77777', 'gambar-kerusakan/20170118003_102.jpeg', 'gambar-perbaikan/20170118003_20170117003_174657.jpg', 'cat pudar', 'Gerbang tol manyaran', 1),
+('20170118004', 104, 203, '2017-05-18', '0000-00-00', '77777', 'gambar-kerusakan/20170118004_75407_620.jpg', '', 'rusak parah ', 'Tol km 12  sdasd', 0),
+('20170119001', 101, 201, '2017-05-19', '0000-00-00', '77777', 'gambar-kerusakan/20170119001_asd.jpg', '', '', 'asdasd', 0);
 
 -- --------------------------------------------------------
 
@@ -203,9 +203,8 @@ INSERT INTO `labarugi` (`no_anggaran`, `nama_anggaran`, `anggaran`, `bulan`, `ta
 --
 
 CREATE TABLE `petugas` (
-  `idpetugas` int(3) NOT NULL,
-  `nama` varchar(40) NOT NULL,
   `npp` varchar(18) NOT NULL,
+  `nama` varchar(40) NOT NULL,
   `password` varchar(40) NOT NULL,
   `level` varchar(10) NOT NULL,
   `request` tinyint(1) NOT NULL DEFAULT '0'
@@ -215,15 +214,15 @@ CREATE TABLE `petugas` (
 -- Dumping data for table `petugas`
 --
 
-INSERT INTO `petugas` (`idpetugas`, `nama`, `npp`, `password`, `level`, `request`) VALUES
-(1, 'ADMIN', '11111', 'e10adc3949ba59abbe56e057f20f883e', 'admin', 0),
-(2, 'GM', '22222', 'e10adc3949ba59abbe56e057f20f883e', 'gm', 0),
-(3, 'DGM HRGA', '33333', 'e10adc3949ba59abbe56e057f20f883e', 'dgm_hrga', 0),
-(4, 'DGM Operasional', '44444', 'e10adc3949ba59abbe56e057f20f883e', 'dgm_op', 0),
-(5, 'DGM Finanance', '55555', 'e10adc3949ba59abbe56e057f20f883e', 'dgm_fn', 0),
-(6, 'Petugas hrga', '66666', 'e10adc3949ba59abbe56e057f20f883e', 'ptg_hrga', 0),
-(7, 'Petugas op', '77777', 'e10adc3949ba59abbe56e057f20f883e', 'ptg_op', 0),
-(8, 'Petugas fn', '88888', 'e10adc3949ba59abbe56e057f20f883e', 'ptg_fn', 0);
+INSERT INTO `petugas` (`npp`, `nama`, `password`, `level`, `request`) VALUES
+('11111', 'ADMIN', 'e10adc3949ba59abbe56e057f20f883e', 'admin', 0),
+('22222', 'GM', 'e10adc3949ba59abbe56e057f20f883e', 'gm', 0),
+('33333', 'DGM HRGA', 'e10adc3949ba59abbe56e057f20f883e', 'dgm_hrga', 0),
+('44444', 'DGM Operasional', 'e10adc3949ba59abbe56e057f20f883e', 'dgm_op', 0),
+('55555', 'DGM Finanance', 'e10adc3949ba59abbe56e057f20f883e', 'dgm_fn', 0),
+('66666', 'Petugas hrga', 'e10adc3949ba59abbe56e057f20f883e', 'ptg_hrga', 0),
+('77777', 'Petugas op', 'e10adc3949ba59abbe56e057f20f883e', 'ptg_op', 0),
+('88888', 'Petugas fn', 'e10adc3949ba59abbe56e057f20f883e', 'ptg_fn', 0);
 
 -- --------------------------------------------------------
 
@@ -317,8 +316,7 @@ ALTER TABLE `labarugi`
 -- Indexes for table `petugas`
 --
 ALTER TABLE `petugas`
-  ADD PRIMARY KEY (`idpetugas`),
-  ADD UNIQUE KEY `nip` (`npp`);
+  ADD PRIMARY KEY (`npp`);
 
 --
 -- Indexes for table `tahun`
@@ -356,12 +354,7 @@ ALTER TABLE `jenis_kerusakan`
 --
 ALTER TABLE `labarugi`
   MODIFY `no_anggaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
---
--- AUTO_INCREMENT for table `petugas`
---
-ALTER TABLE `petugas`
-  MODIFY `idpetugas` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
---
+
 -- AUTO_INCREMENT for table `tipe_anggaran`
 --
 ALTER TABLE `tipe_anggaran`

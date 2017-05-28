@@ -48,7 +48,7 @@ if (!isset($_SESSION['level'])){
 			<a style="float:right;z-index:1; margin: 10px 15px; color:#cce6ff;text-decoration:none" href="/KPKU/logout.php"><i class="fa fa-sign-out fa fw"></i> Keluar</a>
 			<?php
 				if($_SESSION['level']!='admin'){
-					echo '<a style="float:right;z-index:1; margin: 10px 15px; color:#cce6ff;text-decoration:none" href="/KPKU/Admin/ubah_password.php?idpetugas='.$_SESSION['idpetugas'].'"><i class="fa fa-user fa fw"></i> Ubah Password</a>';
+					echo '<a style="float:right;z-index:1; margin: 10px 15px; color:#cce6ff;text-decoration:none" href="/KPKU/Admin/ubah_password.php?id='.$_SESSION['npp'].'"><i class="fa fa-user fa fw"></i> Ubah Password</a>';
 				}
 			?>
 	    <div class="navbar-header">

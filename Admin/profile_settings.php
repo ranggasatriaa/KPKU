@@ -89,7 +89,7 @@
 				$password = md5($password);
 				$password = $db->real_escape_string($password);
 				//Asign a query
-				$query = " UPDATE petugas SET nama='".$nama."',npp='".$npp."',password='".$password."'WHERE level='admin' ";
+				$query = " UPDATE petugas SET nama='$nama',npp='$npp',password='$password' WHERE level='admin' ";
 				// Execute the query
 				$result = $db->query( $query );
 				if (!$result){
@@ -124,14 +124,14 @@
 						<h2>Edit Profil</h2>
 						<form method="GET" autocomplete="on" action="profile_settings.php">
 							<div style="max-width:300px" class="form-group">
-								<label>Nama:</label>
-								<input type="text" class="form-control" name="nama" size="30" maxlength="40" placeholder="Nama User" autofocus value="<?php if(isset($nama)) {echo $nama;}?>" required>
-								<span class="error"> <?php if(isset($error_nama)) {echo $error_nama;}?></span></td>
-							</div>
-							<div style="max-width:300px" class="form-group">
 								<label>NPP:</label>
 								<input type="text" class="form-control" name="npp" size="30" maxlength="40" placeholder="NPP tidak boleh sama" autofocus value="<?php if(isset($npp)) {echo $npp;}?>" required>
 								<span class="error"> <?php if(isset($error_npp)) {echo $error_npp;}?></span>
+							</div>
+							<div style="max-width:300px" class="form-group">
+								<label>Nama:</label>
+								<input type="text" class="form-control" name="nama" size="30" maxlength="40" placeholder="Nama User" autofocus value="<?php if(isset($nama)) {echo $nama;}?>" required>
+								<span class="error"> <?php if(isset($error_nama)) {echo $error_nama;}?></span></td>
 							</div>
 							<div style="max-width:300px" class="form-group">
 								<label>Password:</label>

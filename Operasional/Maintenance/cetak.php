@@ -17,7 +17,7 @@
   }
     // query penampil kerusakan
     $query_kerusakan = "SELECT * FROM inspeksi
-              LEFT JOIN petugas ON inspeksi.idpetugas=petugas.idpetugas
+              LEFT JOIN petugas ON inspeksi.npp=petugas.npp
               LEFT JOIN jenis_inspeksi ON inspeksi.idjenis_inspeksi=jenis_inspeksi.idjenis_inspeksi
               LEFT JOIN jenis_kerusakan ON inspeksi.idjenis_kerusakan=jenis_kerusakan.idjenis_kerusakan
               WHERE waktu_kerusakan='$tanggal'";
@@ -25,7 +25,7 @@
     $result_k = $db->query($query_kerusakan);
     // query penampil perbaikan
     $query_perbaikan = "SELECT * FROM inspeksi
-              LEFT JOIN petugas ON inspeksi.idpetugas=petugas.idpetugas
+              LEFT JOIN petugas ON inspeksi.npp=petugas.npp
               LEFT JOIN jenis_inspeksi ON inspeksi.idjenis_inspeksi=jenis_inspeksi.idjenis_inspeksi
               LEFT JOIN jenis_kerusakan ON inspeksi.idjenis_kerusakan=jenis_kerusakan.idjenis_kerusakan
               WHERE waktu_perbaikan='$tanggal'";

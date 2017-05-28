@@ -57,7 +57,7 @@
 												die ("Could not connect to the database: <br />". $db->connect_error);
 											}
 											//Asign a query
-											$query = " SELECT * FROM petugas ORDER BY idpetugas ";
+											$query = " SELECT * FROM petugas ORDER BY npp ";
 											// Execute the query
 											$result = $db->query( $query );
 											if (!$result){
@@ -66,7 +66,7 @@
 											// Fetch and display the results
 											$i = 1;
 											while ($row = $result->fetch_object()){
-												if ($row->idpetugas != 1){
+												if ($row->level != "admin"){
 													echo '<tr>';
 														echo '<td>'.$i.'</td>';
 														echo '<td>'.$row->npp.'</td> ';
@@ -91,9 +91,9 @@
 														}
 														echo '</td> ';
 														echo '<td>';
-															echo '<a class="btn btn-warning" href="edit_petugas.php?id='.$row->idpetugas.'"><i class="fa fa-edit"></i> Ubah</a>';
-															echo '&nbsp&nbsp&nbsp<a class="btn btn-danger" href="delete_petugas.php?id='.$row->idpetugas.'" onclick="return del()"><i class="fa fa-eraser"></i> Hapus</a>';
-															echo '&nbsp&nbsp&nbsp<a class="btn btn-info" href="reset_password.php?id='.$row->idpetugas.'" onclick="return reset()"><i class="fa fa-refresh"></i> Reset Password</a>';
+															echo '<a class="btn btn-warning" href="edit_petugas.php?id='.$row->npp.'"><i class="fa fa-edit"></i> Ubah</a>';
+															echo '&nbsp&nbsp&nbsp<a class="btn btn-danger" href="delete_petugas.php?id='.$row->npp.'" onclick="return del()"><i class="fa fa-eraser"></i> Hapus</a>';
+															echo '&nbsp&nbsp&nbsp<a class="btn btn-info" href="reset_password.php?id='.$row->npp.'" onclick="return reset()"><i class="fa fa-refresh"></i> Reset Password</a>';
 														echo '</td>';
 														echo '<td>';
 															if($row->request==1){

@@ -1,46 +1,28 @@
-<?php	
-	session_start();
-	error_reporting(0);
-	if (!isset($_SESSION['level'])){
-	header('location:../index.php');
+<?php
+session_start();
+error_reporting(0);
+if (!isset($_SESSION['level'])){
+	header('location:/kpku/index.php');
 	exit;
-	}elseif($_SESSION['level']!="admin"){
-		if($_SESSION['level']=="gm"){
-			header('location:../GM/index.php');
-		}
-		elseif($_SESSION['level']=="dgm_hrga"){
-			header('location:../HRGA/index.php');
-		}
-		elseif($_SESSION['level']=="ptg_hrga"){
-			header('location:../HRGA/index.php');
-		}
-		elseif($_SESSION['level']=="dgm_op"){
-			header('location:../Operasional/MA/index.php');
-		}
-		elseif($_SESSION['level']=="ptg_op" ){
-			header('location:../Operasional/MA/index.php');
-		}
-		elseif($_SESSION['level']=="dgm_fn"){
-			header('location:../Finance/DGMFinance/index.php');
-		}
-		elseif($_SESSION['level']=="ptg_fn"){
-			header('location:../Finance/AdminFinance/index.php');
-		}
-	}
+}elseif($_SESSION['level']!="admin"){
+	header('location:/kpku/unauthorized.php');
+}else{
+	include('../header.php');
+}
 	elseif (isset($_SESSION['level'])){
 		include('header_adm.php');
 	}
-	$idpetugas = $_GET['id'];
+	$npp = $_GET['id'];
 	require_once('../config.php');
 	$db = new mysqli($db_host, $db_username, $db_password, $db_database);
 		if ($db->connect_errno){
 			die ("Tidak dapat terkoneksi dengan database: <br/>". $db->connect_error);
 		}
-		
+
 	if (!isset($_GET["submit"])){
 
 		//$nama=$_POST['nama'];
-		//$nip=$_POST['nip'];
+		//$npp=$_POST['npp'];
 		$password=$_GET['password'];
 		//$level=$_POST['level'];
 		$confirmpassword=$_GET['confirmpassword'];
@@ -52,12 +34,12 @@
 			}else{
 				$valid_nama = TRUE;
 			}
-		$nip = test_input($_GET["nip"]);
-			if ($nip == ''){
-				$error_nip = "Mohon Masukkan NIP User";
-				$valid_nip = FALSE;
+		$npp = test_input($_GET["npp"]);
+			if ($npp == ''){
+				$error_npp = "Mohon Masukkan NPP User";
+				$valid_npp = FALSE;
 			}else{
-				$valid_nip = TRUE;
+				$valid_npp = TRUE;
 			}
 		$password=test_input($_GET["password"]);
 			if($password==''){
@@ -82,16 +64,16 @@
 		}else{
 			$valid_level = TRUE;
 		}
-		
+
 	//update data into database
-	if ($valid_nama && $valid_nip && $valid_password && $valid_level){
+	if ($valid_nama && $valid_npp && $valid_password && $valid_level){
 		//escape inputs data
 		$nama = $db->real_escape_string($nama);
-		$nip = $db->real_escape_string($nip);
+		$npp = $db->real_escape_string($npp);
 		$password = $db->real_escape_string($password);
 		$level = $db->real_escape_string($level);
 		//Asign a query
-		$query = " UPDATE petugas SET nama='".$nama."', nip='".$nip."', password='".$password."' ,level='".$level."' WHERE idpetugas=".$idpetugas." ";
+		$query = " UPDATE petugas SET nama='".$nama."', npp='".$npp."', password='".$password."' ,level='".$level."' WHERE idpetugas=".$idpetugas." ";
 		// Execute the query
 		$result = $db->query($query);
 		if (!$result){

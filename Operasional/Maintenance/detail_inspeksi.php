@@ -33,7 +33,7 @@ if (!isset($_SESSION['level'])){
 						$db=new mysqli($db_host,$db_username,$db_password,$db_database) or
 						die("Maaf Anda gagal koneksi.!");
 							$query = " SELECT * FROM inspeksi
-												 JOIN petugas ON inspeksi.idpetugas=petugas.idpetugas
+												 JOIN petugas ON inspeksi.npp=petugas.npp
 												 JOIN jenis_inspeksi ON inspeksi.idjenis_inspeksi=jenis_inspeksi.idjenis_inspeksi
 												 JOIN jenis_kerusakan ON inspeksi.idjenis_kerusakan=jenis_kerusakan.idjenis_kerusakan
 												 WHERE idinspeksi=".$idinspeksi." ";
@@ -57,7 +57,7 @@ if (!isset($_SESSION['level'])){
 									echo '<tr>';
 										echo '<th>ID Inspeksi</th>';
 										echo '<th>:</th>';
-										echo '<td>'.$row->idinspeksi.'</td>';			
+										echo '<td>'.$row->idinspeksi.'</td>';
 									echo '</tr>';
 									echo '<tr>';
 										echo '<th>Keadaan</th>';

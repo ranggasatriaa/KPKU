@@ -76,7 +76,7 @@ if (!isset($_SESSION['level'])){
 							die("Maaf Anda gagal koneksi.!");
 							//Asign a query
 							$view_query = " SELECT * FROM inspeksi
-												 JOIN petugas ON inspeksi.idpetugas=petugas.idpetugas
+												 JOIN petugas ON inspeksi.npp=petugas.npp
 												 JOIN jenis_inspeksi ON inspeksi.idjenis_inspeksi=jenis_inspeksi.idjenis_inspeksi
 												 JOIN jenis_kerusakan ON inspeksi.idjenis_kerusakan=jenis_kerusakan.idjenis_kerusakan
 												 ORDER BY $filter $urutan";

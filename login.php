@@ -23,7 +23,6 @@ if ($password == $data['password'])
 {
 echo "";
     // menyimpan email dan kke dalam session
-		$_SESSION['idpetugas'] = $data['idpetugas'];
     $_SESSION['level'] = $data['level'];
     $_SESSION['npp'] = $data['npp'];
     $_SESSION['nama'] = $data['nama'];

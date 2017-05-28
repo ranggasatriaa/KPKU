@@ -102,7 +102,7 @@ if (!isset($_SESSION['level'])){
 								for ($i= 0; $i <= $selisih; $i++)
 								{
 									$query =  " SELECT * FROM inspeksi
-														 JOIN petugas ON inspeksi.idpetugas=petugas.idpetugas
+														 JOIN petugas ON inspeksi.npp=petugas.npp
 														 JOIN jenis_inspeksi ON inspeksi.idjenis_inspeksi=jenis_inspeksi.idjenis_inspeksi
 														 JOIN jenis_kerusakan ON inspeksi.idjenis_kerusakan=jenis_kerusakan.idjenis_kerusakan
 														 WHERE waktu_kerusakan='$temp_tgl' ORDER BY inspeksi.idjenis_inspeksi $urutan";
@@ -141,7 +141,7 @@ if (!isset($_SESSION['level'])){
 								for ($i= 0; $i <= $selisih; $i++)
 								{
 									$query =  " SELECT * FROM inspeksi
-														 JOIN petugas ON inspeksi.idpetugas=petugas.idpetugas
+														 JOIN petugas ON inspeksi.npp=petugas.npp
 														 JOIN jenis_inspeksi ON inspeksi.idjenis_inspeksi=jenis_inspeksi.idjenis_inspeksi
 														 JOIN jenis_kerusakan ON inspeksi.idjenis_kerusakan=jenis_kerusakan.idjenis_kerusakan
 														 WHERE waktu_perbaikan='$temp_tgl' ORDER BY idinspeksi ASC";

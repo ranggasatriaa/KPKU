@@ -11,14 +11,14 @@
 		}
 
 		require_once('../config.php');
-		$idpetugas = $_GET['id'];
-		$password = md5('1234456');
+		$id = $_GET['id'];
+		$password = md5('123456');
 
 		$db = new mysqli($db_host, $db_username, $db_password, $db_database);
 		if($db->connect_errno){
 			die('Could not connect to database = '.$db->connect_error);
 		}
-		$query = " UPDATE petugas SET password=$password, request=0 WHERE idpetugas='".$idpetugas."' ";
+		$query = " UPDATE petugas SET password='$password', request=0 WHERE npp='".$id."' ";
 		$result = $db->query($query);
 				if(!$result){
 					die("Could not query the database: <br />". $db->error);

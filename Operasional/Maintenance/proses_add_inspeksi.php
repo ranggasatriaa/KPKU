@@ -36,7 +36,7 @@ if (!isset($_SESSION['level'])){
 							$idjenis_kerusakan	= $_POST['idjenis_kerusakan'];
 							$keterangan					= $_POST['keterangan'];
 							$lokasi							= $_POST['lokasi'];
-							$idpetugas					= $_SESSION['idpetugas'];
+							$npp								= $_SESSION['npp'];
 
 							if ($_FILES['userfile']['error'] > 0)
 							{
@@ -115,8 +115,8 @@ if (!isset($_SESSION['level'])){
 	                $lokasi								= $db->real_escape_string($lokasi);
 
 	                // Membuat query
-	                $query_add_inspeksi = "INSERT INTO inspeksi (idinspeksi,idjenis_inspeksi, idjenis_kerusakan, waktu_kerusakan, waktu_perbaikan, idpetugas, direktori_kerusakan, direktori_perbaikan, keterangan, lokasi,status)
-	                VALUES('$idinspeksi','$idjenis_inspeksi','$idjenis_kerusakan','$waktu_kerusakan','','$idpetugas','$direktori_kerusakan','','$keterangan','$lokasi',0)";
+	                $query_add_inspeksi = "INSERT INTO inspeksi (idinspeksi,idjenis_inspeksi, idjenis_kerusakan, waktu_kerusakan, waktu_perbaikan, npp, direktori_kerusakan, direktori_perbaikan, keterangan, lokasi,status)
+	                VALUES('$idinspeksi','$idjenis_inspeksi','$idjenis_kerusakan','$waktu_kerusakan','','$npp','$direktori_kerusakan','','$keterangan','$lokasi',0)";
 	                // Execute the query
 	                $result = $db->query($query_add_inspeksi);
 	                if (!$result){
