@@ -87,7 +87,7 @@
 									// Execute the query
 									$result = $db->query( $query );
 									if (!$result){
-										 die ('<br/><div class="alert alert-danger alert-dismissable">Could not query the database: '.$db->error.'</div>');
+										 die ('<br/><div class="alert alert-danger">Could not query the database: '.$db->error.'</div>');
 									}else{
 										echo '<script>alert("User Sudah Ditambahkan")</script><br /><br />';
 										echo '<script>window.open("index.php","_self")</script>';
