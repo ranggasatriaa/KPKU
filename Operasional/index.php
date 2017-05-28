@@ -47,10 +47,14 @@ if (!isset($_SESSION['level'])){
 							$tanggal2 = $_GET['tanggal2'];
 							$temp_tgl	 = $tanggal1;
 							$selisih = ((abs(strtotime ($tanggal1) - strtotime ($tanggal2)))/(60*60*24));
-							// echo $selisih;
-							// echo '<br/><br/>';
-
-							//peru;angan menghitung kerusakan perhari
+						}else{ // untuk kemungkinan tanpa yang belum ada
+							$tanggal2 = date("Y-m-d");
+							$tanggalsebelum = strtotime ( '-30 day' , strtotime ( $tanggal2 ) ) ;;
+							$tanggal1 = date('Y-m-d', $tanggalsebelum);
+							$temp_tgl	 = $tanggal1;
+							$selisih = ((abs(strtotime ($tanggal1) - strtotime ($tanggal2)))/(60*60*24));
+						}
+							//perulangan menghitung kerusakan perhari
 							for ($i= 0; $i <= $selisih; $i++)
 							{
 								$query = " SELECT * FROM inspeksi	WHERE waktu_kerusakan='$temp_tgl' ";
@@ -103,7 +107,7 @@ if (!isset($_SESSION['level'])){
 							// }
 							// echo '<br/>';
 							echo '<div id="grafik" style="min-width: 300px; height: 400px; margin: 0 auto"></div>';
-						}
+
 						?>
 						<!-- <div id="grafik" style="min-width: 300px; height: 400px; margin: 0 auto"></div> -->
 					</div>

@@ -113,44 +113,38 @@
 						<h2>Edit Profil</h2>
 						<form method="GET" autocomplete="on" action="ubah_password.php">
 							<input type="hidden" name="id"  value="<?php echo $id?>">
-							<table>
-								<tr>
-									<td>Password Lama</td>
-									<td>:</td>
-									<td><input type="password" class="form-control" name="password_lama" size="30" maxlength="12" placeholder="Password(min 6 max 12)" autofocus required></td>
-								</tr>
-								<tr>
-									<td>Password Baru</td>
-									<td>:</td>
-									<td><input type="password" class="form-control" name="password_baru1" size="30" maxlength="12" placeholder="Password(min 6 max 12)" autofocus required></td>
-								</tr>
-								<tr>
-									<td>Ulang Password Baru</td>
-									<td>:</td>
-									<td><input type="password" class="form-control" name="password_baru2" size="30" maxlength="12" placeholder="Confirm Password" autofocus required></td>
-								</tr>
-								<tr>
-									<td ><br><input type="submit" class="btn btn-success" name="submit" value="Ubah">
-									<td></td>
-									<?php
+							<div style="max-width:300px" class="form-group">
+								<label>Password Lama:</label>
+								<input type="password" class="form-control" name="password_lama" size="30" maxlength="12" placeholder="Password(min 6 max 12)" autofocus required>
+							</div>
+							<div style="max-width:300px" class="form-group">
+								<label>Password Baru:</label>
+								<input type="password" class="form-control" name="password_baru1" size="30" maxlength="12" placeholder="Password(min 6 max 12)" autofocus required>
+							</div>
+							<div style="max-width:300px" class="form-group">
+								<label>Ulang Password Lama:</label>
+								<input type="password" class="form-control" name="password_baru2" size="30" maxlength="12" placeholder="Ulangi Password" autofocus required>
+							</div>
+							<div style="max-width:300px" class="form-group">
+								<input type="submit" class="btn btn-success" name="submit" value="Ubah">
+								<?php
 									if($_SESSION['level']=="gm"){
-										echo '<td align="right"><br><a class="btn btn-danger" href="/KPKU/GM/index.php">Batal</a></td>';
+										echo '<a style="float:right" class="btn btn-danger" href="/KPKU/GM/index.php">Batal</a>';
 									}elseif($_SESSION['level']=="dgm_hrga"){
-										echo '<td align="right"><br><a class="btn btn-danger" href="/KPKU/HRGA/index.php">Batal</a></td>';
+										echo '<a style="float:right" class="btn btn-danger" href="/KPKU/HRGA/index.php">Batal</a>';
 									}elseif($_SESSION['level']=="dgm_op"){
-										echo '<td align="right"><br><a class="btn btn-danger" href="/KPKU/Operasional/index.php">Batal</a></td>';
+										echo '<a style="float:right" class="btn btn-danger" href="/KPKU/Operasional/index.php">Batal</a>';
 									}elseif($_SESSION['level']=="dgm_fn"){
-										echo '<td align="right"><br><a class="btn btn-danger" href="/KPKU/Finance/DGMFinance/index.php">Batal</a></td>';
+										echo '<a style="float:right" class="btn btn-danger" href="/KPKU/Finance/DGMFinance/index.php">Batal</a>';
 									}elseif($_SESSION['level']=="ptg_hrga"){
-										echo '<td align="right"><br><a class="btn btn-danger" href="/KPKU/HRGA/index.php">Batal</a></td>';
+										echo '<a style="float:right" class="btn btn-danger" href="/KPKU/HRGA/index.php">Batal</a>';
 									}elseif($_SESSION['level']=="ptg_op"){
-										echo '<td align="right"><br><a class="btn btn-danger" href="/KPKU/Operasional/Maintenance/index.php">Batal</a></td>';
+										echo '<a style="float:right" class="btn btn-danger" href="/KPKU/Operasional/Maintenance/index.php">Batal</a>';
 									}elseif($_SESSION['level']=="ptg_fn"){
-										echo '<td align="right"><br><a class="btn btn-danger" href="/KPKU/Finance/AdminFinance/index.php">Batal</a></td>';
+										echo '<a style="float:right" class="btn btn-danger" href="/KPKU/Finance/AdminFinance/index.php">Batal</a>';
 									}
-									?>
-								</tr>
-							</table>
+								?>
+							</div>
 						</form>
 					</div>
 					<!-- close col -->
