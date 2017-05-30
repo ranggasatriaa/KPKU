@@ -24,12 +24,14 @@ if (!isset($_SESSION['level'])){
 						<h1>Mengunggah file...</h1>
 						<?php
 						require_once ('../../config.php');
+						// inisiasi database
 						$db = new mysqli($db_host, $db_username, $db_password, $db_database);
 						if($db->connect_errno){
 							die("Tidak dapat terkoneksi dengan database: </br>". $db->connect_errno);
 						}
-						//fileeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+						//deteksi apakah terdapat inputan
 						if(count($_POST)>0){
+							//menentukan nilai variabel dari inputan
 							$idinspeksi					= $_POST['id'];
 							$waktu_kerusakan  	= date("Y-m-d");
 							$idjenis_inspeksi   = $_POST['idjenis_inspeksi'];
@@ -38,6 +40,7 @@ if (!isset($_SESSION['level'])){
 							$lokasi							= $_POST['lokasi'];
 							$npp								= $_SESSION['npp'];
 
+							//deteksi error dari upload file
 							if ($_FILES['userfile']['error'] > 0)
 							{
 								echo 'Problem: ';
@@ -64,37 +67,34 @@ if (!isset($_SESSION['level'])){
 								}
 							}
 
+							//menentukan lokasi file disimpan
 							$target_dir = "gambar-kerusakan/";
 							$target_file = $target_dir. $idinspeksi.'_'. basename($_FILES['userfile']['name']);
 							$upload_ok = 1;
 							$file_type = pathinfo($target_file,PATHINFO_EXTENSION);
 
-							// Check if file already exists
+							// memeriksa apakah file dengan nama sama telah ada
 							if (file_exists($target_file)) {
 							    echo '<div class="alert alert-danger">ERROR! File yang sama telah ada.</div><br />';
 	                echo '<br/><a class="btn btn-outline btn-primary btn-block" href="add_inspeksi.php?id='.$idinspeksi.'">Kembali</a>';
 							    $upload_ok = 0;
 							}
-							// Check file size if you not use hidden input 'MAX_FILE_SIZE'
+							// memeriksa apakah ukuran file lebih besar dari ketentuan
 							if ($_FILES['userfile']['size'] > 5300000) {
 	              echo '<div class="alert alert-danger">Gagal Mengunggah: Ukuran File terlalu besar</div>';
 	              echo '<a class="btn btn-outline btn-primary btn-block" href="add_inspeksi.php?id='.$idinspeksi.'">Kembali</a>';
 							  $upload_ok = 0;
 							}
 
-							// Allow certain file formats
+							// memeriksa ekstensi dari file
 							$allowed_type = array("jpg", "png", "jpeg","bmp","gif","JPG","PNG","JPEG","BMP","GIF");
 							if(!in_array($file_type, $allowed_type)) {
 							    echo '<div class="alert alert-danger">ERROR! Hanya file bertipe: jpg, jpeg, png & gif yang diperbolehkan.</div>';
 	                echo '<a class="btn btn-outline btn-primary btn-block" href="add_inspeksi.php?id='.$idinspeksi.'">Kembali</a>';
 							    $upload_ok = 0;
 							}
-							// Does the file have the right MIME type?
-							/*if ($_FILES['userfile']['type'] != 'text/plain'){
-								echo 'Problem: file is not plain text';
-								$uploadOk = 0;
-							}*/
-							// put the file where we'd like it
+
+							// meletakkan file di direktori yang sudah ditentukan
 							if ($upload_ok != 0){
 								if (!is_uploaded_file($_FILES['userfile']['tmp_name'])){
 	                echo '<div class="alert alert-warning">ERROR! Kemungkinan file yang diunggah bertabrakan dengan:'.$_FILES['userfile']['name'].'</div';
@@ -107,14 +107,14 @@ if (!isset($_SESSION['level'])){
 	                $file_name = basename($_FILES['userfile']['name']);
 	                $direktori_kerusakan  = $target_file;
 	                $idinspeksi						= $db->real_escape_string($idinspeksi);
-	                // $jenis_inspeksi				= $db->real_escape_string($jenis_inspeksi);
-	                // $jenis_kerusakan 			= $db->real_escape_string($jenis_kerusakan);
-	                // $petugas							= $db->real_escape_string($petugas);
+	                $jenis_inspeksi				= $db->real_escape_string($jenis_inspeksi);
+	                $jenis_kerusakan 			= $db->real_escape_string($jenis_kerusakan);
+	                $npp									= $db->real_escape_string($npp);
 	                $direktori_kerusakan	= $db->real_escape_string($direktori_kerusakan);
 									$keterangan						= $db->real_escape_string($keterangan);
 	                $lokasi								= $db->real_escape_string($lokasi);
 
-	                // Membuat query
+	                // Membuat query penambahan data pada tabel inspeksi
 	                $query_add_inspeksi = "INSERT INTO inspeksi (idinspeksi,idjenis_inspeksi, idjenis_kerusakan, waktu_kerusakan, waktu_perbaikan, npp, direktori_kerusakan, direktori_perbaikan, keterangan, lokasi,status)
 	                VALUES('$idinspeksi','$idjenis_inspeksi','$idjenis_kerusakan','$waktu_kerusakan','','$npp','$direktori_kerusakan','','$keterangan','$lokasi',0)";
 	                // Execute the query
@@ -130,7 +130,6 @@ if (!isset($_SESSION['level'])){
 	              }
 							}
 						}
-						// close submit
 						?>
 					</div>
 					<!-- /.col -->

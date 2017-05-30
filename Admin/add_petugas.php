@@ -56,51 +56,63 @@
 						</form>
 						<?php
 							require_once('../config.php');
-							$db = new mysqli($db_host, $db_username, $db_password, $db_database);
+							//inisiasi database
+							$db = new mysqli($db_host, $db_username, $db_password,
+							$db_database);
 							if ($db->connect_errno){
-								die ("Tidak dapat terkoneksi dengan database: <br />". $db->connect_error);
+								die ("Tidak dapat terkoneksi dengan database: <br />".
+								$db->connect_error);
 							}
-
+							//kondisi jika submit terdapat isi
 							if(isset($_POST['submit'])){
-								$nama=test_input($_POST['nama']);
-								$npp=test_input($_POST['npp']);
-								$password=md5('123456');
-								$level=$_POST['level'];
+								//menentukan nilai variabel dari inputan
+								$nama		= test_input($_POST['nama']);
+								$npp 		= test_input($_POST['npp']);
+								$password	= md5('123456');
+								$level	= $_POST['level'];
 
+								//mendeteksi inputan npp apakah sesuai dengan ketentuan
 								if(!preg_match("/^[0-9]*$/",$npp)) {
-									echo '<script>alert("NPP Tidak Valif: Hanya angka tanpa spasi yang diperbolehkan")</script><br /><br />';
-									echo '<script>window.open("add_petugas.php","_self")</script>';
-
-									$valid_npp=FALSE;
+									echo '<script>alert("NPP Tidak Valif: Hanya angka tanpa
+									spasi yang diperbolehkan")</script><br /><br />';
+									echo '<script> window.open ("add_petugas.php","_self")
+									</script>';
+										$valid_npp=FALSE;
 								}else{
-									$valid_npp=TRUE;
+										$valid_npp=TRUE;
 								}
 
 								if ($valid_npp==TRUE){
-									//escape inputs data
-									$nama = $db->real_escape_string($nama);
-									$npp = $db->real_escape_string($npp);
-									$password = $db->real_escape_string($password);
-									$level = $db->real_escape_string($level);
-									//Asign a query
-									$query = "INSERT INTO petugas (npp,nama,password,level) VALUES ('$npp','$nama','$password','$level') ";
-									// Execute the query
-									$result = $db->query( $query );
-									if (!$result){
-										 die ('<br/><div class="alert alert-danger">Could not query the database: '.$db->error.'</div>');
-									}else{
-										echo '<script>alert("User Sudah Ditambahkan")</script><br /><br />';
-										echo '<script>window.open("index.php","_self")</script>';
-										$db->close();
-									}
+								//escape inputs data
+								$nama = $db->real_escape_string($nama);
+								$npp = $db->real_escape_string($npp);
+								$password = $db->real_escape_string($password);
+								$level = $db->real_escape_string($level);
+								//query untuk menambah data baru ke dalam tabel petugas
+								$query = "INSERT INTO petugas (npp,nama,password,level)
+								VALUES ('$npp','$nama','$password','$level') ";
+								// Menjalankan query
+								$result = $db->query( $query );
+								if (!$result){
+									die ('<br/><div class="alert alert-danger">Could not
+									query the database: '.$db->error.'</div>');
+								}else{
+									echo '<script>alert("User Sudah Ditambahkan")
+									</script><br /><br />';
+									echo '<script> window.open("index.php","_self")
+									</script>';
+									$db->close();
 								}
 							}
-							function test_input($data) {
-								 $data = trim($data);
-								 $data = stripslashes($data);
-								 $data = htmlspecialchars($data);
-								 return $data;
-							}
+						}
+						//fungsi mendeteksi input data
+						function test_input($data) {
+							$data = trim($data);
+							$data = stripslashes($data);
+							$data = htmlspecialchars($data);
+							return $data;
+						}
+
 						?>
 					</div>
 					<!-- close col -->

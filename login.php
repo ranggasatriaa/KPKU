@@ -7,22 +7,21 @@ if (isset($_SESSION['level']))
 }
 
 require_once 'config.php';
-// if(isset($_POST['npp']) && isset($_POST['passowrd'])){
+// Membaca inputan
   $npp = $_POST['npp'];
   $password = md5($_POST['password']);
 
-// }
-// query untuk mendapatkan record dari username
-$db=mysqli_connect($db_host,$db_username,$db_password,$db_database) or
+// query untuk mendapatkan record dari tabel petugas
+$db = mysqli_connect ($db_host, $db_username, $db_password, $db_database) or
 die("Maaf Anda gagal koneksi.!");
 $query = "SELECT * FROM petugas WHERE npp = '$npp'";
 $result = mysqli_query($db,$query);
 $data = mysqli_fetch_array($result);
-// cek kesesuaian password
+
+// cek kesesuaian inputan dan database
 if ($password == $data['password'])
 {
-echo "";
-    // menyimpan email dan kke dalam session
+    // menyimpan data petugas yg masuk ke dalam session
     $_SESSION['level'] = $data['level'];
     $_SESSION['npp'] = $data['npp'];
     $_SESSION['nama'] = $data['nama'];
@@ -45,7 +44,7 @@ echo "";
       header('location: Finance/AdminFinance/index.php');
     }
 }
-else
+
 ?>
 <html>
 	<head>

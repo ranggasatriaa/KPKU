@@ -67,21 +67,30 @@
                         </form>
 												<?php
 													require_once('config.php');
+													//inisiasi database
 													$db = new mysqli($db_host, $db_username, $db_password, $db_database);
 													if ($db->connect_errno){
-														die ("Tidak dapat terkoneksi dengan database: <br/>". $db->connect_error);
+														die ("Tidak dapat terkoneksi dengan database: <br/>".
+														$db->connect_error);
 													}
-													if (isset($_POST["submit"])){
+													//kondisi jika submit terdapat isi
+													if(isset($_POST['submit'])){
+														//menentukan nilai variabel dari inputan
 														$npp = $_POST['npp'];
-														$query = " UPDATE petugas SET request=1 WHERE npp='".$npp."' ";
+														//query untuk mengubah nilai request menjadi 1 berdasarkan
+														npp petugas
+														$query = "UPDATE petugas SET request=1 WHERE npp='$npp' ";
 														$result = $db->query( $query );
+													//kondisi query tidak benar
 														if (!$result){
 															die ("Could not query the database: <br />". $db->error);
 														}else{
-															echo '<script>alert("Permintaan perubahan password telah dikirim.")</script><br /><br />';
+															echo '<script> alert("Permintaan perubahan password telah
+															dikirim.")</script><br /><br />';
 															echo '<script>window.open("index.php","_self")</script>';
 														}
 													}
+
 												?>
                     </div>
                 </div>
