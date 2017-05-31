@@ -24,15 +24,17 @@ if (!isset($_SESSION['level'])){
 						<h1>Mengunggah file...</h1>
 						<?php
 						require_once ('../../config.php');
+						// inisiasi database
 						$db = new mysqli($db_host, $db_username, $db_password, $db_database);
 						if($db->connect_errno){
 							die("Tidak dapat terkoneksi dengan database: </br>". $db->connect_errno);
 						}
-	//fileeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+						//deteksi apakah terdapat inputan
 						if(count($_POST)>0){
+							//menentukan nilai variabel dari inputan
 							$idinspeksi				= $_POST['id'];
 							$waktu_perbaikan 	= date("Y-m-d");
-
+							//deteksi error dari upload file
 							if ($_FILES['userfile']['error'] > 0)
 							{
 								echo 'Problem: ';
@@ -58,38 +60,32 @@ if (!isset($_SESSION['level'])){
 											break;
 								}
 							}
-
+							//menentukan lokasi file disimpan
 							$target_dir = "gambar-perbaikan/";
 							$target_file = $target_dir. $idinspeksi.'_'. basename($_FILES['userfile']['name']);
 							$upload_ok = 1;
 							$file_type = pathinfo($target_file,PATHINFO_EXTENSION);
 
-							// Check if file already exists
+							// memeriksa apakah file dengan nama sama telah ada
 							if (file_exists($target_file)) {
 							    echo '<div class="alert alert-danger">ERROR! File yang sama telah ada.</div><br />';
 	                echo '<br/><a class="btn btn-outline btn-primary btn-block" href="add_inpeksi.php?id='.$idinspeksi.'">Kembali</a>';
 							    $upload_ok = 0;
 							}
-							// Check file size if you not use hidden input 'MAX_FILE_SIZE'
+							// memeriksa apakah ukuran file lebih besar dari ketentuan
 							if ($_FILES['userfile']['size'] > 1000000) {
 	              echo '<div class="alert alert-danger">Gagal Mengunggah: Ukuran File terlalu besar</div>';
 	              echo '<a class="btn btn-outline btn-primary btn-block" href="add_inpeksi.php?id='.$idinspeksi.'">Kembali</a>';
 							  $upload_ok = 0;
 							}
-
-							// Allow certain file formats
-							$allowed_type = array("jpg", "png", "jpeg", "gif");
+							// memeriksa ekstensi dari file
+							$allowed_type = array("jpg", "png", "jpeg","bmp","gif","JPG","PNG","JPEG","BMP","GIF");
 							if(!in_array($file_type, $allowed_type)) {
 							    echo '<div class="alert alert-danger">ERROR! Hanya file bertipe: jpg, jpeg, png & gif yang diperbolehkan.</div>';
 	                echo '<a class="btn btn-outline btn-primary btn-block" href="add_inpeksi.php?id='.$idinspeksi.'">Kembali</a>';
 							    $upload_ok = 0;
 							}
-							// Does the file have the right MIME type?
-							/*if ($_FILES['userfile']['type'] != 'text/plain'){
-								echo 'Problem: file is not plain text';
-								$uploadOk = 0;
-							}*/
-							// put the file where we'd like it
+							// meletakkan file di direktori yang sudah ditentukan
 							if ($upload_ok != 0){
 
 	                // Seleksi Input Data
@@ -97,7 +93,7 @@ if (!isset($_SESSION['level'])){
 	                $direktori_perbaikan  = $target_file;
 	                $direktori_perbaikan	= $db->real_escape_string($direktori_perbaikan);
 
-	                // Membuat query
+	                // query mengubah data inspeksi
 	                $query_perbaiki_inspeksi = "UPDATE inspeksi SET waktu_perbaikan='".$waktu_perbaikan."',direktori_perbaikan='".$direktori_perbaikan."', status=TRUE WHERE idinspeksi='".$idinspeksi."' ";
 	                // Execute the query
 	                $result = $db->query($query_perbaiki_inspeksi);
@@ -114,7 +110,6 @@ if (!isset($_SESSION['level'])){
 	                  echo '<div class="alert alert-success"><h2 align="center">File berhasil di unggah</h2></div>';
 	                  echo '<br/><a class="btn btn-outline btn-primary btn-block" href="index.php">Kembali</a>';
 	                  $db->close();
-
 	                }
 	              }
 							}

@@ -37,77 +37,63 @@ if (!isset($_SESSION['level'])){
 						</form>
 						<?php
 						require_once ('../../config.php');
+						//inisiasi database
 						$db=new mysqli($db_host,$db_username,$db_password,$db_database) or
 						die("Maaf Anda gagal koneksi.!");
-
+						//mendeteksi apakah ada inputan
 						if(isset($_GET['submit'])){
+							//menentukan nilai variabel dari inputan
 							$tanggal1 = $_GET['tanggal1'];
 							$tanggal2 = $_GET['tanggal2'];
+							//menghitung selisih hari antar tanggal
 							$temp_tgl	 = $tanggal1;
 							$selisih = ((abs(strtotime ($tanggal1) - strtotime ($tanggal2)))/(60*60*24));
-						}else{ // untuk kemungkinan tanpa yang belum ada
+						}else{
+							//konsisi tanggal default (30 hari dari sekarang)
 							$tanggal2 = date("Y-m-d");
 							$tanggalsebelum = strtotime ( '-30 day' , strtotime ( $tanggal2 ) ) ;;
 							$tanggal1 = date('Y-m-d', $tanggalsebelum);
 							$temp_tgl	 = $tanggal1;
 							$selisih = ((abs(strtotime ($tanggal1) - strtotime ($tanggal2)))/(60*60*24));
 						}
-
 							//peru;angan menghitung kerusakan perhari
 							for ($i= 0; $i <= $selisih; $i++)
 							{
+								//query mencari inspeksi berdsarkan waktu kerussakn
 								$query = " SELECT * FROM inspeksi	WHERE waktu_kerusakan='$temp_tgl' ";
 								// Execute the query
 								$result = $db->query($query);
 								if (!$result){
 									die ("Could not query the database: <br />". $db->error);
 								}else{
+								//menyimpan jumlah data kedalam array
 								$row_k[$i] = $result->num_rows;
-								// echo $temp_tgl;
-								// echo '<br/>';
-								// echo $row_k[$i];
-								// echo '<br/>';
-
 								}
+								// mengubah tanggal 1 haru setelahnya
 								$newdate = strtotime ( '+1 day' , strtotime ( $temp_tgl ) ) ;
 								$temp_tgl = date ( 'Y-m-d' , $newdate );
 							}
 
-							// for ($i= 0; $i <= $selisih; $i++)
-							// {
-							// 	echo $row_k[$i];
-							// }
-
-
-							//peru;angan menghitung perbaikan perhari
+							//perulangan menghitung perbaikan perhari
 							$temp_tgl = $tanggal1;
 							for ($i= 0; $i <= $selisih; $i++)
 							{
+								//query mencari inspeksi berdsarkan waktu
 								$query = " SELECT * FROM inspeksi	WHERE waktu_perbaikan='$temp_tgl' ";
 								// Execute the query
 								$result = $db->query($query);
 								if (!$result){
 									die ("Could not query the database: <br />". $db->error);
 								}else{
+								//menyimpan jumlah data kedalam array
 								$row_p[$i] = $result->num_rows;
-								// echo $temp_tgl;
-								// echo '<br/>';
-								// echo $row_p[$i];
-								// echo '<br/>';
-
 								}
+								// mengubah tanggal 1 haru setelahnya
 								$newdate = strtotime ( '+1 day' , strtotime ( $temp_tgl ) ) ;
 								$temp_tgl = date ( 'Y-m-d' , $newdate );
 							}
-
-							// for ($i= 0; $i <= $selisih; $i++)
-							// {
-							// 	echo $row_p[$i];
-							// }
-							// echo '<br/>';
-
-
-							echo '<div id="grafik" style="min-width: 300px; height: 400px; margin: 0 auto"></div>';						
+							// menampilkan grafik
+							echo '<div id="grafik" style="min-width: 300px; height: 400px; margin: 0 auto"></div>';
 						?>
 					</div>
 					<!-- /. col-md-12 -->
@@ -128,8 +114,9 @@ if (!isset($_SESSION['level'])){
 
 <!--file untuk menampilkan grafik!-->
 		<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
-		<script src="https://code.highcharts.com/highcharts.js"></script>
-		<script src="https://code.highcharts.com/modules/exporting.js"></script>
+		//import file javascript grafik
+		<script src="KPKU/Utility/js_grafik/highcharts.js"></script>
+		<script src="KPKU/Utility/js_grafik/exporting.js"></script>
 		<script type="text/javascript">
 			$(function () {
 			  Highcharts.chart('grafik', {
@@ -140,6 +127,7 @@ if (!isset($_SESSION['level'])){
 			  	xAxis: {
 			      categories: [
 							<?php
+								// memasukkan informasi grafik
 								$temp_tgl =  $tanggal1;
 
 								$temp_tgl2 = strtotime($tanggal1);
@@ -178,7 +166,7 @@ if (!isset($_SESSION['level'])){
 			      verticalAlign: 'middle',
 			      borderWidth: 0
 			    },
-
+					//menampilkan tanggal
 			    series: [
 						{
 				      name: 'Kerusakan',

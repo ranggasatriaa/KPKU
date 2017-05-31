@@ -85,7 +85,6 @@ if (!isset($_SESSION['level'])){
 	              echo '<a class="btn btn-outline btn-primary btn-block" href="add_inspeksi.php?id='.$idinspeksi.'">Kembali</a>';
 							  $upload_ok = 0;
 							}
-
 							// memeriksa ekstensi dari file
 							$allowed_type = array("jpg", "png", "jpeg","bmp","gif","JPG","PNG","JPEG","BMP","GIF");
 							if(!in_array($file_type, $allowed_type)) {
@@ -93,7 +92,6 @@ if (!isset($_SESSION['level'])){
 	                echo '<a class="btn btn-outline btn-primary btn-block" href="add_inspeksi.php?id='.$idinspeksi.'">Kembali</a>';
 							    $upload_ok = 0;
 							}
-
 							// meletakkan file di direktori yang sudah ditentukan
 							if ($upload_ok != 0){
 								if (!is_uploaded_file($_FILES['userfile']['tmp_name'])){

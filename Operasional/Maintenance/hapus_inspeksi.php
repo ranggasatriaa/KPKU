@@ -24,21 +24,25 @@ if (!isset($_SESSION['level'])){
 						<h1>Menghapus inspeksi...</h1>
 						<?php
 						require_once ('../../config.php');
+						//inisiasiasi database
 						$db = new mysqli($db_host, $db_username, $db_password, $db_database);
 						if($db->connect_errno){
 							die("Tidak dapat terkoneksi dengan database: </br>". $db->connect_errno);
 						}
-	          //fileeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+	          //membaca idinspeksi
 	          $idinspeksi				= $_GET['id'];
+						//query mencari inspeksi menurut idinspeksi
 	          $query_cari 			= "SELECT * FROM inspeksi WHERE idinspeksi=".$idinspeksi." ";
 						$result_cari 			= $db->query($query_cari);
 						if (!$result_cari){
 							die ("Could not query cari: <br />". $db->error);
 						}else{
 							$row_cari 	= $result_cari->fetch_object();
+							//menentukan apakah suadah diperbaiki
 							if ($row_cari->status==TRUE){
 								$direktori_perbaikan	= $row_cari->direktori_perbaikan;
 								$direktori_kerusakan	= $row_cari->direktori_kerusakan;
+								//memeriksa apakah file ada pada direktori
 								if (!file_exists($direktori_perbaikan) || !file_exists($direktori_kerusakan)){
 									die ("File tidak ditemukan!!");}
 							}else{
@@ -46,7 +50,7 @@ if (!isset($_SESSION['level'])){
 								if (!file_exists($direktori_kerusakan)){
 									die ("File tidak ditemukan");}
 							}
-
+							//quary menghapus inspeksi berdasarkan idinspeksi
 							$query_hapus = "DELETE FROM inspeksi WHERE idinspeksi=".$idinspeksi." ";
 							$result_hapus = $db->query($query_hapus);
 							if (!$result_hapus){
@@ -54,6 +58,7 @@ if (!isset($_SESSION['level'])){
 								echo '<br/><a class="btn btn-outline btn-primary btn-block" href="index.php">Kembali</a>';
 								die ("Could not query the database: <br />". $db->error);
 							}
+							//menghapus file di direktori
 							if ($row_cari->status==TRUE){
 								unlink($direktori_kerusakan);
 								unlink($direktori_perbaikan);

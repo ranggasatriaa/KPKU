@@ -67,40 +67,35 @@ if (!isset($_SESSION['level'])){
 										</td>
 									</tr>
 								</table>
-							</div>
+							</div>.
 						</form>
-
 						<?php
 						require_once ('../../config.php');
+						//isisiasi database
 						$db=new mysqli($db_host,$db_username,$db_password,$db_database) or
 						die("Maaf Anda gagal koneksi.!");
-
+						//mendeteksi apakah ada inputan
 						if(isset($_GET['submit'])){
-							$filter = $_GET['filter'];
-							$urutan = $_GET['urutan'];
+							//mebebtukan nilai variabel berdasarkan inputan
+							$filter		= $_GET['filter'];
+							$urutan		= $_GET['urutan'];
+							$tanggal1 = $_GET['tanggal1'];
+							$tanggal2 = $_GET['tanggal2'];
+							//menentukan filter dan urutan default
 							if ($filter==""){
 								$filter = "idinspeksi";
 							}elseif ($urutan==""){
 								$urutan = "ASC";
 							}
-							$tanggal1 = $_GET['tanggal1'];
-							$tanggal2 = $_GET['tanggal2'];
-							if($filter!="" || $urutan!=""){
-								if($tanggal1=="" || $tanggal2=="")
-								{
-									die ('<br/><div class="alert alert-danger" style="font-size:150%; text-align:center">Masukkan Tanggal Terlebih dahulu </div>');
-								}
-							}
+							//menentukan selisih hari dari tanggal
 							$temp_tgl	 = $tanggal1;
 							$selisih = ((abs(strtotime ($tanggal1) - strtotime ($tanggal2)))/(60*60*24));
-							// echo $filter;
-							// echo $urutan;
-
 							echo '<div class="col-lg-12">';
 								//perulangan menghitung kerusakan perhari
 								echo '<h3 align="center">Kerusakan antara tanggal '.date('d-m-Y', strtotime($tanggal1)).' sampai '.date('d-m-Y', strtotime($tanggal2)).' </h3>';
 								for ($i= 0; $i <= $selisih; $i++)
 								{
+									//query penampil inspeksi berdasarkan waktu kerusakan
 									$query =  " SELECT * FROM inspeksi
 														 JOIN petugas ON inspeksi.npp=petugas.npp
 														 JOIN jenis_inspeksi ON inspeksi.idjenis_inspeksi=jenis_inspeksi.idjenis_inspeksi
@@ -111,7 +106,7 @@ if (!isset($_SESSION['level'])){
 									if (!$result){
 										die ("Could not query the database1: <br />". $db->error);
 									}else{
-
+										//penampil inspeksi
 										while ($row = $result->fetch_object()){
 											echo '<div class="col-md-4 portofolio-item">';
 												echo '<a href="detail_inspeksi.php?id='.$row->idinspeksi.'">';
@@ -129,6 +124,7 @@ if (!isset($_SESSION['level'])){
 											echo '</div>';
 										}
 									}
+									//mengubah tanggal 1 hari selanjutnya
 									$newdate = strtotime ( '+1 day' , strtotime ( $temp_tgl ) ) ;
 									$temp_tgl = date ( 'Y-m-d' , $newdate );
 								}
@@ -140,6 +136,7 @@ if (!isset($_SESSION['level'])){
 								$temp_tgl = $tanggal1;
 								for ($i= 0; $i <= $selisih; $i++)
 								{
+									//query penampil inspeksi berdasarkan waktu perbaikan
 									$query =  " SELECT * FROM inspeksi
 														 JOIN petugas ON inspeksi.npp=petugas.npp
 														 JOIN jenis_inspeksi ON inspeksi.idjenis_inspeksi=jenis_inspeksi.idjenis_inspeksi
@@ -150,7 +147,7 @@ if (!isset($_SESSION['level'])){
 									if (!$result){
 										die ("Could not query the database1: <br />". $db->error);
 									}else{
-
+										//penampil inspeksi
 										while ($row = $result->fetch_object()){
 											echo '<div class="col-md-4 portofolio-item">';
 												echo '<a href="detail_inspeksi.php?id='.$row->idinspeksi.'">';
@@ -168,16 +165,16 @@ if (!isset($_SESSION['level'])){
 											echo '</div>';
 										}
 									}
+									//mengubah tanggal menjadi 1 hari selanjutnya
 									$newdate = strtotime ( '+1 day' , strtotime ( $temp_tgl ) ) ;
 									$temp_tgl = date ( 'Y-m-d' , $newdate );
 								}
 							echo '</div>';
-							// echo '<div id="grafik" style="min-width: 300px; height: 400px; margin: 0 auto"></div>';
 						}
-						echo '</div>';
-						echo '</div>';
-						echo '<div class="row">';
-						echo '<div class="col-lg-100">';
+					echo '</div>';
+				echo '</div>';
+				echo '<div class="row">';
+					echo '<div class="col-lg-100">';
 						if ($_SESSION['level']=="gm"){
 							echo' <br/>	<a class="btn btn-outline btn-primary btn-block" href="/kpku/operasional/maintenance/index_luar.php">Kembali</a>';
 						}elseif($_SESSION['level']=="dgm_op"){
@@ -201,91 +198,3 @@ if (!isset($_SESSION['level'])){
 		<!-- close footer -->
   </body>
 </html>
-
-
-<!--file untuk menampilkan grafik!-->
-		<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
-		<script src="https://code.highcharts.com/highcharts.js"></script>
-		<script src="https://code.highcharts.com/modules/exporting.js"></script>
-		<script type="text/javascript">
-			$(function () {
-			  Highcharts.chart('grafik', {
-			    title: {
-			      text: 'Inspeksi <?php echo date('d M Y',strtotime($tanggal1));?> sd <?php echo date('d M Y',strtotime($tanggal2));?>',
-			      x: -20 //center
-			    },
-			  	xAxis: {
-			      categories: [
-							<?php
-								$temp_tgl =  $tanggal1;
-
-								$temp_tgl2 = strtotime($tanggal1);
-								$temp_tgl2 = date ( 'd M Y' , $temp_tgl2);
-								echo "'.$temp_tgl2.'";
-								for ($i= 1; $i <= $selisih; $i++)
-								{
-									$newdate = strtotime ( '+1 day' , strtotime ( $temp_tgl ) ) ;
-									$temp_tgl = date ( 'Y-m-d' , $newdate );
-
-									$temp_tgl2 = strtotime($temp_tgl);
-									$temp_tgl2 = date ( 'd M Y' , $temp_tgl2 );
-									echo ",'".$temp_tgl2."'";
-
-								}
-							?>
-						]
-			    },
-			    yAxis: {
-			      title: {
-			        text: 'Jumlah'
-			      },
-			      plotLines: [{
-			        value: 0,
-			        width: 1,
-			        color: '#808080'
-			      }]
-			    },
-			    tooltip: {
-			      valueSuffix: ''
-			    },
-
-			    legend: {
-			      layout: 'vertical',
-			      align: 'right',
-			      verticalAlign: 'middle',
-			      borderWidth: 0
-			    },
-
-			    series: [
-						{
-				      name: 'Kerusakan',
-							color: '#ed3f3f',
-				      data: [
-								<?php
-									echo $row_k[0];
-							    for ($i= 1; $i <= $selisih; $i++)
-							    {
-							      echo ',';
-										echo $row_k[$i];
-							    }
-							  ?>
-							]
-			    	},
-						{
-							name: 'Perbaikan',
-							color: '#4CAF50',
-						  data: [
-								<?php
-									echo $row_p[0];
-									for ($i= 1; $i <= $selisih; $i++)
-									{
-										echo ',';
-										echo $row_p[$i];
-									}
-								?>
-							]
-						}
-					]
-			  });
-			});
-		</script>

@@ -17,22 +17,22 @@ if (!isset($_SESSION['level'])){
     <meta name="author" content="">
 		<link rel="icon" type="image/ico?" href="/KPKU/logo.ico">
     <!-- Bootstrap Core CSS -->
-    <link href="/KPKU/Template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/KPKU/Utility/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="/KPKU/Template/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="/KPKU/Utility/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="/KPKU/Template/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="/KPKU/Utility/dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- DataTables CSS -->
-    <link href="/KPKU/Template/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="/KPKU/Utility/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
 
     <!-- DataTables Responsive CSS -->
-    <link href="/KPKU/Template/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+    <link href="/KPKU/Utility/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="/KPKU/Template/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/KPKU/Utility/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -364,16 +364,16 @@ if (!isset($_SESSION['level'])){
         // /. close all
         ?>
     <!-- jQuery -->
-    <script src="/KPKU/Template/vendor/jquery/jquery.min.js"></script>
+    <script src="/KPKU/Utility/vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="/KPKU/Template/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/KPKU/Utility/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="/KPKU/Template/vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="/KPKU/Utility/vendor/metisMenu/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="/KPKU/Template/dist/js/sb-admin-2.js"></script>
+    <script src="/KPKU/Utility/dist/js/sb-admin-2.js"></script>
 
 </body>
 

@@ -28,14 +28,16 @@ if (!isset($_SESSION['level'])){
 						</form>
 						<?php
 							require_once ('../../config.php');
+							//mebebtukan nilai variabel berdasarkan inputan
 							$tanggal		= $_POST['tanggal'];
 							$tanggaldmy = date('d-m-Y', strtotime($tanggal));
 							$jumlah			= 0;
-
+							//inisiasi database
 							$db=new mysqli($db_host,$db_username,$db_password,$db_database);
 							if($db->connect_errno){
 								die("Tidak dapat terkoneksi dengan database: </br>". $db->connect_errno);
 							}
+							//mendeteksi apakah ada inputan
 							if(count($_POST)>0){
 								// query penampil kerusakan
 								$query_kerusakan = "SELECT * FROM inspeksi
@@ -56,8 +58,10 @@ if (!isset($_SESSION['level'])){
 								if (!$result_k || !$result_p){
 									die ("Could not query the database: <br />". $db->error);
 								}else{
+									//menghitung jumlah
 									$jumlah_k = $result_k->num_rows;
 									$jumlah_p = $result_p->num_rows;
+									//memeriksa apakah tidak ada inspeksi
 									if($jumlah_k==0 && $jumlah_p==0){
 											if ($_SESSION['level']=="gm"){
 												die ('<br/><div class="alert alert-danger" style="font-size:150%; text-align:center">Tidak ada inspeksi pada tanggal '.$tanggaldmy.'</div>
@@ -67,6 +71,7 @@ if (!isset($_SESSION['level'])){
 												<a class="btn btn-outline btn-primary btn-block" href="/kpku/operasional/maintenance/index.php">Kembali</a>');
 											}
 									}elseif(!$jumlah_k==0){
+										//menampilkan inspeksi berdsarkan waktu kerusakkan
 										echo '<h3 align="center">Kerusakan pada tanggal '.$tanggaldmy.'</h3>';
 										echo '<table class="table">';
 						        while ($row_k = $result_k->fetch_object()){
@@ -131,6 +136,7 @@ if (!isset($_SESSION['level'])){
 									}
 									// close if !jumlah_k==0
 									if(!$jumlah_p==0){
+										//menampilkan inspeksi berdsarkan waktu perbaikan
 										echo '<h3 align="center">Perbaikan pada tanggal '.$tanggaldmy.'</h3>';
 										echo '<table class="table">';
 						        while ($row_p = $result_p->fetch_object()){

@@ -97,7 +97,6 @@
             $table->addCell(4000, $styleCell);
             $table->addCell(200, $styleCell);
             $table->addCell(4000, $styleCell);
-
         }
       }
       // close if !jumlah_k==0
