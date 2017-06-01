@@ -45,8 +45,8 @@ if (!isset($_SESSION['level'])){
 												<option value="">- Pilihan -</option>
 												<option value="inspeksi.idjenis_inspeksi">Jenis Inspeksi</option>
 												<option value="inspeksi.idjenis_kerusakan">Jenis Kerusakan</option>
-												<option value="waktu_kerusakan">Waktu Kerusakan</option>
-												<optio	value="status">Kondisi Inspeksi</option>
+												<option value="inspeksi.waktu_kerusakan">Waktu Kerusakan</option>
+												<optio	value="inspeksi.status">Kondisi Inspeksi</option>
 											</select>
 										</td>
 										<td>
@@ -100,7 +100,7 @@ if (!isset($_SESSION['level'])){
 														 JOIN petugas ON inspeksi.npp=petugas.npp
 														 JOIN jenis_inspeksi ON inspeksi.idjenis_inspeksi=jenis_inspeksi.idjenis_inspeksi
 														 JOIN jenis_kerusakan ON inspeksi.idjenis_kerusakan=jenis_kerusakan.idjenis_kerusakan
-														 WHERE waktu_kerusakan='$temp_tgl' ORDER BY inspeksi.idjenis_inspeksi $urutan";
+														 WHERE waktu_kerusakan='$temp_tgl' ORDER BY $filter $urutan";
 									// Execute the query
 									$result = $db->query($query);
 									if (!$result){
@@ -141,7 +141,7 @@ if (!isset($_SESSION['level'])){
 														 JOIN petugas ON inspeksi.npp=petugas.npp
 														 JOIN jenis_inspeksi ON inspeksi.idjenis_inspeksi=jenis_inspeksi.idjenis_inspeksi
 														 JOIN jenis_kerusakan ON inspeksi.idjenis_kerusakan=jenis_kerusakan.idjenis_kerusakan
-														 WHERE waktu_perbaikan='$temp_tgl' ORDER BY idinspeksi ASC";
+														 WHERE waktu_perbaikan='$temp_tgl' ORDER BY $filter $urutan";
 									// Execute the query
 									$result = $db->query($query);
 									if (!$result){

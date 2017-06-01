@@ -519,7 +519,8 @@ if (!isset($_SESSION['level'])){
 </html>
 
 <!--file untuk menampilkan grafik!-->
-		<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
+<script src="/KPKU/Utility/js_grafik/highcharts.js"></script>
+<script src="/KPKU/Utility/js_grafik/exporting.js"></script>
 		<script type="text/javascript">
 			$(function () {
 			    Highcharts.chart('container', {
@@ -555,10 +556,8 @@ if (!isset($_SESSION['level'])){
 									<?php echo $jun;?>,<?php echo $jul;?>,<?php echo $agu;?>,<?php echo $sep;?>,<?php echo $okt;?>,<?php echo $nov;?>,<?php echo $des;?>]
 			        },{
 					name: 'Ebtida',
-					data: [<?php echo $jan1;?>, <?php echo $feb1;?>, <?php echo $mar1;?>,<?php echo $apr1;?>,<?php echo $mei1;?>,<?php echo $jun1;?>, <?php echo $jul1;?>, <?php echo $agu1;?>,<?php echo $sep1;?>,<?php echo $okt1;?>,<?php echo $nov1;?>,<?php echo $des1;?>]}]
+					data: [<?php echo $jan1;?>, <?php echo $feb1;?>, <?php echo $mar1;?>,<?php echo $apr1;?>,<?php echo $mei1;?>,<?php echo $jun1;?>, <?php echo $jul1;?>, <?php echo $agu1;?>,<?php echo $sep1;?>,
+						<?php echo $okt1;?>,<?php echo $nov1;?>,<?php echo $des1;?>]}]
 			    });
 			});
 		</script>
-
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>

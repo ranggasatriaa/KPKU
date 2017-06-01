@@ -115,8 +115,8 @@ if (!isset($_SESSION['level'])){
 <!--file untuk menampilkan grafik!-->
 		<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
 		<!-- //import file javascript grafik -->
-		<script src="KPKU/Utility/js_grafik/highcharts.js"></script>
-		<script src="KPKU/Utility/js_grafik/exporting.js"></script>
+		<script src="/KPKU/Utility/js_grafik/highcharts.js"></script>
+		<script src="/KPKU/Utility/js_grafik/exporting.js"></script>
 		<script type="text/javascript">
 			$(function () {
 			  Highcharts.chart('grafik', {
