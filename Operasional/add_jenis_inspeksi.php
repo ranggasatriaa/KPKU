@@ -11,11 +11,12 @@ if (!isset($_SESSION['level'])){
 }
 
 require_once('../config.php');
+//inisiasi database
 $db = new mysqli($db_host, $db_username, $db_password, $db_database);
 if ($db->connect_errno){
 	die ("Tidak dapat terkoneksi dengan database: <br />". $db->connect_error);
 }
-
+//mendeteksi apakah ada inputan
 if(isset($_POST['submit'])){
 	$nama_inspeksi=$_POST['nama_inspeksi'];
 
@@ -30,8 +31,7 @@ if(isset($_POST['submit'])){
 	if ($valid_nama){
 		//insert data into database
 			$nama_inspeksi = $db->real_escape_string($nama_inspeksi);
-
-			//Asign a query
+			//wuary menambah data kedalam tabel jenis inspeksi
 			$query = "INSERT INTO jenis_inspeksi (nama_inspeksi) VALUES('".$nama_inspeksi."') ";
 			// Execute the query
 			$result = $db->query( $query );

@@ -24,13 +24,14 @@ if (!isset($_SESSION['level'])){
 						<h1>Menghapus jenis inspeksi...</h1>
 						<?php
 						require_once ('../config.php');
+						// inisiasi database
 						$db = new mysqli($db_host, $db_username, $db_password, $db_database);
 						if($db->connect_errno){
 							die("Tidak dapat terkoneksi dengan database: </br>". $db->connect_errno);
 						}
-	          //fileeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+	          //membaca id jenis inspeksi
 	          $idjenis_inspeksi				= $_GET['id'];
-
+						//query menghapus jenis inspeksi berdasarkan idjenis_inspeksi
 							$query_hapus = "DELETE FROM jenis_inspeksi WHERE idjenis_inspeksi=$idjenis_inspeksi ";
 							$result_hapus = $db->query($query_hapus);
 							if (!$result_hapus){
