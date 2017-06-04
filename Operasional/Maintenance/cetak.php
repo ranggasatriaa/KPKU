@@ -9,7 +9,7 @@
   $section = $PHPWord->createSection();
 
   $tanggal		= $_GET['tanggal'];
-  $tanggaldmy = date('Y-m-d', strtotime($tanggal));
+  $tanggaldmy = date('d M Y', strtotime($tanggal));
 
   $db=new mysqli($db_host,$db_username,$db_password,$db_database);
   if($db->connect_errno){

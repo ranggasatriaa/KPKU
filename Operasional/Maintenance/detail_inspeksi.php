@@ -78,14 +78,14 @@ if (!isset($_SESSION['level'])){
 									echo '<tr>';
 										echo '<th>Tanggal Kerusakan</th>';
 										echo '<th>:</th>';
-										$waktu_kerusakan = date('d-m-Y',strtotime($row->waktu_kerusakan));
+										$waktu_kerusakan = date('d M Y',strtotime($row->waktu_kerusakan));
 										echo '<td>'.$waktu_kerusakan.'</td> ';
 									echo '</tr>';
 									if ($row->status==1){
 										echo '<tr>';
 											echo '<th>Tanggal Perbaikan</th>';
 											echo '<th>:</th>';
-											$waktu_perbaikan = date('d-m-Y',strtotime($row->waktu_perbaikan));
+											$waktu_perbaikan = date('d M Y',strtotime($row->waktu_perbaikan));
 											echo '<td>'.$waktu_perbaikan.'</td> ';
 										echo '</tr>';
 									}

@@ -28,7 +28,7 @@ if (!isset($_SESSION['level'])){
 						<?php
 							require_once ('../config.php');
 							$tanggal		= $_POST['tanggal'];
-							$tanggaldmy = date('d-m-Y', strtotime($tanggal));
+							$tanggaldmy = date('d M Y', strtotime($tanggal));
 							$jumlah			= 0;
 
 							$db=new mysqli($db_host,$db_username,$db_password,$db_database);
@@ -66,13 +66,13 @@ if (!isset($_SESSION['level'])){
 						        while ($row_k = $result_k->fetch_object()){
 											if ($row_k->status==1){
 												echo '<tr>';
-												echo '<td width="50%" align="center"><img src="maintenance/'.$row_k->direktori_kerusakan.'" style="width:100%; max-height:450px"><br/>Kondisi Sebelum Diperbaiki ('.$row_k->waktu_kerusakan.')</td>';
+												echo '<td width="50%" align="center"><img src="maintenance/'.$row_k->direktori_kerusakan.'" style="width:100%; max-height:450px"><br/>Kondisi Sebelum Diperbaiki ('.date('d M Y', strtotime($row_k->waktu_kerusakan)).')</td>';
 												echo '<td></td>';
-												echo '<td width="50%" align="center"><img src="maintenance/'.$row_k->direktori_perbaikan.'" style="width:100%; max-height:450px"><br/>Kondisi Setelah Diperbaiki ('.$row_k->waktu_perbaikan.') </td>';
+												echo '<td width="50%" align="center"><img src="maintenance/'.$row_k->direktori_perbaikan.'" style="width:100%; max-height:450px"><br/>Kondisi Setelah Diperbaiki ('.date('d M Y', strtotime($row_k->waktu_perbaikan)).') </td>';
 												echo '</tr>';
 											}else{
 												echo '<tr><td align="center" colspan="3"><img src="maintenance/'.$row_k->direktori_kerusakan.'" style="width:50%; max-height:450px"><br/>';
-												echo 'Gambar Sebelum Diperbaiki ('.$row_k->waktu_kerusakan.')</tr>';
+												echo 'Gambar Sebelum Diperbaiki ('.date('d M Y', strtotime($row_k->waktu_kerusakan)).')</tr>';
 											}
 											echo '<tr>';
 												echo '<th>Id Inspeksi</th>';
@@ -130,9 +130,9 @@ if (!isset($_SESSION['level'])){
 						        while ($row_p = $result_p->fetch_object()){
 											if ($row_p->status==1){
 												echo '<tr>';
-												echo '<td width="50%" align="center"><img src="maintenance/'.$row_p->direktori_kerusakan.'" style="width:100%; max-height:450px"><br/>Kondisi Sebelum Diperbaiki ('.$row_p->waktu_kerusakan.')</td>';
+												echo '<td width="50%" align="center"><img src="maintenance/'.$row_p->direktori_kerusakan.'" style="width:100%; max-height:450px"><br/>Kondisi Sebelum Diperbaiki ('.date('d M Y', strtotime($row_k->waktu_kerusakan)).')</td>';
 												echo '<td></td>';
-												echo '<td width="50%" align="center"><img src="maintenance/'.$row_p->direktori_perbaikan.'" style="width:100%; max-height:450px"><br/>Kondisi Setalh Diperbaiki ('.$row_p->waktu_perbaikan.') </td>';
+												echo '<td width="50%" align="center"><img src="maintenance/'.$row_p->direktori_perbaikan.'" style="width:100%; max-height:450px"><br/>Kondisi Setalh Diperbaiki ('.date('d M Y', strtotime($row_k->waktu_perbaikan)).') </td>';
 												echo '</tr>';
 											}else{
 												echo '<tr><td align="center" colspan="3"><img src="maintenance/'.$row_p->direktori_kerusakan.'" width="60%"><br/>';

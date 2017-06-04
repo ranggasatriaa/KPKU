@@ -92,7 +92,7 @@ if (!isset($_SESSION['level'])){
 							$selisih = ((abs(strtotime ($tanggal1) - strtotime ($tanggal2)))/(60*60*24));
 							echo '<div class="col-lg-12">';
 								//perulangan menghitung kerusakan perhari
-								echo '<h3 align="center">Kerusakan antara tanggal '.date('d-m-Y', strtotime($tanggal1)).' sampai '.date('d-m-Y', strtotime($tanggal2)).' </h3>';
+								echo '<h3 align="center">Kerusakan antara tanggal '.date('d M Y', strtotime($tanggal1)).' sampai '.date('d M Y', strtotime($tanggal2)).' </h3>';
 								for ($i= 0; $i <= $selisih; $i++)
 								{
 									//query penampil inspeksi berdasarkan waktu kerusakan
@@ -120,7 +120,7 @@ if (!isset($_SESSION['level'])){
 												}else{
 													echo '<strong class="text-danger">Belum diperbaiki</strong>';
 												}
-												echo '<p>'.date ( 'd-m-Y' , strtotime($row->waktu_kerusakan)).'</p>';
+												echo '<p>'.date ( 'd M Y' , strtotime($row->waktu_kerusakan)).'</p>';
 											echo '</div>';
 										}
 									}
@@ -132,7 +132,7 @@ if (!isset($_SESSION['level'])){
 
 							echo '<div class="col-lg-12">';
 								//perulangan menghitung perbaikan perhari
-								echo '<h3 align="center">Kerusakan antara tanggal '.date('d-m-Y', strtotime($tanggal1)).' sampai '.date('d-m-Y', strtotime($tanggal2)).' </h3>';
+								echo '<h3 align="center">Kerusakan antara tanggal '.date('d M Y', strtotime($tanggal1)).' sampai '.date('d M Y', strtotime($tanggal2)).' </h3>';
 								$temp_tgl = $tanggal1;
 								for ($i= 0; $i <= $selisih; $i++)
 								{
@@ -161,7 +161,7 @@ if (!isset($_SESSION['level'])){
 												}else{
 													echo '<strong class="text-danger">Belum diperbaiki</strong>';
 												}
-												echo '<p>'.date ( 'd-m-Y' , strtotime($row->waktu_kerusakan)).'</p>';
+												echo '<p>'.date ( 'd M Y' , strtotime($row->waktu_kerusakan)).'</p>';
 											echo '</div>';
 										}
 									}
