@@ -45,7 +45,7 @@ if (!isset($_SESSION['level'])){
 		<body>
 	    <!-- Navigation -->
 	  	<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-			<a style="float:right;z-index:1; margin: 10px 15px; color:#cce6ff;text-decoration:none" href="/KPKU/logout.php"><i class="fa fa-sign-out fa fw"></i> Keluar</a>
+			<a style="float:right; z-index:1; margin: 10px 15px; color:#cce6ff;text-decoration:none" href="/KPKU/logout.php"><i class="fa fa-sign-out fa fw"></i> Keluar</a>
 			<?php
 				if($_SESSION['level']!='admin'){
 					echo '<a style="float:right;z-index:1; margin: 10px 15px; color:#cce6ff;text-decoration:none" href="/KPKU/Admin/ubah_password.php?id='.$_SESSION['npp'].'"><i class="fa fa-user fa fw"></i> Ubah Password</a>';
@@ -65,8 +65,8 @@ if (!isset($_SESSION['level'])){
 	    <!-- header image -->
 	    <div style=" margin:0px 30px 10px 30px;border-bottom: 2px  solid #ddd;">
 				<div style="text-align:right">
-					<img style="float:left; margin-top:50px; width:30%; " src="/KPKU/logo.png">
-					<img style="width:55%"src="/KPKU/header.png">
+					<img style="float:left; margin-top:50px; margin-left:20px; width:25%; " src="/KPKU/logo.png">
+					<img style="width:50%"src="/KPKU/header.png">
 				</div>
 			</div>
 	    <!--/. header image -->

@@ -21,7 +21,7 @@ if (!isset($_SESSION['level'])){
 			<div id="page-wrapper">
 				<div class="row">
 				  <div class="col-lg-12">
-						SELAMAT DATANG
+						<h2 style="text-align:center">SELAMAT DATANG GENERAL MANAGER</h2>
 					</div>
 					<!-- close col -->
 				</div>
