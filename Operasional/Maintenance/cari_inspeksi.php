@@ -96,7 +96,7 @@ if (!isset($_SESSION['level'])){
 								for ($i= 0; $i <= $selisih; $i++)
 								{
 									//query penampil inspeksi berdasarkan waktu kerusakan
-									$query =  " SELECT * FROM inspeksi
+									$query =  "SELECT * FROM inspeksi
 														 JOIN petugas ON inspeksi.npp=petugas.npp
 														 JOIN jenis_inspeksi ON inspeksi.idjenis_inspeksi=jenis_inspeksi.idjenis_inspeksi
 														 JOIN jenis_kerusakan ON inspeksi.idjenis_kerusakan=jenis_kerusakan.idjenis_kerusakan
@@ -132,7 +132,7 @@ if (!isset($_SESSION['level'])){
 
 							echo '<div class="col-lg-12">';
 								//perulangan menghitung perbaikan perhari
-								echo '<h3 align="center">Kerusakan antara tanggal '.date('d M Y', strtotime($tanggal1)).' sampai '.date('d M Y', strtotime($tanggal2)).' </h3>';
+								echo '<h3 align="center">Perbaikan antara tanggal '.date('d M Y', strtotime($tanggal1)).' sampai '.date('d M Y', strtotime($tanggal2)).' </h3>';
 								$temp_tgl = $tanggal1;
 								for ($i= 0; $i <= $selisih; $i++)
 								{
@@ -147,6 +147,7 @@ if (!isset($_SESSION['level'])){
 									if (!$result){
 										die ("Could not query the database1: <br />". $db->error);
 									}else{
+										$jumlah = $jumlah + $result->num_rows;
 										//penampil inspeksi
 										while ($row = $result->fetch_object()){
 											echo '<div class="col-md-4 portofolio-item">';
@@ -169,6 +170,8 @@ if (!isset($_SESSION['level'])){
 									$newdate = strtotime ( '+1 day' , strtotime ( $temp_tgl ) ) ;
 									$temp_tgl = date ( 'Y-m-d' , $newdate );
 								}
+
+
 							echo '</div>';
 						}
 					echo '</div>';
