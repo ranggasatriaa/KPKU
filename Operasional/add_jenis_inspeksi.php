@@ -20,28 +20,37 @@ if ($db->connect_errno){
 if(isset($_POST['submit'])){
 	$nama_inspeksi=$_POST['nama_inspeksi'];
 
-	if(!preg_match("/^[a-z A-Z]*$/",$nama_inspeksi)) {
-		echo '<script>alert("Nama Tidak Valid: Hanya huruf tanpa spasi yang diperbolehkan")</script><br /><br />';
+	//quary untuk mencari nama jenis isnpeksi yang sama
+	$querynama = "SELECT * FROM jenis_inspeksi WHERE nama_inspeksi='$nama_inspeksi' ";
+	// Menjalankan query
+	$resultnama = $db->query( $querynama );
+	$jumlahnama = $resultnama->num_rows;
+
+	if(!preg_match("/^[a-z A-Z -]*$/",$nama_inspeksi)) {
+		echo '<script>alert("Nama Tidak Valid: Hanya huruf dan "-" tanpa spasi yang diperbolehkan")</script><br /><br />';
 		echo '<script>window.open("add_jenis_inspeksi.php","_self")</script>';
 		$valid_nama=FALSE;
+	}elseif ($jumlahnama!=0) {
+		echo '<script>alert("Nama Sudah Digunakan")</script><br /><br />';
+		echo '<script>window.open("add_jenis_inspeksi.php","_self")</script>';
 	}else{
 		$valid_nama=TRUE;
 	}
 
 	if ($valid_nama){
 		//insert data into database
-			$nama_inspeksi = $db->real_escape_string($nama_inspeksi);
-			//wuary menambah data kedalam tabel jenis inspeksi
-			$query = "INSERT INTO jenis_inspeksi (nama_inspeksi) VALUES('".$nama_inspeksi."') ";
-			// Execute the query
-			$result = $db->query( $query );
-			if (!$result){
-				 die ("Could not query the database: <br />". $db->error);
-			}else{
-				echo "<script>alert('Jenis Inspeksi Berhasil Ditambahkan')</script><br /><br />";
-				echo "<script>window.open('jenis_inspeksi.php','_self')</script>";
-				$db->close();
-			}
+		$nama_inspeksi = $db->real_escape_string($nama_inspeksi);
+		//wuary menambah data kedalam tabel jenis inspeksi
+		$query = "INSERT INTO jenis_inspeksi (nama_inspeksi) VALUES('".$nama_inspeksi."') ";
+		// Execute the query
+		$result = $db->query( $query );
+		if (!$result){
+			 die ("Could not query the database: <br />". $db->error);
+		}else{
+			echo "<script>alert('Jenis Inspeksi Berhasil Ditambahkan')</script><br /><br />";
+			echo "<script>window.open('jenis_inspeksi.php','_self')</script>";
+			$db->close();
+		}
 	}
 }
 function test_input($data) {

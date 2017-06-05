@@ -71,15 +71,32 @@
 								$password	= md5('123456');
 								$level	= $_POST['level'];
 
+								//quary untuk mencari npp yang sama
+								$querynpp = "SELECT * FROM petugas WHERE npp='$npp' ";
+								// Menjalankan query
+								$resultnpp = $db->query( $querynpp );
+								$jumlahnpp = $resultnpp->num_rows;
+
 								//mendeteksi inputan npp apakah sesuai dengan ketentuan
 								if(!preg_match("/^[0-9]*$/",$npp)) {
-									echo '<script>alert("NPP Tidak Valif: Hanya angka tanpa
-									spasi yang diperbolehkan")</script><br /><br />';
+									echo '<script>alert("NPP Tidak Valid: Hanya angka tanpa spasi yang diperbolehkan")</script><br /><br />';
 									echo '<script> window.open ("add_petugas.php","_self")
 									</script>';
 										$valid_npp=FALSE;
+								}elseif(strlen($npp)>5){
+									echo '<script> alert("NPP terlalu panjang ")</script><br /><br />';
+									echo '<script> window.open ("add_petugas.php","_self") </script>';
+									$valid_npp=FALSE;
+								}elseif(strlen($npp)<5 ){
+									echo '<script>alert("NPP terlalu pendek ")</script><br /><br />';
+									echo '<script> window.open ("add_petugas.php","_self") </script>';
+									$valid_npp=FALSE;
+								}elseif ($jumlahnpp != 0){
+									echo '<script>alert("NPP sudah digunakan ")</script><br /><br />';
+									echo '<script> window.open ("add_petugas.php","_self") </script>';
+									$valid_npp=FALSE;
 								}else{
-										$valid_npp=TRUE;
+									$valid_npp=TRUE;
 								}
 
 								if ($valid_npp==TRUE){
@@ -89,13 +106,11 @@
 								$password = $db->real_escape_string($password);
 								$level = $db->real_escape_string($level);
 								//query untuk menambah data baru ke dalam tabel petugas
-								$query = "INSERT INTO petugas (npp,nama,password,level)
-								VALUES ('$npp','$nama','$password','$level') ";
+								$query = "INSERT INTO petugas (npp,nama,password,level)	VALUES ('$npp','$nama','$password','$level') ";
 								// Menjalankan query
 								$result = $db->query( $query );
 								if (!$result){
-									die ('<br/><div class="alert alert-danger">Could not
-									query the database: '.$db->error.'</div>');
+									die ('<br/><div class="alert alert-danger">Tidak bisa menambah user: '.$db->error.'</div>');
 								}else{
 									echo '<script>alert("User Sudah Ditambahkan")
 									</script><br /><br />';

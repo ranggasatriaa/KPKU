@@ -85,41 +85,33 @@
 			<div id="page-wrapper">
 				<div class="row">
 					<div class="col-lg-12">
-						<h2>Edit Profil</h2>
+						<h2>Edit Data User</h2>
 						<form method="GET" autocomplete="on" action="edit_petugas.php">
 							<input type="hidden" name="id"  value="<?php echo $npp?>">
-							<table>
-								<tr>
-									<td>Nama </td>
-									<td>:</td>
-									<td><input type="text" class="form-control" name="nama" size="30" maxlength="40" placeholder="Nama User" autofocus value="<?php if(isset($nama)) {echo $nama;}?>" required></td>
-								</tr>
-								<tr>
-									<td>npp</td>
-									<td>:</td>
-									<td><input type="text" class="form-control" name="npp" size="30" maxlength="40" placeholder="npp tidak boleh sama" autofocus value="<?php if(isset($npp)) {echo $npp;}?>" required></td>
-								</tr>
-								<tr>
-									<td>Level</td>
-									<td>:</td>
-									<td><select class="form-control" name="level" required>
-										<option value="" <?php if (!isset($level)) echo 'selected="true"';?>>--Pilih Jabatan--</option>
-										<option value="gm" <?php if (isset($level) && $level=="gm") echo 'selected="true"';?>>General Manager</option>
-										<option value="dgm_hrga" <?php if (isset($level) && $level=="dgm_hrga") echo 'selected="true"'; ?>>DGM HRGA</option>
-										<option value="dgm_op" <?php if (isset($level) && $level=="dgm_op") echo 'selected="true"'; ?>>DGM Operasional</option>
-										<option value="dgm_fn" <?php if (isset($level) && $level=="dgm_fn") echo 'selected="true"'; ?>>DGM Finance</option>
-										<option value="ptg_hrga" <?php if (isset($level) && $level=="ptg_hrga") echo 'selected="true"'; ?>>Admin HRGA</option>
-										<option value="ptg_op" <?php if (isset($level) && $level=="ptg_op") echo 'selected="true"'; ?>>Admin Operasional</option>
-										<option value="ptg_fn" <?php if (isset($level) && $level=="ptg_fn") echo 'selected="true"'; ?>>Admin Finance</option>
-										</select>
-									</td>
-								</tr>
-								<tr>
-									<td ><br><input type="submit" class="btn btn-success" name="submit" value="Ubah">
-									<td></td>
-									<td align="right"><br><a class="btn btn-danger" href="index.php">Batal</a></td>
-								</tr>
-							</table>
+							<div style="max-width:300px" class="form-group">
+								<label>NPP: <?php if(isset($npp)) {echo $npp;}?></label>
+							</div>
+							<div style="max-width:300px" class="form-group">
+								<label>Nama:</label>
+								<input type="text" class="form-control" name="nama" size="30" maxlength="40" placeholder="Nama User" autofocus value="<?php if(isset($nama)) {echo $nama;}?>" required>
+							</div>
+							<div style="max-width:300px" class="form-group">
+								<label>Level:</label>
+								<select class="form-control" name="level" required>
+									<option value="" <?php if (!isset($level)) echo 'selected="true"';?>>--Pilih Jabatan--</option>
+									<option value="gm" <?php if (isset($level) && $level=="gm") echo 'selected="true"';?>>General Manager</option>
+									<option value="dgm_hrga" <?php if (isset($level) && $level=="dgm_hrga") echo 'selected="true"'; ?>>DGM HRGA</option>
+									<option value="dgm_op" <?php if (isset($level) && $level=="dgm_op") echo 'selected="true"'; ?>>DGM Operasional</option>
+									<option value="dgm_fn" <?php if (isset($level) && $level=="dgm_fn") echo 'selected="true"'; ?>>DGM Finance</option>
+									<option value="ptg_hrga" <?php if (isset($level) && $level=="ptg_hrga") echo 'selected="true"'; ?>>Admin HRGA</option>
+									<option value="ptg_op" <?php if (isset($level) && $level=="ptg_op") echo 'selected="true"'; ?>>Admin Operasional</option>
+									<option value="ptg_fn" <?php if (isset($level) && $level=="ptg_fn") echo 'selected="true"'; ?>>Admin Finance</option>
+									</select>
+							</div>
+							<div style="max-width:300px" class="form-group">
+								<input type="submit" class="btn btn-success" name="submit" value="Ubah">
+								<a style="float:right" class="btn btn-danger" href="index.php">Batal</a>
+							</div>
 						</form>
 					</div>
 					<!-- close col -->

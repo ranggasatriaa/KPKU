@@ -19,10 +19,13 @@ if ($db->connect_errno){
 if(isset($_POST['submit'])){
 	$nama_kerusakan=$_POST['nama_kerusakan'];
 
-	if(!preg_match("/^[a-z A-Z]*$/",$nama_kerusakan)) {
+	if(!preg_match("/^[a-z A-Z -]*$/",$nama_kerusakan)) {
 		echo '<script>alert("Nama Tidak Valid: Hanya huruf tanpa spasi yang diperbolehkan")</script><br /><br />';
 		echo '<script>window.open("add_jenis_kerusakan.php","_self")</script>';
 		$valid_nama=FALSE;
+	}elseif ($jumlahnama!=0) {
+		echo '<script>alert("Nama Sudah Digunakan")</script><br /><br />';
+		echo '<script>window.open("add_jenis_inspeksi.php","_self")</script>';
 	}else{
 		$valid_nama=TRUE;
 	}
