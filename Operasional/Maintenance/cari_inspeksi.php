@@ -19,30 +19,113 @@ if (!isset($_SESSION['level'])){
 				return x;
 			}
 		</script>
+		<?php
+		require_once('../../config.php');
+		$db = new mysqli($db_host, $db_username, $db_password, $db_database);
+		if($db->connect_errno){
+			die("Tidak dapat terkoneksi dengan database: </br>". $db->connect_errno);
+		}
+		?>
   </head>
 	<body style="background-color:#FFF">
     <div id="wrapper">
 			<div id="page-wrapper">
 				<div class="row">
         	<div class="col-lg-12">
-						<label>Masukkan Tanggal:</label>
+						<label>Pencarian Menurut Tanggal:</label>
 						<!-- form input tanggal -->
 						<form action="cari_inspeksi.php" method="GET" autocomplete="on">
-							<input type="date" name="tanggal1" required>
-							<input type="date" name="tanggal2" required>
-							<input type="submit" class="btn btn-primary" name="submit" value="CARI"></input>
+							<input type="date" name="tanggal1" >
+							<input type="date" name="tanggal2" >
+							</br><label>Pencarian Menurut Kategori:</label>
+							<table>
+								<tr>
+									<td width="158px">
+										<select style="max-width:153px" name="kategori" class="form-control" onchange="yesnoCheck(this);">
+											<option value="">-Pilih Ketegori-</option>
+											<option value="jenis_inspeksi">Jenis Inspeksi</option>
+											<option value="jenis_kerusakan">Jenis Kerusakan</option>
+										</select>
+										<script>
+											function yesnoCheck(that) {
+												if (that.value != "" ) {
+													if (that.value == "jenis_inspeksi"){
+														document.getElementById("nama_jenis_inspeksi").style.display = "block";
+														document.getElementById("nama_jenis_kerusakan").style.display = "none";
+														document.getElementById("kosong11").style.display = "none";
+													} else{
+														document.getElementById("nama_jenis_inspeksi").style.display = "none";
+														document.getElementById("nama_jenis_kerusakan").style.display = "block";
+														document.getElementById("kosong").style.display = "none";
+													}
+												}else{
+													document.getElementById("nama_jenis_inspeksi").style.display = "none";
+													document.getElementById("nama_jenis_kerusakan").style.display = "none";
+													document.getElementById("kosong11").style.display = "block";
+												}
+											}
+										</script>
+									</td>
+									<td width="157px">
+										<div id="kosong11" style="display: block;">
+											<select style="max-width:152px" name="pilihan" class="form-control" >
+												<option value=''></option>
+												<option value=''></option>
+												<option value=''></option>
+											</select>
+										</div>
+										<div id="nama_jenis_inspeksi" style="display: none;">
+											<select style="max-width:152px" name="pilihan" class="form-control" >
+												<?php
+													$query_ji = "SELECT * FROM jenis_inspeksi";
+													$result_ji = $db->query($query_ji);
+													if(!$result_ji){
+														die("Query tidak terkoneksi dengan database: </br>" .$db->error);
+													}
+													echo "<option value=''>-Pilih Inspeksi-</option>";
+													while($row_ji = $result_ji->fetch_object()){
+														echo " <option value='$row_ji->idjenis_inspeksi'>$row_ji->nama_inspeksi</option>";
+													}
+												?>
+											</select>
+										</div>
+										<div id="nama_jenis_kerusakan" style="display: none;">
+											<select style="max-width:152px" name="pilihan" class="form-control">
+												<?php
+													$query_jk = "SELECT * FROM jenis_kerusakan";
+													$result_jk = $db->query($query_jk);
+													if(!$result_jk){
+														die("Query tidak terkoneksi dengan database: </br>" .$db->error);
+													}
+													echo "<option value=''>-Pilih Kerusakan-</option>";
+													while($row_jk = $result_jk->fetch_object()){
+														echo " <option value='$row_jk->idjenis_kerusakan'>$row_jk->nama_kerusakan</option>";
+													}
+												?>
+											</select>
+										</div>
+									</td>
+								<td>
+									<input  type="submit" class="btn btn-primary" name="submit" value="CARI"></input>
+								</td>
+							</tr>
+							</table>
 						</form>
+						<?php
+						if(isset($_GET['submit'])){
+						?>
 						<!-- form urutan tampilan -->
 						<form action="cari_inspeksi.php" method="GET" autocomplete="on">
 							<label>Urutkan Berdasarkan:</label>
-							<div style"float:left;width:20%">
+				 			<div style"float:left;width:20%">
 								<input type="hidden" name="tanggal1" value="<?php echo $_GET['tanggal1'];?>"/>
 								<input type="hidden" name="tanggal2" value="<?php echo $_GET['tanggal2'];?>"/>
+
 								<table style="border: 1px  solid #FFFFFF";>
 									<tr>
 										<td>
-											<select style="max-width:150px" name="filter" class="form-control" required>
-												<option value="">- Pilihan -</option>
+											<select style="width:150px" name="filter" class="form-control" required>
+												<option value="">- Jenis Urutan -</option>
 												<option value="inspeksi.idjenis_inspeksi">Jenis Inspeksi</option>
 												<option value="inspeksi.idjenis_kerusakan">Jenis Kerusakan</option>
 												<option value="inspeksi.waktu_kerusakan">Waktu Kerusakan</option>
@@ -53,23 +136,24 @@ if (!isset($_SESSION['level'])){
 											&nbsp
 										</td>
 										<td>
-											<select style="max-width:120px" name="urutan" class="form-control">
-												<option value="">- Pilihan -</option>
+											<select style="width:150px" name="urutan" class="form-control">
+												<option value="">- Arah Urutan -</option>
 												<option value="ASC">A-Z</option>
 												<option value="DESC">Z-A</option>
 											</select>
 										</td>
 										<td>
-											&nbsp
+											&nbsp &nbsp
 										</td>
 										<td>
 											<input  type="submit" class="btn btn-primary" name="submit" value="Urutkan"></input>
 										</td>
 									</tr>
 								</table>
-							</div>.
+							</div>
 						</form>
 						<?php
+						}
 						require_once ('../../config.php');
 						//isisiasi database
 						$db=new mysqli($db_host,$db_username,$db_password,$db_database) or
@@ -93,6 +177,7 @@ if (!isset($_SESSION['level'])){
 							echo '<div class="col-lg-12">';
 								//perulangan menghitung kerusakan perhari
 								echo '<h3 align="center">Kerusakan antara tanggal '.date('d M Y', strtotime($tanggal1)).' sampai '.date('d M Y', strtotime($tanggal2)).' </h3>';
+								$jumlah = 0;
 								for ($i= 0; $i <= $selisih; $i++)
 								{
 									//query penampil inspeksi berdasarkan waktu kerusakan
@@ -106,6 +191,7 @@ if (!isset($_SESSION['level'])){
 									if (!$result){
 										die ("Could not query the database1: <br />". $db->error);
 									}else{
+										$jumlah = $jumlah + $result->num_rows;
 										//penampil inspeksi
 										while ($row = $result->fetch_object()){
 											echo '<div class="col-md-4 portofolio-item">';
@@ -128,12 +214,17 @@ if (!isset($_SESSION['level'])){
 									$newdate = strtotime ( '+1 day' , strtotime ( $temp_tgl ) ) ;
 									$temp_tgl = date ( 'Y-m-d' , $newdate );
 								}
+								if ($jumlah == 0){
+									echo '<h3 style="text-align:center" class="alert alert-danger"> Tidak ada inspeksi yang ditemukan</h3>';
+								}
+
 							echo '</div>';
 
 							echo '<div class="col-lg-12">';
 								//perulangan menghitung perbaikan perhari
 								echo '<h3 align="center">Perbaikan antara tanggal '.date('d M Y', strtotime($tanggal1)).' sampai '.date('d M Y', strtotime($tanggal2)).' </h3>';
 								$temp_tgl = $tanggal1;
+								$jumlah = 0;
 								for ($i= 0; $i <= $selisih; $i++)
 								{
 									//query penampil inspeksi berdasarkan waktu perbaikan
@@ -170,7 +261,9 @@ if (!isset($_SESSION['level'])){
 									$newdate = strtotime ( '+1 day' , strtotime ( $temp_tgl ) ) ;
 									$temp_tgl = date ( 'Y-m-d' , $newdate );
 								}
-
+								if ($jumlah == 0){
+									echo '<h3 style="text-align:center" class="alert alert-danger"> Tidak ada inspeksi yang ditemukan</h3>';
+								}
 
 							echo '</div>';
 						}

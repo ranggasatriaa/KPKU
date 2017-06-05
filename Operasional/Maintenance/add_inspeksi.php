@@ -107,13 +107,13 @@ if (!isset($_SESSION['level'])){
 								<script>
 									function yesnoCheck(that) {
 							        if (that.value == "204") {
-							            document.getElementById("kerusakan").style.display = "block";
+							            document.getElementById("keterangan").style.display = "block";
 							        } else {
-							            document.getElementById("kerusakan").style.display = "none";
+							            document.getElementById("keterangan").style.display = "none";
 							        }
 							    }
 								</script>
-								<div id="kerusakan" style="display: none;">
+								<div id="keterangan" style="display: none;">
 									<div class="form-group">
 										<label>Keterangan:</label>
 										<textarea name="keterangan" class="form-control" rows="3" placeholder="Masukkan keterangan Tambahan"></textarea>
