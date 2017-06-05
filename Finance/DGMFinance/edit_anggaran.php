@@ -50,8 +50,15 @@ $no_anggaran = $_GET['id'];
 				if (!$result){
 				die ("Could not query the database: <br />". $db->error);
 				}else{
+
 					echo "<script>alert('Anggaran Sudah Diedit')</script><br /><br />";
-					echo "<script>window.open('view_anggaran_admin.php','_self')</script>";
+					$query2="SELECT bulan,tahun FROM labarugi where no_anggaran=".$no_anggaran."";
+					$result2 = $db->query( $query2 );
+						while($row2 = $result2->fetch_object()){
+							$bulan = $row2->bulan;
+							$tahun = $row2->tahun;
+						}
+					echo "<script>window.open('view_anggaran_DGM.php?bulan=$bulan&tahun=$tahun&submit=Browse','_self')</script>";
 					$db->close();
 					exit;
 				}

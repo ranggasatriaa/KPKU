@@ -7,7 +7,7 @@ if (!isset($_SESSION['level'])){
 }elseif($_SESSION['level']!="ptg_fn"){
 	header('location:/kpku/unauthorized.php');
 }else{
-	include('../../header.php');
+	//include('../../header.php');
 }
 
 // Fungsi header dengan mengirimkan raw data excel

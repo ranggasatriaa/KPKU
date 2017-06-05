@@ -80,7 +80,6 @@ if (!isset($_SESSION['level'])){
 										<td valign="top" align="center"  colspan="3"><input type="submit" class="btn btn-default" name="submit" value="Browse"</td>
 									</tr>
 								</table>
-								<a href="add_anggaran.php" class="btn btn-info"><i class="fa fa-plus"></i> Tambah Laporan Anggaran </a>
 							</form>
 						</div>
 						<!-- /. col-lg-12 -->
@@ -367,6 +366,7 @@ if (!isset($_SESSION['level'])){
 							}
 						}
 							if(isset($_GET['submit'])){
+								
 								echo'<div class="row">';
 									echo'<div class="col-lg-12">';
 										echo'<div style="border:0px " class="panel panel-default">';
@@ -389,7 +389,7 @@ if (!isset($_SESSION['level'])){
 														if($id2==0){
 																echo'<td>Pendapatan Tol</td>';
 																echo'<td style="text-align:right">'."Data Belum Diisi".'</td>';
-																echo'<td style="text-align:right">'."".'</td>';
+																echo '<td style="text-align:center"><a href="add_anggaran.php?bulan='.$id_bulan.'&tahun='.$id_tahun.'&nama_anggaran=Pendapatan+Tol "class="btn btn-info btn-sm"><i class="fa fa-plus"></i> Tambah</a></td>';
 														}
 														else{
 															echo'<td>Pendapatan Tol</td>';
@@ -401,7 +401,7 @@ if (!isset($_SESSION['level'])){
 														if($id3==0){
 															echo'<td>Pendapatan Non Tol</td>';
 															echo'<td style="text-align:right">'."Data Belum Diisi".'</td>';
-															echo'<td style="text-align:right">'."".'</td>';
+															echo '<td style="text-align:center"><a href="add_anggaran.php?bulan='.$id_bulan.'&tahun='.$id_tahun.'&nama_anggaran=Pendapatan+Non+Tol "class="btn btn-info btn-sm"><i class="fa fa-plus"></i> Tambah</a></td>';
 														}
 														else{
 															echo'<td>Pendapatan Non Tol</td>';
@@ -423,7 +423,7 @@ if (!isset($_SESSION['level'])){
 														if($id4==0){
 															echo'<td>Gaji dan Tunjangan</td>';
 															echo'<td style="text-align:right">'."Data Belum Diisi".'</td>';
-															echo'<td style="text-align:right">'."".'</td>';
+															echo '<td style="text-align:center"><a href="add_anggaran.php?bulan='.$id_bulan.'&tahun='.$id_tahun.'&nama_anggaran=Gaji+dan+Tunjangan "class="btn btn-info btn-sm"><i class="fa fa-plus"></i> Tambah</a></td>';
 														}
 														else{
 															echo'<td>Gaji dan Tunjangan</td>';
@@ -435,7 +435,7 @@ if (!isset($_SESSION['level'])){
 														if($id5==0){
 															echo'<td>Bonus Insentif dan Pesangon</td>';
 															echo'<td style="text-align:right">'."Data Belum Diisi".'</td>';
-															echo'<td style="text-align:right">'."".'</td>';
+															echo '<td style="text-align:center"><a href="add_anggaran.php?bulan='.$id_bulan.'&tahun='.$id_tahun.'&nama_anggaran=Bonus+Insentif+dan+Pesangon "class="btn btn-info btn-sm"><i class="fa fa-plus"></i> Tambah</a></td>';
 														}
 														else{
 															echo'<td>Bonus Insentif dan Pesangon</td>';
@@ -447,7 +447,7 @@ if (!isset($_SESSION['level'])){
 														if($id6==0){
 															echo'<td>Kesehatan</td>';
 															echo'<td style="text-align:right">'."Data Belum Diisi".'</td>';
-															echo'<td style="text-align:right">'."".'</td>';
+															echo '<td style="text-align:center"><a href="add_anggaran.php?bulan='.$id_bulan.'&tahun='.$id_tahun.'&nama_anggaran=Kesehatan "class="btn btn-info btn-sm"><i class="fa fa-plus"></i> Tambah</a></td>';
 														}
 														else{
 															echo'<td>Kesehatan</td>';
@@ -459,7 +459,7 @@ if (!isset($_SESSION['level'])){
 														if($id7==0){
 															echo'<td>Lembur</td>';
 															echo'<td style="text-align:right">'."Data Belum Diisi".'</td>';
-															echo'<td style="text-align:right">'."".'</td>';
+															echo '<td style="text-align:center"><a href="add_anggaran.php?bulan='.$id_bulan.'&tahun='.$id_tahun.'&nama_anggaran=Lembur "class="btn btn-info btn-sm"><i class="fa fa-plus"></i> Tambah</a></td>';
 														}
 														else{
 															echo'<td>Lembur</td>';
@@ -471,7 +471,7 @@ if (!isset($_SESSION['level'])){
 														if($id8==0){
 															echo'<td>Kesejahteraan Lainnya</td>';
 															echo'<td style="text-align:right">'."Data Belum Diisi".'</td>';
-															echo'<td style="text-align:right">'."".'</td>';
+															echo '<td style="text-align:center"><a href="add_anggaran.php?bulan='.$id_bulan.'&tahun='.$id_tahun.'&nama_anggaran=Kesejahteraan+Lainnya "class="btn btn-info btn-sm"><i class="fa fa-plus"></i> Tambah</a></td>';
 														}
 														else{
 															echo'<td>Kesejahteraan Lainnya</td>';
@@ -488,7 +488,7 @@ if (!isset($_SESSION['level'])){
 														if($id9==0){
 															echo'<td>Pengumpulan Tol</td>';
 															echo'<td style="text-align:right">'."Data Belum Diisi".'</td>';
-															echo'<td style="text-align:right">'."".'</td>';
+															echo '<td style="text-align:center"><a href="add_anggaran.php?bulan='.$id_bulan.'&tahun='.$id_tahun.'&nama_anggaran=Pengumpulan+Tol "class="btn btn-info btn-sm"><i class="fa fa-plus"></i> Tambah</a></td>';
 														}
 														else{
 															echo'<td>Pengumpulan Tol</td>';
@@ -500,7 +500,7 @@ if (!isset($_SESSION['level'])){
 														if($id10==0){
 															echo'<td>Pelayanan Pemakai Jalan Tol</td>';
 															echo'<td style="text-align:right">'."Data Belum Diisi".'</td>';
-															echo'<td style="text-align:right">'."".'</td>';
+															echo '<td style="text-align:center"><a href="add_anggaran.php?bulan='.$id_bulan.'&tahun='.$id_tahun.'&nama_anggaran=Pelayanan+Pemakai+Jalan+Tol "class="btn btn-info btn-sm"><i class="fa fa-plus"></i> Tambah</a></td>';
 														}
 														else{
 															echo'<td>Pelayanan Pemakai Jalan Tol</td>';
@@ -512,7 +512,7 @@ if (!isset($_SESSION['level'])){
 														if($id11==0){
 															echo'<td>Pemeliharaan Jalan Tol</td>';
 															echo'<td style="text-align:right">'."Data Belum Diisi".'</td>';
-															echo'<td style="text-align:right">'."".'</td>';
+															echo '<td style="text-align:center"><a href="add_anggaran.php?bulan='.$id_bulan.'&tahun='.$id_tahun.'&nama_anggaran=Pemeliharaan+Jalan+Tol "class="btn btn-info btn-sm"><i class="fa fa-plus"></i> Tambah</a></td>';
 														}
 														else{
 															echo'<td>Pemeliharaan Jalan Tol</td>';
@@ -524,7 +524,7 @@ if (!isset($_SESSION['level'])){
 														if($id12==0){
 															echo'<td>Pajak Bumi dan Bangunan</td>';
 															echo'<td style="text-align:right">'."Data Belum Diisi".'</td>';
-															echo'<td style="text-align:right">'."".'</td>';
+															echo '<td style="text-align:center"><a href="add_anggaran.php?bulan='.$id_bulan.'&tahun='.$id_tahun.'&nama_anggaran=Pajak+Bumi+dan+Bangunan"class="btn btn-info btn-sm"><i class="fa fa-plus"></i> Tambah</a></td>';
 														}
 														else{
 															echo'<th>Pajak Bumi dan Bangunan</th>';
@@ -536,7 +536,7 @@ if (!isset($_SESSION['level'])){
 														if($id13==0){
 															echo'<td>Penyusutan dan Amortisasi</td>';
 															echo'<td style="text-align:right">'."Data Belum Diisi".'</td>';
-															echo'<td style="text-align:right">'."".'</td>';
+															echo '<td style="text-align:center"><a href="add_anggaran.php?bulan='.$id_bulan.'&tahun='.$id_tahun.'&nama_anggaran=Penyusutan+dan+Amortisasi "class="btn btn-info btn-sm"><i class="fa fa-plus"></i> Tambah</a></td>';
 														}
 														else{
 															echo'<th>Penyusutan dan Amortisasi</th>';
@@ -548,7 +548,7 @@ if (!isset($_SESSION['level'])){
 														if($id14==0){
 															echo'<td>Beban Umum dan Administrasi</td>';
 															echo'<td style="text-align:right">'."Data Belum Diisi".'</td>';
-															echo'<td style="text-align:right">'."".'</td>';
+															echo '<td style="text-align:center"><a href="add_anggaran.php?bulan='.$id_bulan.'&tahun='.$id_tahun.'&nama_anggaran=Beban+Umum+dan+Administrasi "class="btn btn-info btn-sm"><i class="fa fa-plus"></i> Tambah</a></td>';
 														}
 														else{
 															echo'<td>Beban Umum dan Administrasi</td>';
@@ -560,7 +560,7 @@ if (!isset($_SESSION['level'])){
 														if($id15==0){
 															echo'<td>Beban Overlay</td>';
 															echo'<td style="text-align:right">'."Data Belum Diisi".'</td>';
-															echo'<td style="text-align:right">'."".'</td>';
+															echo '<td style="text-align:center"><a href="add_anggaran.php?bulan='.$id_bulan.'&tahun='.$id_tahun.'&nama_anggaran=Beban+Overlay "class="btn btn-info btn-sm"><i class="fa fa-plus"></i> Tambah</a></td>';
 														}
 														else{
 															echo'<th>Beban Overlay</th>';
@@ -572,7 +572,7 @@ if (!isset($_SESSION['level'])){
 														if($id16==0){
 															echo'<td>Penghasilan Bunga</td>';
 															echo'<td style="text-align:right">'."Data Belum Diisi".'</td>';
-															echo'<td style="text-align:right">'."".'</td>';
+															echo '<td style="text-align:center"><a href="add_anggaran.php?bulan='.$id_bulan.'&tahun='.$id_tahun.'&nama_anggaran=Penghasilan+Bunga "class="btn btn-info btn-sm"><i class="fa fa-plus"></i> Tambah</a></td>';
 														}
 														else{
 															echo'<td>Penghasilan Bunga</td>';
@@ -584,7 +584,7 @@ if (!isset($_SESSION['level'])){
 														if($id17==0){
 															echo'<td>Penghasilan Lain-Lain</td>';
 															echo'<td style="text-align:right">'."Data Belum Diisi".'</td>';
-															echo'<td style="text-align:right">'."".'</td>';
+															echo '<td style="text-align:center"><a href="add_anggaran.php?bulan='.$id_bulan.'&tahun='.$id_tahun.'&nama_anggaran=Penghasilan+Lain-Lain "class="btn btn-info btn-sm"><i class="fa fa-plus"></i> Tambah</a></td>';
 														}
 														else{
 															echo'<td>Penghasilan Lain-Lain</td>';
@@ -596,7 +596,7 @@ if (!isset($_SESSION['level'])){
 														if($id18==0){
 															echo'<td>Beban Lain-Lain</td>';
 															echo'<td style="text-align:right">'."Data Belum Diisi".'</td>';
-															echo'<td style="text-align:right">'."".'</td>';
+															echo '<td style="text-align:center"><a href="add_anggaran.php?bulan='.$id_bulan.'&tahun='.$id_tahun.'&nama_anggaran=Beban+Lain-Lain "class="btn btn-info btn-sm"><i class="fa fa-plus"></i> Tambah</a></td>';
 														}
 														else{
 															echo'<td>Beban Lain-Lain</td>';

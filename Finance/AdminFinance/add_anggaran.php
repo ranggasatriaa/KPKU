@@ -18,12 +18,12 @@ if ($db->connect_errno){
 	die ("Tidak dapat terkoneksi dengan database: <br />". $db->connect_error);
 }
 
-if(isset($_POST['submit'])){
-	$bulan=$_POST['bulan'];
-	$tahun=$_POST['tahun'];
-	$nama_anggaran=$_POST['nama_anggaran'];
-	$anggaran=$_POST['anggaran'];
-	//validasi
+if(isset($_GET['submit'])){
+	$bulan=$_GET['bulan'];
+	$tahun=$_GET['tahun'];
+	$nama_anggaran=$_GET['nama_anggaran'];
+	$anggaran=$_GET['anggaran'];
+	//validasi untuk menampilkan grafik
 		if($nama_anggaran=="Pendapatan Tol" ||	$nama_anggaran=="Pendapatan Non Tol"){
 			$tipe_anggaran=1;
 			$flag="Tambah";
@@ -65,7 +65,8 @@ if(isset($_POST['submit'])){
 			$tipe_anggaran=5;
 			$flag="Tambah";
 		}
-		$anggaran=test_input($_POST["anggaran"]);
+	//validasi untuk error pada anggaran
+		$anggaran=test_input($_GET["anggaran"]);
 		if($anggaran==''){
 			$error_anggaran="Mohon Isi uang anggaran";
 			$valid_anggaran=FALSE;
@@ -82,16 +83,15 @@ if(isset($_POST['submit'])){
 		$nama_anggaran = $db->real_escape_string($nama_anggaran);
 		$tipe_anggaran = $db->real_escape_string($tipe_anggaran);
 		$anggaran = $db->real_escape_string($anggaran);
-		$flag = $db->real_escape_string($flag);
 		//Asign a query
-		$query = "INSERT INTO labarugi (bulan, tahun, nama_anggaran,tipe_anggaran,anggaran,flag) VALUES('".$bulan."','".$tahun."','".$nama_anggaran."','".$tipe_anggaran."','".$anggaran."','".$flag."') ";
+		$query = "INSERT INTO labarugi (bulan, tahun, nama_anggaran,tipe_anggaran,anggaran) VALUES('".$bulan."','".$tahun."','".$nama_anggaran."','".$tipe_anggaran."','".$anggaran."') ";
 		// Execute the query
 		$result = $db->query( $query );
 		if (!$result){
 		   die ("Could not query the database: <br />". $db->error);
 		}else{
 			echo "<script>alert('Anggaran Sudah Ditambahkan')</script><br /><br />";
-			echo "<script>window.open('view_anggaran_admin.php','_self')</script>";
+			echo "<script>window.open('view_anggaran_admin.php?bulan=$bulan&tahun=$tahun&submit=Browse','_self')</script>";
 			$db->close();
 			exit;
 		}
@@ -123,89 +123,16 @@ function test_input($data) {
 				<div class="row">
 					<div class="col-lg-12">
 						<h2>Tambah Anggaran</h2>
-						<p class="error">Perhatian:Tidak boleh memasukkan Urma yang sama di tahun dan bulan yang sama</p>
-						<form method="POST" autocomplete="on" action="add_anggaran.php">
+						<?php
+							$bulan=$_GET['bulan'];
+							$tahun=$_GET['tahun'];
+							$nama_anggaran=$_GET['nama_anggaran'];
+						?>
+						<form method="GET" autocomplete="on" action="add_anggaran.php">
 							<table>
-								<tr>
-									<td valign="top">Bulan</td>
-									<td valign="top">:</td>
-									<td valign="top"><select class="form-control" name="bulan" required>
-										<?php
-											require_once('../../config.php');
-											$db = new mysqli($db_host, $db_username, $db_password, $db_database);
-											if($db->connect_errno){
-												die("Tidak dapat terkoneksi dengan database: </br>". $db->connect_errno);
-											}
-											$query = "SELECT * FROM bulan";
-											$result = $db->query($query);
-											if(!$result){
-												die("Query tidak terkoneksi dengan database: </br>" .$db->error);
-											}
-											echo "<option value=''>-- Pilih Bulan --</option>";
-											while($row = $result->fetch_object()){
-												$nama_bulan = $row->nama_bulan;
-												$id_bulan = $row->id_bulan;
-												echo "<option value='$id_bulan'>$nama_bulan</option>";
-											}
-										?>
-									</select>
-									</td>
-									<td valign="top"></td>
-								</tr>
-
-								<tr>
-									<td valign="top">Tahun</td>
-									<td valign="top">:</td>
-									<td valign="top"><select class="form-control" name="tahun" required>
-										<?php
-											require_once('../../config.php');
-											$db = new mysqli($db_host, $db_username, $db_password, $db_database);
-											if($db->connect_errno){
-												die("Tidak dapat terkoneksi dengan database: </br>". $db->connect_errno);
-											}
-											$query = "SELECT * FROM tahun ORDER BY nama_tahun";
-											$result = $db->query($query);
-											if(!$result){
-												die("Query tidak terkoneksi dengan database: </br>" .$db->error);
-											}
-											echo "<option value=''>-- Pilih Tahun --</option>";
-											while($row = $result->fetch_object()){
-											  $nama_tahun = $row->nama_tahun;
-											  $id_tahun = $row->id_tahun;
-												echo "<option value='$id_tahun'>$nama_tahun</option>";
-											}
-										?>
-									</select>
-									</td>
-									<td valign="top"></td>
-								</tr>
-
-								<tr>
-									<td valign="top">Urma</td>
-									<td valign="top">:</td>
-									<td valign="top"><select class="form-control" name="nama_anggaran" required>
-										<option value="none" >--Pilih Nama Anggaran--</option>
-										<option value="Pendapatan Tol">Pendapatan Tol</option>
-										<option value="Pendapatan Non Tol">Pendapatan Non Tol</option>
-										<option value="Gaji dan Tunjangan">Gaji dan Tunjangan</option>
-										<option value="Bonus Insentif dan Pesangon">Bonus Insentif dan Pesangon</option>
-										<option value="Kesehatan">Kesehatan</option>
-										<option value="Lembur">Lembur</option>
-										<option value="Kesejahteraan Lainnya">Kesejahteraan Lainnya</option>
-										<option value="Pengumpulan Tol">Pengumpulan Tol</option>
-										<option value="Pelayanan Pemakai Jalan Tol"> Pelayanan Pemakai Jalan Tol</option>
-										<option value="Pemeliharaan Jalan Tol">Pemeliharaan Jalan Tol</option>
-										<option value="Pajak Bumi dan Bangunan">Pajak Bumi dan Bangunan</option>
-										<option value="Penyusutan dan Amortisasi">Penyusutan dan Amortisasi</option>
-										<option value="Beban Umum dan Administrasi">Beban Umum dan Administrasi</option>
-										<option value="Beban Overlay">Beban Overlay</option>
-										<option value="Penghasilan Bunga">Penghasilan Bunga</option>
-										<option value="Penghasilan Lain-Lain">Penghasilan Lain-Lain</option>
-										<option value="Beban Lain-Lain">Beban Lain-Lain</option>
-										</select>
-									</td>
-									<td valign="top"></td>
-								</tr>
+								<input type="hidden" name ="bulan" value="<?php echo $bulan;?>">
+								<input type="hidden" name ="tahun" value="<?php echo $tahun;?>">
+								<input type="hidden" name ="nama_anggaran" value="<?php echo $nama_anggaran;?>">
 									<td valign="top">Anggaran</td>
 									<td valign="top">:</td>
 									<td valign="top"><input type="text" class="form-control" name="anggaran" size="30" maxlength="50" placeholder="Anggaran(Uang)" autofocus value="<?php if(isset( $anggaran)) {echo $anggaran;}?>"></td>
