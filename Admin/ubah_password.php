@@ -62,7 +62,7 @@
 					if (!$result){
 					   die ("Could not query the database2: <br />". $db->error);
 					}else{
-						echo "<script>alert('Password Sudah Diedit')</script><br /><br />";
+						echo "<script>alert('Password Sudah Diedit')</script>";
 						echo "<script>window.open('";
 						if($_SESSION['level']=="gm"){
 							echo '/KPKU/GM/index.php';
@@ -85,7 +85,7 @@
 					}
 				}
 			}else{
-				echo "<script>alert('Password Lama Salah')</script><br /><br />";
+				echo "<script>alert('Password Lama Salah')</script>";
 				echo "<script>window.open('ubah_password.php?id=".$id.",'_self')</script>";
 			}
 		}
