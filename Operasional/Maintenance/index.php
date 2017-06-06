@@ -15,36 +15,6 @@ if (!isset($_SESSION['level'])){
 <html >
 	<head>
 		<title>Inspeksi Operasional</title>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="">
-		<meta name="author" content="">
-
-		<!-- Bootstrap Core CSS -->
-		<link href="/KPKU/Template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-		<!-- MetisMenu CSS -->
-		<link href="/KPKU/Template/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-		<!-- Custom CSS -->
-		<link href="/KPKU/Template/dist/css/sb-admin-2.css" rel="stylesheet">
-
-		<!-- DataTables CSS -->
-		<link href="/KPKU/Template/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-
-		<!-- DataTables Responsive CSS -->
-		<link href="/KPKU/Template/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
-
-		<!-- Custom Fonts -->
-		<link href="/KPKU/Template/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-				<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-				<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-		<![endif]-->
 	</head>
 	<body>
 		<div id="wrapper">
@@ -52,10 +22,10 @@ if (!isset($_SESSION['level'])){
 				<div class="row">
 				  <div class="col-lg-12">
 						<?php
-							echo '<a style="margin:10px 0px" class="btn btn-primary btn-lg" href="add_inspeksi.php"><i class="fa fa-plus"></i> Inspeksi Baru</a>';
-							echo '&nbsp <a style="margin:10px 0px" class="btn btn-warning btn-lg" href="pil_perbaiki_inspeksi.php"><i class="fa fa-edit"></i> Perbaiki Inspeksi</a>';
-							echo '&nbsp <a style="margin:10px 0px" class="btn btn-info btn-lg" href="print_inspeksi.php"><i class="fa fa-print"></i>  Cetak Inspeksi</a>';
-							echo '&nbsp <a style="margin:10px 0px" class="btn btn-primary btn-outline btn-lg" href="cari_inspeksi.php"><i class="fa fa-search"></i>  Cari Inspeksi</a>';
+							echo '<a style="margin:5px" class="btn btn-primary btn-lg" href="add_inspeksi.php"><i class="fa fa-plus"></i> Inspeksi Baru</a>';
+							echo '<a style="margin:5px" class="btn btn-warning btn-lg" href="pil_perbaiki_inspeksi.php"><i class="fa fa-edit"></i> Perbaiki Inspeksi</a>';
+							echo '<a style="margin:5px" class="btn btn-info btn-lg" href="print_inspeksi.php"><i class="fa fa-print"></i>  Cetak Inspeksi</a>';
+							echo '<a style="margin:5px" class="btn btn-primary btn-outline btn-lg" href="cari_inspeksi.php"><i class="fa fa-search"></i>  Cari Inspeksi</a>';
 						?>
 
 						<div style="margin-bottom:10px;">
@@ -64,9 +34,9 @@ if (!isset($_SESSION['level'])){
 								<div style"flo	at:left;width:20%">
 									<table style="border: 1px  solid #FFFFFF";>
 										<tr>
-											<td>
-												<select style="max-width:150px" name="filter" class="form-control">
-													<option value="">- Pilihan -</option>
+											<td width="158px">
+												<select style="width:153px" name="filter" class="form-control">
+													<option value="">- Jenis Urutan -</option>
 													<option value="inspeksi.idjenis_inspeksi">Jenis Inspeksi</option>
 													<option value="inspeksi.idjenis_kerusakan">Jenis Kerusakan</option>
 													<option value="waktu_kerusakan">Waktu Kerusakan</option>
@@ -78,18 +48,12 @@ if (!isset($_SESSION['level'])){
 													?>
 												</select>
 											</td>
-											<td>
-												&nbsp
-											</td>
-											<td>
-												<select style="max-width:120px" name="urutan" class="form-control">
-													<option value="">- Pilihan -</option>
+											<td width="158px">
+												<select style="width:153px" name="urutan" class="form-control">
+													<option value="">- Arah Urutan -</option>
 													<option value='ASC'>A-Z</option>
 													<option value='DESC'>Z-A</option>
 												</select>
-											</td>
-											<td>
-												&nbsp
 											</td>
 											<td>
 												<input  type="submit" class="btn btn-primary" name="submit" value="Urutkan"></input>
