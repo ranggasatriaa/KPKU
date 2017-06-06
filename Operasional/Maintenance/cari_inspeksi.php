@@ -35,24 +35,24 @@ if (!isset($_SESSION['level'])){
 						<label>Pencarian Menurut Tanggal:</label>
 						<!-- form input tanggal -->
 						<form action="cari_inspeksi.php" method="GET" autocomplete="on">
-							<input type="date" name="tanggal1" >
-							<input type="date" name="tanggal2" >
+							<input style="height:30px; width:153px" type="date" name="tanggal1" placeholder="asds" required>
+							<input style="height:30px; width:153px" type="date" name="tanggal2" required>
 							</br><label>Pencarian Menurut Kategori:</label>
 							<table>
 								<tr>
 									<td width="158px">
 										<select style="max-width:153px" name="kategori" class="form-control" onchange="yesnoCheck(this);">
 											<option value="">-Pilih Ketegori-</option>
-											<option value="jenis_inspeksi">Jenis Inspeksi</option>
-											<option value="jenis_kerusakan">Jenis Kerusakan</option>
+											<option value="inspeksi.idjenis_inspeksi">Jenis Inspeksi</option>
+											<option value="inspeksi.idjenis_kerusakan">Jenis Kerusakan</option>
 										</select>
 										<script>
 											function yesnoCheck(that) {
 												if (that.value != "" ) {
-													if (that.value == "jenis_inspeksi"){
-														document.getElementById("nama_jenis_inspeksi").style.display = "block";
+													if (that.value == "inspeksi.idjenis_inspeksi"){
 														document.getElementById("nama_jenis_kerusakan").style.display = "none";
-														document.getElementById("kosong11").style.display = "none";
+														document.getElementById("nama_jenis_inspeksi").style.display = "block";
+														document.getElementById("kosong").style.display = "none";
 													} else{
 														document.getElementById("nama_jenis_inspeksi").style.display = "none";
 														document.getElementById("nama_jenis_kerusakan").style.display = "block";
@@ -61,21 +61,21 @@ if (!isset($_SESSION['level'])){
 												}else{
 													document.getElementById("nama_jenis_inspeksi").style.display = "none";
 													document.getElementById("nama_jenis_kerusakan").style.display = "none";
-													document.getElementById("kosong11").style.display = "block";
+													document.getElementById("kosong").style.display = "block";
 												}
 											}
 										</script>
 									</td>
 									<td width="157px">
-										<div id="kosong11" style="display: block;">
-											<select style="max-width:152px" name="pilihan" class="form-control" >
+										<div id="kosong" style="display: block;">
+											<select style="width:152px" class="form-control" >
 												<option value=''></option>
 												<option value=''></option>
 												<option value=''></option>
 											</select>
 										</div>
 										<div id="nama_jenis_inspeksi" style="display: none;">
-											<select style="max-width:152px" name="pilihan" class="form-control" >
+											<select style="max-width:152px" name="pilihan1" class="form-control" >
 												<?php
 													$query_ji = "SELECT * FROM jenis_inspeksi";
 													$result_ji = $db->query($query_ji);
@@ -84,13 +84,13 @@ if (!isset($_SESSION['level'])){
 													}
 													echo "<option value=''>-Pilih Inspeksi-</option>";
 													while($row_ji = $result_ji->fetch_object()){
-														echo " <option value='$row_ji->idjenis_inspeksi'>$row_ji->nama_inspeksi</option>";
+														echo " <option value=$row_ji->idjenis_inspeksi>$row_ji->nama_inspeksi</option>";
 													}
 												?>
 											</select>
 										</div>
 										<div id="nama_jenis_kerusakan" style="display: none;">
-											<select style="max-width:152px" name="pilihan" class="form-control">
+											<select style="max-width:152px" name="pilihan2" class="form-control">
 												<?php
 													$query_jk = "SELECT * FROM jenis_kerusakan";
 													$result_jk = $db->query($query_jk);
@@ -99,14 +99,14 @@ if (!isset($_SESSION['level'])){
 													}
 													echo "<option value=''>-Pilih Kerusakan-</option>";
 													while($row_jk = $result_jk->fetch_object()){
-														echo " <option value='$row_jk->idjenis_kerusakan'>$row_jk->nama_kerusakan</option>";
+														echo " <option value=$row_jk->idjenis_kerusakan>$row_jk->nama_kerusakan</option>";
 													}
 												?>
 											</select>
 										</div>
 									</td>
 								<td>
-									<input  type="submit" class="btn btn-primary" name="submit" value="CARI"></input>
+									<input style="width:80px" type="submit" class="btn btn-primary" name="submit" value="CARI"></input>
 								</td>
 							</tr>
 							</table>
@@ -120,11 +120,10 @@ if (!isset($_SESSION['level'])){
 				 			<div style"float:left;width:20%">
 								<input type="hidden" name="tanggal1" value="<?php echo $_GET['tanggal1'];?>"/>
 								<input type="hidden" name="tanggal2" value="<?php echo $_GET['tanggal2'];?>"/>
-
-								<table style="border: 1px  solid #FFFFFF";>
+								<table>
 									<tr>
-										<td>
-											<select style="width:150px" name="filter" class="form-control" required>
+										<td width="158px">
+											<select style="width:153px" name="filter" class="form-control" required>
 												<option value="">- Jenis Urutan -</option>
 												<option value="inspeksi.idjenis_inspeksi">Jenis Inspeksi</option>
 												<option value="inspeksi.idjenis_kerusakan">Jenis Kerusakan</option>
@@ -132,21 +131,15 @@ if (!isset($_SESSION['level'])){
 												<optio	value="inspeksi.status">Kondisi Inspeksi</option>
 											</select>
 										</td>
-										<td>
-											&nbsp
-										</td>
-										<td>
-											<select style="width:150px" name="urutan" class="form-control">
+										<td width="157px">
+											<select style="width:152px" name="urutan" class="form-control">
 												<option value="">- Arah Urutan -</option>
 												<option value="ASC">A-Z</option>
 												<option value="DESC">Z-A</option>
 											</select>
 										</td>
 										<td>
-											&nbsp &nbsp
-										</td>
-										<td>
-											<input  type="submit" class="btn btn-primary" name="submit" value="Urutkan"></input>
+											<input style="width:80px" type="submit" class="btn btn-primary" name="submit" value="Urutkan"></input>
 										</td>
 									</tr>
 								</table>
@@ -154,10 +147,6 @@ if (!isset($_SESSION['level'])){
 						</form>
 						<?php
 						}
-						require_once ('../../config.php');
-						//isisiasi database
-						$db=new mysqli($db_host,$db_username,$db_password,$db_database) or
-						die("Maaf Anda gagal koneksi.!");
 						//mendeteksi apakah ada inputan
 						if(isset($_GET['submit'])){
 							//mebebtukan nilai variabel berdasarkan inputan
@@ -165,27 +154,44 @@ if (!isset($_SESSION['level'])){
 							$urutan		= $_GET['urutan'];
 							$tanggal1 = $_GET['tanggal1'];
 							$tanggal2 = $_GET['tanggal2'];
+							$kategori = $_GET['kategori'];
+							$pilihan1	= $_GET['pilihan1'];
+							$pilihan2 = $_GET['pilihan2'];
+							$pilihan  = "";
 							//menentukan filter dan urutan default
 							if ($filter==""){
 								$filter = "idinspeksi";
 							}elseif ($urutan==""){
 								$urutan = "ASC";
 							}
+							if (isset($pilihan1)){
+								$pilihan = $pilihan1;
+							}elseif (isset($pilihan2)){
+								$pilihan = $pilihan2;
+							}
 							//menentukan selisih hari dari tanggal
 							$temp_tgl	 = $tanggal1;
 							$selisih = ((abs(strtotime ($tanggal1) - strtotime ($tanggal2)))/(60*60*24));
 							echo '<div class="col-lg-12">';
 								//perulangan menghitung kerusakan perhari
-								echo '<h3 align="center">Kerusakan antara tanggal '.date('d M Y', strtotime($tanggal1)).' sampai '.date('d M Y', strtotime($tanggal2)).' </h3>';
+								echo '<h3 align="center">Kerusakan tanggal '.date('d M Y', strtotime($tanggal1)).' s/d '.date('d M Y', strtotime($tanggal2)).' </h3>';
 								$jumlah = 0;
 								for ($i= 0; $i <= $selisih; $i++)
 								{
-									//query penampil inspeksi berdasarkan waktu kerusakan
-									$query =  "SELECT * FROM inspeksi
-														 JOIN petugas ON inspeksi.npp=petugas.npp
-														 JOIN jenis_inspeksi ON inspeksi.idjenis_inspeksi=jenis_inspeksi.idjenis_inspeksi
-														 JOIN jenis_kerusakan ON inspeksi.idjenis_kerusakan=jenis_kerusakan.idjenis_kerusakan
-														 WHERE waktu_kerusakan='$temp_tgl' ORDER BY $filter $urutan";
+									if ($kategori=="" || $pilihan==""){
+										$query =  "SELECT * FROM inspeksi
+															 JOIN petugas ON inspeksi.npp=petugas.npp
+															 JOIN jenis_inspeksi ON inspeksi.idjenis_inspeksi=jenis_inspeksi.idjenis_inspeksi
+															 JOIN jenis_kerusakan ON inspeksi.idjenis_kerusakan=jenis_kerusakan.idjenis_kerusakan
+															 WHERE waktu_kerusakan='$temp_tgl' ORDER BY $filter $urutan";
+									}else{
+										//query penampil inspeksi berdasarkan waktu kerusakan
+										$query =  "SELECT * FROM inspeksi
+															JOIN petugas ON inspeksi.npp=petugas.npp
+															JOIN jenis_inspeksi ON inspeksi.idjenis_inspeksi=jenis_inspeksi.idjenis_inspeksi
+															JOIN jenis_kerusakan ON inspeksi.idjenis_kerusakan=jenis_kerusakan.idjenis_kerusakan
+															WHERE waktu_kerusakan='$temp_tgl' and $kategori=$pilihan ORDER BY $filter $urutan";
+									}
 									// Execute the query
 									$result = $db->query($query);
 									if (!$result){
@@ -217,22 +223,28 @@ if (!isset($_SESSION['level'])){
 								if ($jumlah == 0){
 									echo '<h3 style="text-align:center" class="alert alert-danger"> Tidak ada inspeksi yang ditemukan</h3>';
 								}
-
 							echo '</div>';
-
 							echo '<div class="col-lg-12">';
 								//perulangan menghitung perbaikan perhari
-								echo '<h3 align="center">Perbaikan antara tanggal '.date('d M Y', strtotime($tanggal1)).' sampai '.date('d M Y', strtotime($tanggal2)).' </h3>';
+								echo '<h3 align="center">Perbaikan tanggal '.date('d M Y', strtotime($tanggal1)).' s/d '.date('d M Y', strtotime($tanggal2)).' </h3>';
 								$temp_tgl = $tanggal1;
 								$jumlah = 0;
 								for ($i= 0; $i <= $selisih; $i++)
 								{
-									//query penampil inspeksi berdasarkan waktu perbaikan
-									$query =  " SELECT * FROM inspeksi
-														 JOIN petugas ON inspeksi.npp=petugas.npp
-														 JOIN jenis_inspeksi ON inspeksi.idjenis_inspeksi=jenis_inspeksi.idjenis_inspeksi
-														 JOIN jenis_kerusakan ON inspeksi.idjenis_kerusakan=jenis_kerusakan.idjenis_kerusakan
-														 WHERE waktu_perbaikan='$temp_tgl' ORDER BY $filter $urutan";
+									if ($kategori=="" || $pilihan==""){
+										$query =  "SELECT * FROM inspeksi
+															 JOIN petugas ON inspeksi.npp=petugas.npp
+															 JOIN jenis_inspeksi ON inspeksi.idjenis_inspeksi=jenis_inspeksi.idjenis_inspeksi
+															 JOIN jenis_kerusakan ON inspeksi.idjenis_kerusakan=jenis_kerusakan.idjenis_kerusakan
+															 WHERE waktu_perbaikan='$temp_tgl' ORDER BY $filter $urutan";
+									}else{
+										//query penampil inspeksi berdasarkan waktu perbaikan
+										$query =  "SELECT * FROM inspeksi
+															JOIN petugas ON inspeksi.npp=petugas.npp
+															JOIN jenis_inspeksi ON inspeksi.idjenis_inspeksi=jenis_inspeksi.idjenis_inspeksi
+															JOIN jenis_kerusakan ON inspeksi.idjenis_kerusakan=jenis_kerusakan.idjenis_kerusakan
+															WHERE waktu_perbaikan='$temp_tgl' and $kategori=$pilihan ORDER BY $filter $urutan";
+									}
 									// Execute the query
 									$result = $db->query($query);
 									if (!$result){

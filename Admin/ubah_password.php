@@ -8,7 +8,6 @@
 		include('../header.php');
 	}
 
-	$id = $_GET['id'];
 	require_once('../config.php');
 	$db = new mysqli($db_host, $db_username, $db_password, $db_database);
 		if ($db->connect_errno){
@@ -16,21 +15,21 @@
 		}
 
 		if (isset($_GET["submit"])){
-			$password_lama =md5($_GET["password_lama"]);
+			$password_lama = md5($_GET["password_lama"]);
 			$password_baru1 =$_GET['password_baru1'];
 			$password_baru2 =$_GET['password_baru2'];
 			$panjang = strlen($password_baru1);
 			$id = $_GET['id'];
 
-			$query = "SELECT * FROM petugas where npp=$id";
+			$queryselect = "SELECT * FROM petugas WHERE npp=$id";
 			// Execute the query
-			$result = $db->query( $query );
-			if (!$result){
+			$resultselect = $db->query( $queryselect);
+			if (!$resultselect){
 				die ("Could not query the database: <br />". $db->error);
 			}
 			else{
-				while ($row = $result->fetch_object()){ //semua data yg diselect itu dimasukin ke objek
-					$password = $row->password;
+				while ($rowselect = $resultselect->fetch_object()){ //semua data yg diselect itu dimasukin ke objek
+					$password = $rowselect->password;
 			}
 			if($password_lama==$password){
 				if($panjang>12){
@@ -45,12 +44,13 @@
 					$valid_password=TRUE;
 				}
 				if($password_baru2!=$password_baru1){
-					echo "<script>alert('Konfirmasi Password Baru Tidak sama')</script><br /><br />";
+					echo "<script>alert('Password Baru dan Konfirmasi Password Baru Berbeda')</script><br /><br />";
 					echo "<script>window.open('ubah_password.php?id=".$id.",'_self')</script>";
 					$valid_password_confirm=FALSE;
 				}else{
 					$valid_password_confirm=TRUE;
 				}
+
 				if ( $valid_password && $valid_password_confirm){
 					//escape inputs data
 					$password_barumd5 = md5($password_baru1);
@@ -103,6 +103,7 @@
 		<title>Ubah Password</title>
 		<style>
 			.error {color: #FF0000;}
+
 		</style>
 	</head>
 	<body>
@@ -112,6 +113,7 @@
 					<div class="col-lg-12">
 						<h2>Edit Profil</h2>
 						<form method="GET" autocomplete="on" action="ubah_password.php">
+							<?php	$id = $_GET['id'];?>
 							<input type="hidden" name="id"  value="<?php echo $id?>">
 							<div style="max-width:300px" class="form-group">
 								<label>Password Lama:</label>

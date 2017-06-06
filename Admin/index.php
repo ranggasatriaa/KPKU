@@ -91,9 +91,9 @@
 														}
 														echo '</td> ';
 														echo '<td>';
-															echo '<a class="btn btn-warning" href="edit_petugas.php?id='.$row->npp.'"><i class="fa fa-edit"></i> Ubah</a>';
-															echo '&nbsp&nbsp&nbsp<a class="btn btn-danger" href="delete_petugas.php?id='.$row->npp.'" onclick="return del()"><i class="fa fa-eraser"></i> Hapus</a>';
-															echo '&nbsp&nbsp&nbsp<a class="btn btn-info" href="reset_password.php?id='.$row->npp.'" onclick="return reset()"><i class="fa fa-refresh"></i> Reset Password</a>';
+															echo '<a style="margin:3px" class="btn btn-warning" href="edit_petugas.php?id='.$row->npp.'"><i class="fa fa-edit"></i> Ubah</a>';
+															echo '<a style="margin:3px" class="btn btn-danger" href="delete_petugas.php?id='.$row->npp.'" onclick="return del()"><i class="fa fa-eraser"></i> Hapus</a>';
+															echo '<a style="margin:3px" class="btn btn-info" href="reset_password.php?id='.$row->npp.'" onclick="return reset()"><i class="fa fa-refresh"></i> Reset Password</a>';
 														echo '</td>';
 														echo '<td>';
 															if($row->request==1){

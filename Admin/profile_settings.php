@@ -9,7 +9,6 @@
 	}else{
 		include('../header.php');
 	}
-
 		//GET ID DAN NAMA USER YANG LOGIN
 		require_once('../config.php');
 		$npp=$_SESSION['npp'];
@@ -33,55 +32,56 @@
 			}
 		}else{
 			$nama=test_input($_GET['nama']);
-			$password=test_input($_GET["password"]);
 			$npp=test_input($_GET["npp"]);
-			$panjang=strlen($password);
+			$password=test_input($_GET["password"]);
 			$confirmpassword=$_GET['confirmpassword'];
+			$panjang=strlen($password);
 			$nama=test_input($_GET["nama"]);
 
-			// if($nama==''){
-			// 	$error_nama="Mohon isi nama user";
-			// 	$valid_nama=FALSE;
-			// }
-			// else{
-			// 	$valid_nama=TRUE;
-			// }
-
-			// $npp=test_input($_GET["npp"]);
-			// if($npp==''){
-			// 	$error_npp="Mohon isi npp user";
-			// 	$valid_npp=FALSE;
-			// }
-			// else{
-			// 	$valid_npp=TRUE;
-			// }
-			// $password=test_input($_GET["password"]);
-			// if($password==''){
-			// 	$error_password="Mohon isi password user";
-			// 	$valid_password=FALSE;
-			// }
+			//mendeteksi inputan npp apakah sesuai dengan ketentuan
+			//validasi npp
+			if(!preg_match("/^[0-9]*$/",$npp)) {
+				echo '<script>alert("NPP Tidak Valid: Hanya angka tanpa spasi yang diperbolehkan")</script><br /><br />';
+				echo '<script> window.open ("profile_settings.php","_self")
+				</script>';
+					$valid_npp=FALSE;
+			}elseif(strlen($npp)>5){
+				echo '<script> alert("NPP terlalu panjang ")</script><br /><br />';
+				echo '<script> window.open ("profile_settings.php","_self") </script>';
+				$valid_npp=FALSE;
+			}elseif(strlen($npp)<5 ){
+				echo '<script>alert("NPP terlalu pendek ")</script><br /><br />';
+				echo '<script> window.open ("profile_settings.php","_self") </script>';
+				$valid_npp=FALSE;
+			}else{
+				$valid_npp=TRUE;
+			}
+			//validasi password
 			if($panjang>12){
-				$error_password="Password Teralu Panjang";
+				echo '<script>alert("Password terlalu panjang ")</script><br /><br />';
+				echo '<script> window.open ("profile_settings.php","_self") </script>';
+				//$error_password="Password Terlalu Panjang";
 				$valid_password=FALSE;
 			}elseif($panjang<6){
-				$error_password="Password Teralu Pendek";
+				echo '<script>alert("password terlalu pendek ")</script><br /><br />';
+				echo '<script> window.open ("profile_settings.php","_self") </script>';
+				// $error_password="Password Terlalu Pendek";
 				$valid_password=FALSE;
-			// }elseif(!preg_match('/^[0-9A-Za-z_]$/', $password1)) {
-			// 	$error_password="Hanya huruf, angka dan garis bawah diperbolehkan";
-			// 	$valid_password=FALSE;
 			}else{
 				$valid_password=TRUE;
 			}
 
-			if($confirmpassword1!=$password1){
-				$error_password_confirm="Password dan Konfirmasi Password Harus Sama";
+			if($confirmpassword!=$password){
+				echo '<script>alert("Password dan Konfirmasi password berbeda")</script><br /><br />';
+				echo '<script> window.open ("profile_settings.php","_self") </script>';
+				//$error_password_confirm="Password dan Konfirmasi Password Harus Sama";
 				$valid_password_confirm=FALSE;
 			}else{
 				$valid_password_confirm=TRUE;
 			}
 
 			//update data into database
-			if ($valid_password && $valid_password_confirm){
+			if ($valid_password && $valid_password_confirm && $valid_npp){
 				//escape inputs data
 
 				$nama = $db->real_escape_string($nama);

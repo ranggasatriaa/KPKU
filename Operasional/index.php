@@ -28,8 +28,8 @@ if (!isset($_SESSION['level'])){
 				<div class="row">
         	<div class="col-lg-12">
 						<div class="col-lg-100">
-							<a style="margin:10px 0px" class="btn btn-info btn-lg" href="print_inspeksi.php"><i class="fa fa-print"></i>  Cetak Inspeksi</a>
-							&nbsp <a style="margin:10px 0px" class="btn btn-primary btn-outline btn-lg" href="cari_inspeksi.php"><i class="fa fa-search"></i>  Cari Inspeksi</a>
+							<a style="margin:10px 0px" class="btn btn-info btn-lg" href="maintenance/print_inspeksi.php"><i class="fa fa-print"></i>  Cetak Inspeksi</a>
+							&nbsp <a style="margin:10px 0px" class="btn btn-primary btn-outline btn-lg" href="maintenance/cari_inspeksi.php"><i class="fa fa-search"></i>  Cari Inspeksi</a>
 						</div>
 						<label>Masukkan Tanggal:</label>
 						<form action="index.php" method="GET" autocomplete="on">

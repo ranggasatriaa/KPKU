@@ -33,37 +33,26 @@
 			}
 		}else{
 		$nama = test_input($_GET['nama']);
-		$npp = test_input($_GET['npp']);
 		$level = $_GET['level'];
 		$id = $_GET['id'];
 
-		if(!preg_match("/^[0-9]*$/",$npp)) {
-			echo '<script>alert("NPP Tidak Valif: Hanya angka tanpa spasi yang diperbolehkan")</script><br /><br />';
-			echo '<script>window.open("add_petugas.php","_self")</script>';
-
-			$valid_npp=FALSE;
-		}else{
-			$valid_npp=TRUE;
-		}
-	//update data into database
-		if ( $valid_npp=TRUE){
+			//update data into database
 			//escape inputs data
 			$nama = $db->real_escape_string($nama);
-			$npp = $db->real_escape_string($npp);
 			$level = $db->real_escape_string($level);
 			//Asign a query
-			$query = " UPDATE petugas SET nama='$nama', npp='$npp' ,level='$level' WHERE npp='$id' ";
+			$query = " UPDATE petugas SET nama='$nama',level='$level' WHERE npp='$id' ";
 			// Execute the query
 			$result = $db->query( $query );
 			if (!$result){
 			   die ("Could not query the database2: <br />". $db->error);
 			}else{
-				echo "<script>alert('User Sudah Diedit')</script><br /><br />";
+				echo "<script>alert('Data User Sudah Diubah')</script><br /><br />";
 				echo "<script>window.open('index.php','_self')</script>";
 				$db->close();
 				exit;
 			}
-		}
+
 	}
 	function test_input($data) {
 	   $data = trim($data);
