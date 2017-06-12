@@ -31,10 +31,18 @@ $no_anggaran = $_GET['id'];
 		}
 	}else{
 		$anggaran=test_input($_GET["anggaran"]);
-		if($anggaran==''){
+		if($anggaran<0){
+			$error_anggaran="Anggaran Harus Positif";
+			$valid_anggaran=FALSE;
+		}
+		else if($anggaran==''){
 			$error_anggaran="Mohon Isi uang anggaran";
 			$valid_anggaran=FALSE;
 		}
+		else if (!is_numeric($anggaran)) {
+			$error_anggaran="Anggaran Harus Angka";
+			$valid_anggaran=FALSE;
+		} 
 		else{
 			$valid_anggaran=TRUE;
 		}

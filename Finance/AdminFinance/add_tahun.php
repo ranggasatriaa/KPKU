@@ -28,6 +28,10 @@ if (!isset($_SESSION['level'])){
 					$error_nama_tahun="Mohon isi nama tahun";
 					$valid_nama_tahun=FALSE;
 				}
+				if($nama_tahun<1000){
+					$error_nama_tahun="Tahun Tidak Valid";
+					$valid_nama_tahun=FALSE;
+				}
 				else{
 					$valid_nama_tahun=TRUE;
 				}

@@ -67,10 +67,18 @@ if(isset($_GET['submit'])){
 		}
 	//validasi untuk error pada anggaran
 		$anggaran=test_input($_GET["anggaran"]);
-		if($anggaran==''){
+		if($anggaran<0){
+			$error_anggaran="Anggaran Harus Positif";
+			$valid_anggaran=FALSE;
+		}
+		else if($anggaran==''){
 			$error_anggaran="Mohon Isi uang anggaran";
 			$valid_anggaran=FALSE;
 		}
+		else if (!is_numeric($anggaran)) {
+			$error_anggaran="Anggaran Harus Angka";
+			$valid_anggaran=FALSE;
+		} 
 		else{
 			$valid_anggaran=TRUE;
 		}
@@ -83,8 +91,9 @@ if(isset($_GET['submit'])){
 		$nama_anggaran = $db->real_escape_string($nama_anggaran);
 		$tipe_anggaran = $db->real_escape_string($tipe_anggaran);
 		$anggaran = $db->real_escape_string($anggaran);
+		$flag = $db->real_escape_string($flag);
 		//Asign a query
-		$query = "INSERT INTO labarugi (bulan, tahun, nama_anggaran,tipe_anggaran,anggaran) VALUES('".$bulan."','".$tahun."','".$nama_anggaran."','".$tipe_anggaran."','".$anggaran."') ";
+		$query = "INSERT INTO labarugi (bulan, tahun, nama_anggaran,tipe_anggaran,anggaran,flag) VALUES('".$bulan."','".$tahun."','".$nama_anggaran."','".$tipe_anggaran."','".$anggaran."','".$flag."') ";
 		// Execute the query
 		$result = $db->query( $query );
 		if (!$result){
