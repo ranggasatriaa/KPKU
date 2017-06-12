@@ -19,6 +19,13 @@ if (!isset($_SESSION['level'])){
 				return x;
 			}
 		</script>
+		<?php
+		require_once('../../config.php');
+		$db = new mysqli($db_host, $db_username, $db_password, $db_database);
+		if($db->connect_errno){
+			die("Tidak dapat terkoneksi dengan database: </br>". $db->connect_errno);
+		}
+		?>
   </head>
 	<body style="background-color:#FFF">
     <div id="wrapper">
@@ -34,7 +41,7 @@ if (!isset($_SESSION['level'])){
 							<table>
 								<tr>
 									<td width="158px">
-										<select style="max-width:153px" name="kategori" class="form-control" onchange="yesnoCheck(this);" >
+										<select style="max-width:153px" name="kategori" class="form-control" onchange="yesnoCheck(this);">
 											<option value="">-Pilih Ketegori-</option>
 											<option value="inspeksi.idjenis_inspeksi">Jenis Inspeksi</option>
 											<option value="inspeksi.idjenis_kerusakan">Jenis Kerusakan</option>
@@ -114,9 +121,8 @@ if (!isset($_SESSION['level'])){
 								<input type="hidden" name="tanggal1" value="<?php echo $_GET['tanggal1'];?>"/>
 								<input type="hidden" name="tanggal2" value="<?php echo $_GET['tanggal2'];?>"/>
 								<input type="hidden" name="kategori" value="<?php echo $_GET['kategori'];?>"/>
-								<input type="hidden" name="pilihan1" value="<?php echo $_GET['pilihan1'];?>"/>
-								<input type="hidden" name="pilihan2" value="<?php echo $_GET['pilihan2'];?>"/>
-
+							 <input type="hidden" name="pilihan1" value="<?php echo $_GET['pilihan1'];?>"/>
+							 <input type="hidden" name="pilihan2" value="<?php echo $_GET['pilihan2'];?>"/>
 								<table>
 									<tr>
 										<td width="158px">
@@ -161,53 +167,47 @@ if (!isset($_SESSION['level'])){
 							}elseif ($urutan==""){
 								$urutan = "ASC";
 							}
-							//menentukan parameter yang menjadi pilihan
 							if ($kategori == "inspeksi.idjenis_inspeksi"){
 								$pilihan = $pilihan1;
-								//query untuk nama jenis inspeksi
 								$queryji =  "SELECT * FROM jenis_inspeksi WHERE idjenis_inspeksi=$pilihan1";
-								$resultji = $db->query($queryji);
-								if (!$resultji){
-									die ("Could not query the database1: <br />". $db->error);
-								}else{
-									$rowji = $resultji->fetch_object();
-								}
-							}elseif ($kategori == "inspeksi.idjenis_kerusakan"){
+	                $resultji = $db->query($queryji);
+	                if (!$resultji){
+	                  die ("Could not query the database1: <br />". $db->error);
+	                }else{
+	                  $rowji = $resultji->fetch_object();
+	                }
+	              }elseif ($kategori == "inspeksi.idjenis_kerusakan"){
 								$pilihan = $pilihan2;
-								//query untuk nama jenis kerusakan
 								$queryji =  "SELECT * FROM jenis_kerusakan WHERE idjenis_kerusakan=$pilihan2";
-								$resultji = $db->query($queryji);
-								if (!$resultji){
-									die ("Could not query the database1: <br />". $db->error);
-								}else{
-									$rowji = $resultji->fetch_object();
-								}
+                $resultji = $db->query($queryji);
+                if (!$resultji){
+                  die ("Could not query the database1: <br />". $db->error);
+                }else{
+                  $rowji = $resultji->fetch_object();
+                }
 							}
 							//menentukan selisih hari dari tanggal
 							$temp_tgl	 = $tanggal1;
 							$selisih = ((abs(strtotime ($tanggal1) - strtotime ($tanggal2)))/(60*60*24));
 							echo '<div class="col-lg-12">';
-								//informasi kerusakan
-								echo '<h3 align="center">Kerusakan Inspeksi Tanggal '.date('d M Y', strtotime($tanggal1)).' s/d '.date('d M Y', strtotime($tanggal2)).' </h3>';
-								if ($kategori == "inspeksi.idjenis_inspeksi"){
-									echo '<h3 align="center">Jenis Inspeksi : '.$rowji->nama_inspeksi.'</h3>';
-								}elseif ($kategori == "inspeksi.idjenis_kerusakan"){
-									echo '<h3 align="center">Jenis Kerusakan : '.$rowji->nama_kerusakan.'</h3>';
-								}
-								$jumlah = 0;
 								//perulangan menghitung kerusakan perhari
+								echo '<h3 align="center">Kerusakan Inspeksi Tanggal '.date('d M Y', strtotime($tanggal1)).' s/d '.date('d M Y', strtotime($tanggal2)).' </h3>';
+                if ($kategori == "inspeksi.idjenis_inspeksi"){
+                  echo '<h3 align="center">Jenis Inspeksi : '.$rowji->nama_inspeksi.'</h3>';
+                }elseif ($kategori == "inspeksi.idjenis_kerusakan"){
+                  echo '<h3 align="center">Jenis Kerusakan : '.$rowji->nama_kerusakan.'</h3>';
+                }
+								$jumlah = 0;
 								for ($i= 0; $i <= $selisih; $i++)
 								{
-									//kondisi jika pencarinan berdasarkan kategori tidak digunakan
 									if ($kategori=="" || $pilihan==""){
-										//query pencarian inspeksi menurut tanggal
 										$query =  "SELECT * FROM inspeksi
 															 JOIN petugas ON inspeksi.npp=petugas.npp
 															 JOIN jenis_inspeksi ON inspeksi.idjenis_inspeksi=jenis_inspeksi.idjenis_inspeksi
 															 JOIN jenis_kerusakan ON inspeksi.idjenis_kerusakan=jenis_kerusakan.idjenis_kerusakan
 															 WHERE waktu_kerusakan='$temp_tgl' ORDER BY $filter $urutan";
 									}else{
-										//query pencarian inspeksi menurut tanggal dan kategori
+										//query penampil inspeksi berdasarkan waktu kerusakan
 										$query =  "SELECT * FROM inspeksi
 															JOIN petugas ON inspeksi.npp=petugas.npp
 															JOIN jenis_inspeksi ON inspeksi.idjenis_inspeksi=jenis_inspeksi.idjenis_inspeksi
@@ -247,17 +247,15 @@ if (!isset($_SESSION['level'])){
 								}
 							echo '</div>';
 							echo '<div class="col-lg-12">';
-								//informasi perbaikan
+								//perulangan menghitung perbaikan perhari
 								echo '<h3 align="center">Perbaikan Inspeksi Tanggal '.date('d M Y', strtotime($tanggal1)).' s/d '.date('d M Y', strtotime($tanggal2)).' </h3>';
-								if ($kategori == "inspeksi.idjenis_inspeksi"){
-									echo '<h3 align="center">Jenis Inspeksi : '.$rowji->nama_inspeksi.'</h3>';
-								}elseif ($kategori == "inspeksi.idjenis_kerusakan"){
-									echo '<h3 align="center">Jenis Kerusakan : '.$rowji->nama_kerusakan.'</h3>';
-								}
-
+                if ($kategori == "inspeksi.idjenis_inspeksi"){
+                  echo '<h3 align="center">Jenis Inspeksi : '.$rowji->nama_inspeksi.'</h3>';
+                }elseif ($kategori == "inspeksi.idjenis_kerusakan"){
+                  echo '<h3 align="center">Jenis Kerusakan : '.$rowji->nama_kerusakan.'</h3>';
+                } 
 								$temp_tgl = $tanggal1;
 								$jumlah = 0;
-								//perulangan menghitung perbaikan perhari
 								for ($i= 0; $i <= $selisih; $i++)
 								{
 									if ($kategori=="" || $pilihan==""){
