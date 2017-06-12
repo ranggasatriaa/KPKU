@@ -41,31 +41,37 @@ if (!isset($_SESSION['level'])){
 							$npp								= $_SESSION['npp'];
 
 							//deteksi error dari upload file
-							// if ($_FILES['userfile']['error'] > 0)
-							// {
-							// 	echo 'Problem: ';
-							// 	switch ($_FILES['userfile']['error'])
-							// 	{
-							// 		case 1:  echo '<div class="alert alert-warning">Gagal Mengunggah: Ukuran File terlalu besar!</div>';
-	            //              echo '<a class="btn btn-outline btn-primary btn-block" href="add_inspeksi.php?id='.$idinspeksi.'">Kembali</a>';
-							// 				break;
-							// 		case 2:  echo '<div class="alert alert-warning">Gagal Mengunggah: Ukuran File terlalu besar!!</div>';
-	            //              echo '<a class="btn btn-outline btn-primary btn-block" href="add_inspeksi.php?id='.$idinspeksi.'">Kembali</a>';
-							// 				break;
-							// 		case 3:  echo '<div class="alert alert-warning">Gagal Mengunggah: Hanya sebagian file yang terunggah</div>';
-	            //              echo '<a class="btn btn-outline btn-primary btn-block" href="add_inspeksi.php?id='.$idinspeksi.'">Kembali</a>';
-							// 				break;
-							// 		case 4:  echo '<div class="alert alert-warning"> Tidak ada file yag diunggah</div>';
-	            //              echo '<a class="btn btn-outline btn-primary btn-block" href="add_inspeksi.php?id='.$idinspeksi.'">Kembali</a>';
-							// 				break;
-							// 		case 6:  echo '<div class="alert alert-warning">Gagal Mengunggah: Direktori tidak spesifik.</div>';
-	            //              echo '<a class="btn btn-outline btn-primary btn-block" href="add_inspeksi.php?id='.$idinspeksi.'">Kembali</a>';
-							// 				break;
-							// 		case 7:  echo '<div class="alert alert-warning">Gagal Mengunggah: Tidak dapat menulis ke hardisk.</div>';
-	            //              echo '<a class="btn btn-outline btn-primary btn-block" href="add_inspeksi.php?id='.$idinspeksi.'">Kembali</a>';
-							// 				break;
-							// 	}
-							// }
+							if ($_FILES['userfile']['error'] > 0)
+							{
+
+								switch ($_FILES['userfile']['error'])
+								{
+									case 1:  echo '<div class="alert alert-danger">Gagal Mengunggah: Ukuran File terlalu besar!</div>';
+	                        //  echo '<a class="btn btn-outline btn-primary btn-block" href="add_inspeksi.php?id='.$idinspeksi.'">Kembali</a>';
+													 $upload_ok = 0;
+											break;
+									case 2:  echo '<div class="alert alert-danger">Gagal Mengunggah: Ukuran File terlalu besar!!</div>';
+	                        //  echo '<a class="btn btn-outline btn-primary btn-block" href="add_inspeksi.php?id='.$idinspeksi.'">Kembali</a>';
+													 $upload_ok = 0;
+											break;
+									case 3:  echo '<div class="alert alert-danger">Gagal Mengunggah: Hanya sebagian file yang terunggah</div>';
+	                        //  echo '<a class="btn btn-outline btn-primary btn-block" href="add_inspeksi.php?id='.$idinspeksi.'">Kembali</a>';
+													 $upload_ok = 0;
+											break;
+									case 4:  echo '<div class="alert alert-danger"> Tidak ada file yag diunggah</div>';
+	                        //  echo '<a class="btn btn-outline btn-primary btn-block" href="add_inspeksi.php?id='.$idinspeksi.'">Kembali</a>';
+													 $upload_ok = 0;
+											break;
+									case 6:  echo '<div class="alert alert-danger">Gagal Mengunggah: Direktori tidak spesifik.</div>';
+	                        //  echo '<a class="btn btn-outline btn-primary btn-block" href="add_inspeksi.php?id='.$idinspeksi.'">Kembali</a>';
+													 $upload_ok = 0;
+											break;
+									case 7:  echo '<div class="alert alert-danger">Gagal Mengunggah: Tidak dapat menulis ke hardisk.</div>';
+	                        //  echo '<a class="btn btn-outline btn-primary btn-block" href="add_inspeksi.php?id='.$idinspeksi.'">Kembali</a>';
+													 $upload_ok = 0;
+											break;
+								}
+							}
 
 							//menentukan lokasi file disimpan
 							$target_dir = "gambar-kerusakan/";
@@ -74,13 +80,13 @@ if (!isset($_SESSION['level'])){
 							$file_type = pathinfo($target_file,PATHINFO_EXTENSION);
 
 							// memeriksa apakah file dengan nama sama telah ada
-							if (file_exists($target_file)) {
-							    echo '<div class="alert alert-danger">ERROR! File yang sama telah ada.</div><br />';
-	                echo '<br/><a class="btn btn-outline btn-primary btn-block" href="add_inspeksi.php?id='.$idinspeksi.'">Kembali</a>';
-							    $upload_ok = 0;
-							}
+							// if (file_exists($target_file)) {
+							//     echo '<div class="alert alert-danger">ERROR! File yang sama telah ada.</div><br />';
+	            //     echo '<br/><a class="btn btn-outline btn-primary btn-block" href="add_inspeksi.php?id='.$idinspeksi.'">Kembali</a>';
+							//     $upload_ok = 0;
+							// }
 							// memeriksa apakah ukuran file lebih besar dari ketentuan
-							if ($_FILES['userfile']['size'] > 5300000) {
+							if ($_FILES['userfile']['size'] > 5000000) {
 	              echo '<div class="alert alert-danger">Gagal Mengunggah: Ukuran File terlalu besar</div>';
 	              echo '<a class="btn btn-outline btn-primary btn-block" href="add_inspeksi.php?id='.$idinspeksi.'">Kembali</a>';
 							  $upload_ok = 0;
@@ -95,12 +101,13 @@ if (!isset($_SESSION['level'])){
 							// meletakkan file di direktori yang sudah ditentukan
 							if ($upload_ok != 0){
 								if (!is_uploaded_file($_FILES['userfile']['tmp_name'])){
-	                echo '<div class="alert alert-danger">ERROR! Kemungkinan file yang diunggah bertabrakan dengan:'.$_FILES['userfile']['name'].'</div>';
+	                // echo '<div class="alert alert-danger">ERROR! Kemungkinan file yang diunggah bertabrakan dengan:'.$_FILES['userfile']['name'].'</div>';
 	                echo '<a class="btn btn-outline btn-primary btn-block" href="add_inspeksi.php?id='.$idinspeksi.'">Kembali</a>';
 								}elseif (!move_uploaded_file($_FILES['userfile']['tmp_name'], $target_file)){
-	                echo '<div class="alert alert-danger">ERROR! Tidak dapat memindahkan file ke direktori</div>';
+	                // echo '<div class="alert alert-danger">ERROR! Tidak dapat memindahkan file ke direktori</div>';
 	                echo '<a class="btn btn-outline btn-primary btn-block" href="add_inspeksi.php?id='.$idinspeksi.'">Kembali</a>';
-	              }else{
+	              }else
+								{
 	                // Seleksi Input Data
 	                $file_name = basename($_FILES['userfile']['name']);
 	                $direktori_kerusakan  = $target_file;
