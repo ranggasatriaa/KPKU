@@ -41,22 +41,22 @@ if (!isset($_SESSION['level'])){
 								switch ($_FILES['userfile']['error'])
 								{
 									case 1:  echo '<div class="alert alert-warning">Gagal Mengunggah: Ukuran File terlalu besar</div>';
-	                         echo '<a class="btn btn-outline btn-primary btn-block" href="add_inpeksi.php?id='.$idinspeksi.'">Kembali</a>';
+	                        //  echo '<a class="btn btn-outline btn-primary btn-block" href="add_inpeksi.php?id='.$idinspeksi.'">Kembali</a>';
 											break;
 									case 2:  echo '<div class="alert alert-warning">Gagal Mengunggah: Ukuran File terlalu besar</div>';
-	                         echo '<a class="btn btn-outline btn-primary btn-block" href="add_inpeksi.php?id='.$idinspeksi.'">Kembali</a>';
+	                        //  echo '<a class="btn btn-outline btn-primary btn-block" href="add_inpeksi.php?id='.$idinspeksi.'">Kembali</a>';
 											break;
 									case 3:  echo '<div class="alert alert-warning">Gagal Mengunggah: Hanya sebagian file yang terunggah</div>';
-	                         echo '<a class="btn btn-outline btn-primary btn-block" href="add_inpeksi.php?id='.$idinspeksi.'">Kembali</a>';
+	                        //  echo '<a class="btn btn-outline btn-primary btn-block" href="add_inpeksi.php?id='.$idinspeksi.'">Kembali</a>';
 											break;
 									case 4:  echo '<div class="alert alert-warning"> Tidak ada file yag diunggah</div>';
-	                         echo '<a class="btn btn-outline btn-primary btn-block" href="add_inpeksi.php?id='.$idinspeksi.'">Kembali</a>';
+	                        //  echo '<a class="btn btn-outline btn-primary btn-block" href="add_inpeksi.php?id='.$idinspeksi.'">Kembali</a>';
 											break;
 									case 6:  echo '<div class="alert alert-warning">Gagal Mengunggah: Direktori tidak spesifik.</div>';
-	                         echo '<a class="btn btn-outline btn-primary btn-block" href="add_inpeksi.php?id='.$idinspeksi.'">Kembali</a>';
+	                        //  echo '<a class="btn btn-outline btn-primary btn-block" href="add_inpeksi.php?id='.$idinspeksi.'">Kembali</a>';
 											break;
 									case 7:  echo '<div class="alert alert-warning">Gagal Mengunggah: Tidak dapat menulis ke hardisk.</div>';
-	                         echo '<a class="btn btn-outline btn-primary btn-block" href="add_inpeksi.php?id='.$idinspeksi.'">Kembali</a>';
+	                        //  echo '<a class="btn btn-outline btn-primary btn-block" href="add_inpeksi.php?id='.$idinspeksi.'">Kembali</a>';
 											break;
 								}
 							}
@@ -69,20 +69,20 @@ if (!isset($_SESSION['level'])){
 							// memeriksa apakah file dengan nama sama telah ada
 							if (file_exists($target_file)) {
 							    echo '<div class="alert alert-danger">ERROR! File yang sama telah ada.</div><br />';
-	                echo '<br/><a class="btn btn-outline btn-primary btn-block" href="add_inpeksi.php?id='.$idinspeksi.'">Kembali</a>';
+	                echo '<br/><a class="btn btn-outline btn-primary btn-block" href="perbaiki_inspeksi.php?id='.$idinspeksi.'">Kembali</a>';
 							    $upload_ok = 0;
 							}
 							// memeriksa apakah ukuran file lebih besar dari ketentuan
-							if ($_FILES['userfile']['size'] > 1000000) {
+							if ($_FILES['userfile']['size'] > 5200000) {
 	              echo '<div class="alert alert-danger">Gagal Mengunggah: Ukuran File terlalu besar</div>';
-	              echo '<a class="btn btn-outline btn-primary btn-block" href="add_inpeksi.php?id='.$idinspeksi.'">Kembali</a>';
+	              echo '<a class="btn btn-outline btn-primary btn-block" href="perbaiki_inspeksi.php?id='.$idinspeksi.'">Kembali</a>';
 							  $upload_ok = 0;
 							}
 							// memeriksa ekstensi dari file
 							$allowed_type = array("jpg", "png", "jpeg","bmp","gif","JPG","PNG","JPEG","BMP","GIF");
 							if(!in_array($file_type, $allowed_type)) {
 							    echo '<div class="alert alert-danger">ERROR! Hanya file bertipe: jpg, jpeg, png & gif yang diperbolehkan.</div>';
-	                echo '<a class="btn btn-outline btn-primary btn-block" href="add_inpeksi.php?id='.$idinspeksi.'">Kembali</a>';
+	                echo '<a class="btn btn-outline btn-primary btn-block" href="perbaiki_inspeksi.php?id='.$idinspeksi.'">Kembali</a>';
 							    $upload_ok = 0;
 							}
 							// meletakkan file di direktori yang sudah ditentukan
@@ -101,11 +101,11 @@ if (!isset($_SESSION['level'])){
 										echo '<br/><a class="btn btn-outline btn-primary btn-block" href="index.php">Kembali</a>';
 	                  die ("Could not query the database: <br />". $db->error);
 	                }elseif (!is_uploaded_file($_FILES['userfile']['tmp_name'])){
-			                echo '<div class="alert alert-warning">ERROR! Kemungkinan file yang diunggah bertabrakan dengan:'.$_FILES['userfile']['name'].'</div';
-			                echo '<a class="btn btn-outline btn-primary btn-block" href="add_inpeksi.php?id='.$idinspeksi.'">Kembali</a>';
+			                // echo '<div class="alert alert-warning">ERROR! Kemungkinan file yang diunggah bertabrakan dengan:'.$_FILES['userfile']['name'].'</div';
+			                echo '<a class="btn btn-outline btn-primary btn-block" href="perbaiki_inspeksi.php?id='.$idinspeksi.'">Kembali</a>';
 										}elseif (!move_uploaded_file($_FILES['userfile']['tmp_name'], $target_file)){
-			                echo '<div class="alert alert-warning">ERROR! Tidak dapat memindahkan file ke direktori</div>';
-			                echo '<a class="btn btn-outline btn-primary btn-block" href="add_inpeksi.php?id='.$idinspeksi.'">Kembali</a>';
+			                // echo '<div class="alert alert-warning">ERROR! Tidak dapat memindahkan file ke direktori</div>';
+			                echo '<a class="btn btn-outline btn-primary btn-block" href="perbaiki_inspeksi.php?id='.$idinspeksi.'">Kembali</a>';
 			              }else{
 	                  echo '<div class="alert alert-success"><h2 align="center">File berhasil di unggah</h2></div>';
 	                  echo '<br/><a class="btn btn-outline btn-primary btn-block" href="index.php">Kembali</a>';
