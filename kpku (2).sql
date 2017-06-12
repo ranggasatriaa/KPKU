@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 12, 2017 at 09:22 AM
+-- Generation Time: Jun 12, 2017 at 08:52 PM
 -- Server version: 5.7.17-log
 -- PHP Version: 5.6.30
 
@@ -75,10 +75,21 @@ CREATE TABLE `inspeksi` (
 
 INSERT INTO `inspeksi` (`idinspeksi`, `idjenis_inspeksi`, `idjenis_kerusakan`, `waktu_kerusakan`, `waktu_perbaikan`, `npp`, `direktori_kerusakan`, `direktori_perbaikan`, `keterangan`, `lokasi`, `status`) VALUES
 ('20170118001', 101, 202, '2017-05-01', '2017-05-18', '05297', 'gambar-kerusakan/20170118001_101.jpg', 'gambar-perbaikan/20170118001_asd.jpg', '', 'Jalan Tol Banyumanik Km 10', 1),
-('20170118002', 102, 204, '2017-05-18', '2017-05-19', '05297', 'gambar-kerusakan/20170118002_1506016solo780x390.jpg', 'gambar-perbaikan/20170118002_75407_620.jpg', 'rusak sebelah kanan', 'Jalan Tol bawen Km 1', 1),
-('20170118003', 103, 204, '2017-05-18', '2017-05-18', '05297', 'gambar-kerusakan/20170118003_102.jpeg', 'gambar-perbaikan/20170118003_20170117003_174657.jpg', 'cat pudar', 'Gerbang tol manyaran', 1),
-('20170118004', 104, 203, '2017-05-18', '0000-00-00', '05297', 'gambar-kerusakan/20170118004_75407_620.jpg', '', 'rusak parah ', 'Tol km 12  sdasd', 0),
-('20170119001', 101, 201, '2017-05-19', '0000-00-00', '05297', 'gambar-kerusakan/20170119001_asd.jpg', '', '', 'asdasd', 0);
+('20170118002', 102, 204, '2017-05-18', '2017-05-22', '05297', 'gambar-kerusakan/20170118002_1506016solo780x390.jpg', 'gambar-perbaikan/20170118002_75407_620.jpg', 'rusak sebelah kanan', 'Jalan Tol bawen Km 1', 1),
+('20170118003', 103, 204, '2017-05-18', '2017-05-23', '05297', 'gambar-kerusakan/20170118003_102.jpeg', 'gambar-perbaikan/20170118003_20170117003_174657.jpg', 'cat pudar', 'Gerbang tol manyaran', 1),
+('20170612001', 101, 201, '2017-06-02', '2017-06-10', '05297', 'gambar-kerusakan/20170612001_jalan1.jpg', 'gambar-perbaikan/20170612001_jalan6.jpg', '', 'Km. 3 dari gerbang tol tembalang sebelah kiri', 1),
+('20170612002', 101, 202, '2017-05-28', '2017-06-09', '05297', 'gambar-kerusakan/20170612002_jalan5.jpg', 'gambar-perbaikan/20170612002_jalan9.jpg', '', 'Km. 3 dari gerbang tol manyaran sebelah kanan', 1),
+('20170612003', 101, 203, '2017-06-12', '0000-00-00', '05297', 'gambar-kerusakan/20170612003_jalan2.jpg', '', '', 'Km. 1.5 dari gerbang tol tembalang sebelah kiri', 0),
+('20170612004', 101, 204, '2017-06-10', '0000-00-00', '05297', 'gambar-kerusakan/20170612004_jalan3.jpg', '', 'Banjir, irigasi kurang', 'Km. 1 dari gerbang tol bawen sebelah kiri', 0),
+('20170612005', 102, 201, '2017-06-12', '2017-06-12', '05297', 'gambar-kerusakan/20170612005_jembatan3.jpg', 'gambar-perbaikan/20170612005_jembatan2.jpg', '', 'Km. 1 dari gerbang tol tembalang sebelah kiri', 1),
+('20170612006', 102, 202, '2017-06-12', '0000-00-00', '05297', 'gambar-kerusakan/20170612006_jembatan 6.jpg', '', '', 'jembatan penyebrangan km 5 dari gerbang tol manayaran\r\n', 0),
+('20170612007', 102, 203, '2017-06-03', '0000-00-00', '05297', 'gambar-kerusakan/20170612007_jembatan8.jpg', '', '', 'Km. 3.6 dari gerbang tol banyumaniksebelah kiri', 0),
+('20170612008', 102, 204, '2017-06-04', '0000-00-00', '05297', 'gambar-kerusakan/20170612008_lain-lain4.jpg', '', 'Pembatas jembatan rusak', 'Km. 3 dari gerbang tol mukitiharjo sebelah kanan', 0),
+('20170612009', 103, 202, '2017-06-03', '0000-00-00', '05297', 'gambar-kerusakan/20170612009_pju5.jpg', '', '', 'Km. 3.7 dari gerbang tol ungatan sebelah kiri', 0),
+('20170612010', 103, 203, '2017-06-12', '0000-00-00', '05297', 'gambar-kerusakan/20170612010_pju4.jpg', '', '', 'Km. 9 dari gerbang tol mbawan sebalah kanan\r\n', 0),
+('20170612011', 103, 204, '2017-06-11', '2017-06-12', '05297', 'gambar-kerusakan/20170612011_pju7.jpg', 'gambar-perbaikan/20170612011_pju9.jpg', 'lampu PJU Mati', 'Km. 6.4 dari gerbang tol tembalang sebelah kiri', 1),
+('20170612012', 104, 202, '2017-06-05', '2017-06-10', '05297', 'gambar-kerusakan/20170612012_lain-lain2.jpg', 'gambar-perbaikan/20170612012_lain-lain8.jpg', '', 'Km. 9.43 dari gerbang tol ungaran sebelah kiri', 1),
+('20170612013', 104, 204, '2017-06-01', '2017-06-12', '05297', 'gambar-kerusakan/20170612013_lain-lain5.jpg', 'gambar-perbaikan/20170612013_lain-lain7.jpg', 'plang roboh', 'Km. 6.6 dari gerbang tol tembalang sebelah kiri', 1);
 
 -- --------------------------------------------------------
 
@@ -122,7 +133,6 @@ INSERT INTO `jenis_kerusakan` (`idjenis_kerusakan`, `nama_kerusakan`) VALUES
 (203, 'Retak'),
 (204, 'Lain-lain');
 
-
 -- --------------------------------------------------------
 
 --
@@ -130,7 +140,7 @@ INSERT INTO `jenis_kerusakan` (`idjenis_kerusakan`, `nama_kerusakan`) VALUES
 --
 
 CREATE TABLE `labarugi` (
-  `no_anggaran` int(10) NOT NULL,
+  `no_anggaran` int(11) NOT NULL,
   `nama_anggaran` varchar(100) NOT NULL,
   `anggaran` bigint(100) NOT NULL,
   `bulan` int(10) NOT NULL,
@@ -240,7 +250,8 @@ INSERT INTO `petugas` (`npp`, `nama`, `password`, `level`, `request`) VALUES
 ('05295', 'Muzakir M', 'e10adc3949ba59abbe56e057f20f883e', 'dgm_fn', 0),
 ('05296', 'Sunarso', 'e10adc3949ba59abbe56e057f20f883e', 'ptg_hrga', 0),
 ('05297', 'Rifka Aryansyach', 'e10adc3949ba59abbe56e057f20f883e', 'ptg_op', 0),
-('05298', 'Hadi Makmurarto', 'e10adc3949ba59abbe56e057f20f883e', 'ptg_fn', 0);
+('05298', 'Hadi Makmurarto', 'e10adc3949ba59abbe56e057f20f883e', 'ptg_fn', 0),
+('15297', 'Genta Satria', 'e10adc3949ba59abbe56e057f20f883e', 'ptg_op', 0);
 
 -- --------------------------------------------------------
 
@@ -262,6 +273,7 @@ INSERT INTO `tahun` (`id_tahun`, `nama_tahun`) VALUES
 (2014, 2014),
 (2015, 2015),
 (2016, 2016);
+
 -- --------------------------------------------------------
 
 --
