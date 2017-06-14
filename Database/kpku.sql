@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 12, 2017 at 08:52 PM
+-- Generation Time: Jun 14, 2017 at 01:52 PM
 -- Server version: 5.7.17-log
 -- PHP Version: 5.6.30
 
@@ -250,8 +250,7 @@ INSERT INTO `petugas` (`npp`, `nama`, `password`, `level`, `request`) VALUES
 ('05295', 'Muzakir M', 'e10adc3949ba59abbe56e057f20f883e', 'dgm_fn', 0),
 ('05296', 'Sunarso', 'e10adc3949ba59abbe56e057f20f883e', 'ptg_hrga', 0),
 ('05297', 'Rifka Aryansyach', 'e10adc3949ba59abbe56e057f20f883e', 'ptg_op', 0),
-('05298', 'Hadi Makmurarto', 'e10adc3949ba59abbe56e057f20f883e', 'ptg_fn', 0),
-('15297', 'Genta Satria', 'e10adc3949ba59abbe56e057f20f883e', 'ptg_op', 0);
+('05298', 'Hadi Makmurarto', 'e10adc3949ba59abbe56e057f20f883e', 'ptg_fn', 0);
 
 -- --------------------------------------------------------
 
