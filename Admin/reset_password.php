@@ -26,7 +26,7 @@
 			if(!$result){
 				die("Could not query the database: <br />". $db->error);
 			}else{
-				echo '<script>window.alert("Passoword Telah di Reset");
+				echo '<script>window.alert("Passoword Telah di Reset. Segera hubungi user bersangkutan untuk mengubah passwordnya.");
 				window.location="index.php"</script>';
 		  mysqli_close($con);
 		  exit;

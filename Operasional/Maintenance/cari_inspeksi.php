@@ -224,7 +224,7 @@ if (!isset($_SESSION['level'])){
 										while ($row = $result->fetch_object()){
 											echo '<div class="col-md-4 portofolio-item">';
 												echo '<a href="detail_inspeksi.php?id='.$row->idinspeksi.'">';
-													echo '<img style="max-height:200px" class="img-responsive" src="'.$row->direktori_kerusakan.'" alt="klik untuk detail">';
+													echo '<img style="height:200px" class="img-responsive" src="'.$row->direktori_kerusakan.'" alt="klik untuk detail">';
 												echo '</a>';
 												echo '<h3 style="margin:10px 0px 0px 0px;">';
 													echo '<a style="color:#0059B2" href="detail_inspeksi.php?id='.$row->idinspeksi.'">'.$row->nama_inspeksi.' - '.$row->nama_kerusakan.'</a>';
@@ -253,7 +253,7 @@ if (!isset($_SESSION['level'])){
                   echo '<h3 align="center">Jenis Inspeksi : '.$rowji->nama_inspeksi.'</h3>';
                 }elseif ($kategori == "inspeksi.idjenis_kerusakan"){
                   echo '<h3 align="center">Jenis Kerusakan : '.$rowji->nama_kerusakan.'</h3>';
-                } 
+                }
 								$temp_tgl = $tanggal1;
 								$jumlah = 0;
 								for ($i= 0; $i <= $selisih; $i++)
@@ -282,7 +282,7 @@ if (!isset($_SESSION['level'])){
 										while ($row = $result->fetch_object()){
 											echo '<div class="col-md-4 portofolio-item">';
 												echo '<a href="detail_inspeksi.php?id='.$row->idinspeksi.'">';
-													echo '<img style="max-height:200px" class="img-responsive" src="'.$row->direktori_perbaikan.'" alt="klik untuk detail">';
+													echo '<img style="height:200px" class="img-responsive" src="'.$row->direktori_perbaikan.'" alt="klik untuk detail">';
 												echo '</a>';
 												echo '<h3 style="margin:10px 0px 0px 0px;">';
 													echo '<a style="color:#0059B2" href="detail_inspeksi.php?id='.$row->idinspeksi.'">'.$row->nama_inspeksi.' - '.$row->nama_kerusakan.'</a>';

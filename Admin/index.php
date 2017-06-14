@@ -24,7 +24,7 @@
 		</script>
 		<script>
 		function reset(){
-			var x=window.confirm("Anda yakin ingin mereset password?");
+			var x=window.confirm("Hubungi user bersangkutan untuk mengkonfirmasi peresetan password. Anda yakin ingin mereset password?");
 			return x;
 		}
 		</script>

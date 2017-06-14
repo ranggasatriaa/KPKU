@@ -77,17 +77,38 @@
 													if(isset($_POST['submit'])){
 														//menentukan nilai variabel dari inputan
 														$npp = $_POST['npp'];
-														//query untuk mengubah nilai request menjadi 1 berdasarkan
 
-														$query = "UPDATE petugas SET request=1 WHERE npp='$npp' ";
-														$result = $db->query( $query );
-													//kondisi query tidak benar
-														if (!$result){
-															die ("Could not query the database: <br />". $db->error);
+														if(!preg_match("/^[0-9]*$/",$npp)) {
+															echo '<script>alert("NPP Tidak Valid: Hanya angka tanpa spasi yang diperbolehkan")</script><br /><br />';
+															echo '<script> window.open ("lupa_password.php","_self")
+															</script>';
+																$valid_npp=FALSE;
+														}elseif(strlen($npp)>5){
+															echo '<script> alert("NPP terlalu panjang ")</script><br /><br />';
+															echo '<script> window.open ("lupa_password.php","_self") </script>';
+															$valid_npp=FALSE;
+														}elseif(strlen($npp)<5 ){
+															echo '<script>alert("NPP terlalu pendek ")</script><br /><br />';
+															echo '<script> window.open ("lupa_password.php","_self") </script>';
+															$valid_npp=FALSE;
+														}elseif ($jumlahnpp != 0){
+															echo '<script>alert("NPP sudah digunakan ")</script><br /><br />';
+															echo '<script> window.open ("lupa_password.php","_self") </script>';
+															$valid_npp=FALSE;
 														}else{
-															echo '<script> alert("Permintaan perubahan password telah
-															dikirim.")</script><br /><br />';
-															echo '<script>window.open("index.php","_self")</script>';
+															$valid_npp=TRUE;
+														}
+														//query untuk mengubah nilai request menjadi 1 berdasarkan
+														if ($valid_npp==TRUE){
+															$query = "UPDATE petugas SET request=1 WHERE npp='$npp' ";
+															$result = $db->query( $query );
+														//kondisi query tidak benar
+															if (!$result){
+																die ("Could not query the database: <br />". $db->error);
+															}else{
+																echo '<script> alert("Permintaan perubahan password telah	dikirim.")</script><br /><br />';
+																echo '<script>window.open("index.php","_self")</script>';
+															}
 														}
 													}
 
